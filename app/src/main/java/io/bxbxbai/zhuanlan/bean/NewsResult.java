@@ -1,4 +1,4 @@
-package io.bxbxbai.zhuanlan.model;
+package io.bxbxbai.zhuanlan.bean;
 
 import com.google.gson.annotations.SerializedName;
 

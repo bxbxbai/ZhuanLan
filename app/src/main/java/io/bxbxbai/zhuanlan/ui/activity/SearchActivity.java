@@ -50,9 +50,6 @@ public class SearchActivity extends FragmentActivity {
     }
 
     private void initView() {
-        getActionBar().setDisplayShowTitleEnabled(false);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setDisplayShowCustomEnabled(true);
 
         searchView = new IzzySearchView(this);
         searchView.setQueryHint(getResources().getString(R.string.search_hint));
@@ -69,7 +66,6 @@ public class SearchActivity extends FragmentActivity {
 
         RelativeLayout relative = new RelativeLayout(this);
         relative.addView(searchView);
-        getActionBar().setCustomView(relative);
     }
 
     class SearchTask extends BaseSearchTask {

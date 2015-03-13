@@ -1,6 +1,6 @@
 package io.bxbxbai.zhuanlan.task;
 
-import io.bxbxbai.zhuanlan.model.DailyNews;
+import io.bxbxbai.zhuanlan.bean.DailyNews;
 import io.bxbxbai.zhuanlan.support.Constants;
 import org.json.JSONArray;
 import org.json.JSONException;

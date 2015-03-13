@@ -1,9 +1,10 @@
-package io.bxbxbai.zhuanlan.model;
+package io.bxbxbai.zhuanlan.bean;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by baia on 14-6-2.
+ *
+ * @author bxbxbai
  */
 public class Author {
 

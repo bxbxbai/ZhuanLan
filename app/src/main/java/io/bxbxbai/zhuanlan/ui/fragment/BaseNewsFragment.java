@@ -1,9 +1,7 @@
 package io.bxbxbai.zhuanlan.ui.fragment;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -16,16 +14,12 @@ import android.widget.*;
 
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.NewsAdapter;
-import io.bxbxbai.zhuanlan.model.DailyNews;
+import io.bxbxbai.zhuanlan.bean.DailyNews;
 import io.bxbxbai.zhuanlan.ui.activity.NewsDetailActivity;
-import it.gmariotti.cardslib.library.internal.Card;
-import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
-import taobe.tec.jcc.JChineseConvertor;
+import io.bxbxbai.zhuanlan.ui.activity.WebActivity;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public abstract class BaseNewsFragment extends Fragment
         implements ActionMode.Callback, AbsListView.OnScrollListener,
@@ -148,10 +142,12 @@ public abstract class BaseNewsFragment extends Fragment
 
         DailyNews dailyNews = newsList.get(position);
 
-        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-        intent.putExtra(NewsDetailActivity.FLAG_WEB_CONTENT, dailyNews.getHtmlBody());
-        intent.putExtra(NewsDetailActivity.FLAG_WEB_TITLE, dailyNews.getDailyTitle());
-        getActivity().startActivity(intent);
+//        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+//        intent.putExtra(NewsDetailActivity.FLAG_WEB_CONTENT, dailyNews.getHtmlBody());
+//        intent.putExtra(NewsDetailActivity.FLAG_WEB_TITLE, dailyNews.getDailyTitle());
+//        getActivity().startActivity(intent);
+
+        WebActivity.startActivity(getActivity(), dailyNews.getDailyTitle(), dailyNews.getHtmlBody());
 
 //        if (dailyNews.isMulti()) {
 //            String[] questionTitles = dailyNews.getQuestionTitleList()

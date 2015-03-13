@@ -3,7 +3,7 @@ package io.bxbxbai.zhuanlan.task;
 
 
 import io.bxbxbai.zhuanlan.App;
-import io.bxbxbai.zhuanlan.model.DailyNews;
+import io.bxbxbai.zhuanlan.bean.DailyNews;
 
 import java.util.List;
 

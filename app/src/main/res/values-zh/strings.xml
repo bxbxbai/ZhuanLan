@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">日報</string>
+    <string name="app_name">专栏</string>
     <string name="action_settings">偏好設定</string>
     <string name="news_preview_image">圖片預覽</string>
     <string name="auto_refresh_summary">進入軟件時，是否允許軟件自動刷新？</string>

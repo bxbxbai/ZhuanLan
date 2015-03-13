@@ -2,7 +2,6 @@ package io.bxbxbai.zhuanlan.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 import com.android.volley.toolbox.NetworkImageView;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.model.DailyNews;
+import io.bxbxbai.zhuanlan.bean.DailyNews;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import taobe.tec.jcc.JChineseConvertor;
 

@@ -7,7 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import io.bxbxbai.zhuanlan.model.DailyNews;
+import io.bxbxbai.zhuanlan.bean.DailyNews;
 
 import java.lang.reflect.Type;
 import java.util.List;

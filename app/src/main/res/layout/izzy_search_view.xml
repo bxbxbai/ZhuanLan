@@ -41,7 +41,7 @@
                     android:layout_weight="1.0"
                     android:inputType="textAutoComplete|textNoSuggestions"
                     android:imeOptions="actionSearch"
-                    class="io.github.izzyleung.zhihudailypurify.ui.widget.IzzySearchView$SearchAutoComplete"/>
+                    class="io.bxbxbai.zhuanlan.ui.widget.SearchAutoComplete"/>
 
             <ImageView
                     android:layout_gravity="center_vertical"

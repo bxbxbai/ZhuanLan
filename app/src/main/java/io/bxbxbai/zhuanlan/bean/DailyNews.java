@@ -1,4 +1,4 @@
-package io.bxbxbai.zhuanlan.model;
+package io.bxbxbai.zhuanlan.bean;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -54,8 +54,6 @@ public class MainActivity extends ActionBarActivity {
         };
         toolbar.inflateMenu(R.menu.main);
 
-
-
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.main_pager_tabs);
         ViewPager viewPager = (ViewPager) findViewById(R.id.main_pager);
         viewPager.setOffscreenPageLimit(NUM_FRAGMENTS);

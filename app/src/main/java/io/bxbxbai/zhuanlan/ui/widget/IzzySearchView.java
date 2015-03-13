@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
  */
 
 public class IzzySearchView extends LinearLayout {
-    static final AutoCompleteTextViewReflector HIDDEN_METHOD_INVOKER = new AutoCompleteTextViewReflector();
+    public static final AutoCompleteTextViewReflector HIDDEN_METHOD_INVOKER = new AutoCompleteTextViewReflector();
 
     private boolean mClearingFocus;
 
@@ -58,10 +58,7 @@ public class IzzySearchView extends LinearLayout {
 
     public IzzySearchView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.izzy_search_view, this, true);
+        LayoutInflater.from(context).inflate(R.layout.izzy_search_view, this, true);
 
         mQueryTextView = (SearchAutoComplete) findViewById(R.id.search_src_text);
         mQueryTextView.setSearchView(this);
@@ -204,7 +201,7 @@ public class IzzySearchView extends LinearLayout {
         invalidate();
     }
 
-    private void setImeVisibility(final boolean visible) {
+    public void setImeVisibility(final boolean visible) {
         if (visible) {
             post(mShowImeRunnable);
         } else {
@@ -254,160 +251,4 @@ public class IzzySearchView extends LinearLayout {
         boolean onQueryTextSubmit(String query);
     }
 
-    public static class SearchAutoComplete extends AutoCompleteTextView {
-        private int mThreshold;
-        private IzzySearchView mSearchView;
-
-        public SearchAutoComplete(Context context, AttributeSet attrs) {
-            super(context, attrs);
-            mThreshold = getThreshold();
-        }
-
-        void setSearchView(IzzySearchView searchView) {
-            mSearchView = searchView;
-        }
-
-        @Override
-        public void setThreshold(int threshold) {
-            super.setThreshold(threshold);
-            mThreshold = threshold;
-        }
-
-        @Override
-        protected void replaceText(CharSequence text) {
-        }
-
-        @Override
-        public void performCompletion() {
-        }
-
-        @Override
-        public void onWindowFocusChanged(boolean hasWindowFocus) {
-            super.onWindowFocusChanged(hasWindowFocus);
-
-            if (hasWindowFocus && mSearchView.hasFocus() && getVisibility() == VISIBLE) {
-                InputMethodManager inputManager = (InputMethodManager) getContext()
-                        .getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputManager.showSoftInput(this, 0);
-                if (isLandscapeMode(getContext())) {
-                    HIDDEN_METHOD_INVOKER.ensureImeVisible(this, true);
-                }
-            }
-        }
-
-        @Override
-        protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
-            super.onFocusChanged(focused, direction, previouslyFocusedRect);
-            mSearchView.onTextFocusChanged();
-        }
-
-        @Override
-        public boolean enoughToFilter() {
-            return mThreshold <= 0 || super.enoughToFilter();
-        }
-
-        @Override
-        public boolean onKeyPreIme(int keyCode, @SuppressWarnings("NullableProblems") KeyEvent event) {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
-                    KeyEvent.DispatcherState state = getKeyDispatcherState();
-                    if (state != null) {
-                        state.startTracking(event, this);
-                    }
-                    return true;
-                } else if (event.getAction() == KeyEvent.ACTION_UP) {
-                    KeyEvent.DispatcherState state = getKeyDispatcherState();
-                    if (state != null) {
-                        state.handleUpEvent(event);
-                    }
-                    if (event.isTracking() && !event.isCanceled()) {
-                        mSearchView.clearFocus();
-                        mSearchView.setImeVisibility(false);
-                        return true;
-                    }
-                }
-            }
-            return super.onKeyPreIme(keyCode, event);
-        }
-    }
-
-    private static class AutoCompleteTextViewReflector {
-        private Method doBeforeTextChanged, doAfterTextChanged;
-        private Method ensureImeVisible;
-        private Method showSoftInputUnchecked;
-
-        AutoCompleteTextViewReflector() {
-            try {
-                doBeforeTextChanged = AutoCompleteTextView.class
-                        .getDeclaredMethod("doBeforeTextChanged");
-                doBeforeTextChanged.setAccessible(true);
-            } catch (NoSuchMethodException ignored) {
-
-            }
-            try {
-                doAfterTextChanged = AutoCompleteTextView.class
-                        .getDeclaredMethod("doAfterTextChanged");
-                doAfterTextChanged.setAccessible(true);
-            } catch (NoSuchMethodException ignored) {
-
-            }
-            try {
-                ensureImeVisible = AutoCompleteTextView.class
-                        .getMethod("ensureImeVisible", boolean.class);
-                ensureImeVisible.setAccessible(true);
-            } catch (NoSuchMethodException ignored) {
-
-            }
-            try {
-                showSoftInputUnchecked = InputMethodManager.class.getMethod(
-                        "showSoftInputUnchecked", int.class, ResultReceiver.class);
-                showSoftInputUnchecked.setAccessible(true);
-            } catch (NoSuchMethodException ignored) {
-
-            }
-        }
-
-        void doBeforeTextChanged(AutoCompleteTextView view) {
-            if (doBeforeTextChanged != null) {
-                try {
-                    doBeforeTextChanged.invoke(view);
-                } catch (Exception ignored) {
-
-                }
-            }
-        }
-
-        void doAfterTextChanged(AutoCompleteTextView view) {
-            if (doAfterTextChanged != null) {
-                try {
-                    doAfterTextChanged.invoke(view);
-                } catch (Exception ignored) {
-
-                }
-            }
-        }
-
-        void ensureImeVisible(AutoCompleteTextView view, boolean visible) {
-            if (ensureImeVisible != null) {
-                try {
-                    ensureImeVisible.invoke(view, visible);
-                } catch (Exception ignored) {
-
-                }
-            }
-        }
-
-        void showSoftInputUnchecked(InputMethodManager imm, View view, int flags) {
-            if (showSoftInputUnchecked != null) {
-                try {
-                    showSoftInputUnchecked.invoke(imm, flags, null);
-                    return;
-                } catch (Exception ignored) {
-
-                }
-            }
-
-            imm.showSoftInput(view, flags);
-        }
-    }
 }

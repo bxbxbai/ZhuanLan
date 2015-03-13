@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.model.DailyNews;
+import io.bxbxbai.zhuanlan.bean.DailyNews;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 import java.util.ArrayList;
