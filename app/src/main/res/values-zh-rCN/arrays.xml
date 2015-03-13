@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="accelerate_servers">
+        <item>服务器 1： 架设于大陆，速度稳定。（推荐）</item>
+        <item>服务器 2： 架设于美国，不建议大陆用户选择。</item>
+    </string-array>
+</resources>

@@ -1,0 +1,52 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "io.bxbxbai.zhuanlan"
+        minSdkVersion 15
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.android.support:gridlayout-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:recyclerview-v7:21.0.0'
+
+    compile 'de.greenrobot:eventbus:2.2.1'
+    compile 'com.google.code.gson:gson:2.3'
+    compile 'org.jsoup:jsoup:1.7.+'
+    compile 'se.emilsjolander:stickylistheaders:2.1.0'
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    compile 'com.squareup:android-times-square:1.5.0@aar'
+    compile 'com.jakewharton:butterknife:5.1.2'
+    // stock actionBar
+    compile 'com.balysv.materialmenu:material-menu:1.5.1'
+    compile 'com.balysv.materialmenu:material-menu-toolbar:1.5.0'
+    // Shimmer-android https://github.com/RomainPiel/Shimmer-android
+    compile 'com.romainpiel.shimmer:library:1.2.0@aar'
+
+    // stock actionBar
+    dependencies {
+        compile 'com.github.gabrielemariotti.cards:library:1.8.0'
+    }
+
+    compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
+        // exclusion is not necessary, but generally a good idea.
+        exclude group: 'com.google.android', module: 'support-v4'
+    }
+}

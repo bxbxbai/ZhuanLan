@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="accelerate_servers">
+        <item>服務器 1： 架設於大陸</item>
+        <item>服務器 2： 架設於美國</item>
+    </string-array>
+</resources>

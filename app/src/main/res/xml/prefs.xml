@@ -1,0 +1,43 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/settings_network_settings">
+        <CheckBoxPreference
+                android:key="using_accelerate_server?"
+                android:summary="@string/using_accelerate_server_summary"
+                android:title="@string/using_accelerate_server"
+                android:defaultValue="false"
+                android:enabled="true"/>
+        <ListPreference
+                android:key="which_accelerate_server"
+                android:title="@string/which_accelerate_server_title"
+                android:entries="@array/accelerate_servers"
+                android:entryValues="@array/accelerate_server_values"
+                android:dialogTitle="@string/accelerate_server_dialog_title"
+                android:defaultValue="1"
+                android:dependency="using_accelerate_server?"
+                />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="@string/settings_settings"
+            android:key="settings_settings">
+        <CheckBoxPreference
+                android:defaultValue="true"
+                android:enabled="true"
+                android:key="auto_refresh?"
+                android:summary="@string/auto_refresh_summary"
+                android:title="@string/auto_refresh"/>
+
+        <CheckBoxPreference
+                android:defaultValue="false"
+                android:enabled="true"
+                android:key="using_client?"
+                android:title="@string/using_client"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/settings_others">
+        <Preference
+                android:key="about"
+                android:title="@string/settings_others_about"/>
+    </PreferenceCategory>
+</PreferenceScreen>

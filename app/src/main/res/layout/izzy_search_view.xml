@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:id="@+id/search_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    <LinearLayout
+            android:id="@+id/search_edit_frame"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8.0dip"
+            android:layout_marginTop="4.0dip"
+            android:layout_marginRight="8.0dip"
+            android:layout_marginBottom="4.0dip"
+            android:layout_weight="1.0">
+
+        <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:id="@+id/search_plate"
+                android:background="@drawable/searchview_textfield"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0">
+
+            <view
+                    android:ellipsize="end"
+                    android:layout_gravity="bottom"
+                    android:id="@+id/search_src_text"
+                    android:background="@null"
+                    android:paddingLeft="8dip"
+                    android:paddingRight="8dip"
+                    android:layout_width="0.0dip"
+                    android:layout_height="36.0dip"
+                    android:minWidth="160dip"
+                    android:singleLine="true"
+                    android:layout_weight="1.0"
+                    android:inputType="textAutoComplete|textNoSuggestions"
+                    android:imeOptions="actionSearch"
+                    class="io.github.izzyleung.zhihudailypurify.ui.widget.IzzySearchView$SearchAutoComplete"/>
+
+            <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/search_close_btn"
+                    android:paddingLeft="8.0dip"
+                    android:paddingRight="8.0dip"
+                    android:focusable="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/ic_clear"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

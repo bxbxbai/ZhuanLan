@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">日報</string>
+    <string name="action_settings">偏好設定</string>
+    <string name="news_preview_image">圖片預覽</string>
+    <string name="auto_refresh_summary">進入軟件時，是否允許軟件自動刷新？</string>
+    <string name="auto_refresh">自動刷新</string>
+    <string name="settings_settings">綜合設定</string>
+    <string name="settings_others">其他</string>
+    <string name="settings_others_about">關於</string>
+    <string name="licences_header">知乎日報·淨化 基於下列開源項目構建：
+
+    </string>
+    <string name="licenses_subheader">所有上述開源項目均遵守 Apache 許可證 2.0 版本，如下所示：</string>
+    <string name="action_pick_date">選擇日期</string>
+    <string name="using_client">使用官方客戶端打開知乎討論</string>
+    <string name="network_error">網絡錯誤！</string>
+    <string name="no_browser"><![CDATA[瀏覽器未安裝！>_<]]></string>
+    <string name="not_coming"><![CDATA[此日仍未到來！>_<]]></string>
+    <string name="not_born"><![CDATA[此日知乎日報未誕生！>_<]]></string>
+    <string name="open_using_client">使用客戶端打開討論</string>
+    <string name="zhihu_daily_today">今日之『知乎日報』|</string>
+    <string name="action_forward">前一日</string>
+    <string name="action_back">後一日</string>
+    <string name="this_is_today">此乃今日，明日內容還未發佈！</string>
+    <string name="this_is_birthday">此乃『知乎日報』生日，此前未有內容發佈！</string>
+    <string name="using_accelerate_server">使用加速服務器</string>
+    <string name="using_accelerate_server_summary">勾選此選項後，瀏覽舊日內容速度更快！</string>
+    <string name="settings_network_settings">網路設定</string>
+    <string name="action_search">搜索</string>
+    <string name="search_hint">輸入關鍵詞以搜索</string>
+    <string name="no_result_found">抱歉，未找到相應結果</string>
+    <string name="searching">搜索中，請稍候…</string>
+    <string name="display_format">M月d日 EEEE</string>
+    <string name="which_accelerate_server_title">使用哪個加速服務器?</string>
+    <string name="accelerate_server_dialog_title">請從下列服務器中選擇</string>
+    <string name="accelerate_server_hint_dialog_title">是否啓用加速服務器？</string>
+    <string name="accelerate_server_hint_dialog_message">若啓用之，將大幅減少數據流量使用，更能給您帶來飛速往日內容瀏覽體驗。</string>
+    <string name="action_share_url">分享</string>
+    <string name="share_to">分享至…</string>
+</resources>

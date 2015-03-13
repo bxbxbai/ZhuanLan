@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_float"
+                android:orientation="horizontal">
+
+    <ImageView
+            android:id="@+id/image_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dip"
+            android:src="@drawable/ic_gprs"/>
+
+    <ImageView
+            android:id="@+id/image_line"
+            android:layout_width="2dip"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="2dip"
+            android:layout_toRightOf="@id/image_logo"
+            android:src="@drawable/bg_line_float"/>
+
+    <ProgressBar
+            android:id="@+id/bar_progressbar"
+            style="@style/FloatProgressBar"
+            android:layout_width="50dip"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="2dip"
+            android:layout_marginLeft="2dip"
+            android:layout_marginTop="2dip"
+            android:layout_toRightOf="@id/image_line"
+            android:indeterminate="false"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progress="10">
+    </ProgressBar>
+
+    <TextView
+            android:id="@+id/text_traffic"
+            android:layout_width="45dip"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="2dip"
+            android:layout_marginTop="2dip"
+            android:layout_toRightOf="@id/image_line"
+            android:text="23M"
+            android:gravity="center"
+            android:paddingLeft="3dip"
+            android:textColor="@color/color_white"
+            android:textSize="12sp"/>
+
+</RelativeLayout>
