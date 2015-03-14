@@ -7,5 +7,6 @@
 
     <ListView android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:divider="@drawable/post_list_divider"
             android:id="@+id/lv_post"/>
 </LinearLayout>

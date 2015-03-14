@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp">
+
+    <com.android.volley.toolbox.NetworkImageView
+            android:layout_width="match_parent"
+            android:layout_height="380dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/iv_pic"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:padding="18dp"
+            android:id="@+id/layout_info">
+         <TextView android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                 android:maxLines="2"
+                 android:textColor="@android:color/white"
+                 android:textSize="24sp"
+                 android:layout_marginBottom="10dp"
+                 android:text="去京都的小路里，找寻舞妓的踪影"
+                 android:id="@+id/tv_title"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                android:id="@+id/tv_name"
+                android:text="limiao"
+                android:textColor="@android:color/white"
+                android:layout_marginRight="8dp"
+                android:layout_below="@id/tv_title"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                android:id="@+id/tv_date"
+                android:text="21天前"
+                android:textColor="@android:color/white"
+                android:layout_marginRight="8dp"
+                android:layout_below="@id/tv_title"
+                android:layout_toRightOf="@id/tv_name"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/tv_comment_count"
+                  android:text="38条评论"
+                  android:textColor="@android:color/white"
+                  android:layout_below="@id/tv_title"
+                  android:layout_toRightOf="@id/tv_date"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/tv_like_count"
+                  android:text="437赞"
+                  android:textColor="@android:color/white"
+                  android:layout_below="@id/tv_title"
+                  android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+</FrameLayout>

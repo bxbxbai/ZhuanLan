@@ -10,10 +10,12 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.internal.$Gson$Types;
 import com.google.gson.reflect.TypeToken;
 import io.bxbxbai.zhuanlan.bean.Post;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.Map;
 
 /**
  * 创建一个用于获取gson 的request，向这个类传入Http请求方式，url，需要解析的类
+ *
  * @author bxbxbai
  */
 public class GsonRequest<T> extends Request<T> {
@@ -36,7 +39,8 @@ public class GsonRequest<T> extends Request<T> {
 
     public GsonRequest(String url, ErrorListener errorListener) {
         this(Method.GET, url, null, null, null, errorListener);
-        type = new TypeToken<List<Post>>() { }.getType();
+        type = new TypeToken<List<Post>>() {
+        }.getType();
     }
 
     public GsonRequest(String url, Class clazz, Listener<T> listener, ErrorListener errorListener) {
@@ -67,10 +71,10 @@ public class GsonRequest<T> extends Request<T> {
                 return Response.success(GSON.fromJson(json, mClazz),
                         HttpHeaderParser.parseCacheHeaders(response));
             }
-        }catch (UnsupportedEncodingException e){
+        } catch (UnsupportedEncodingException e) {
             Log.e(TAG, e.getMessage(), e);
             return Response.error(new ParseError(e));
-        }catch (JsonSyntaxException e){
+        } catch (JsonSyntaxException e) {
             Log.e(TAG, e.getMessage(), e);
             return Response.error(new ParseError(e));
         }

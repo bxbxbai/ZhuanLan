@@ -37,4 +37,8 @@
     <string name="accelerate_server_hint_dialog_message">若启用之，在使用更少流量同时，将会给您带来更快往日内容浏览速度。</string>
     <string name="action_share_url">分享</string>
     <string name="share_to">分享至…</string>
+
+    <string name="days_ago">%d天前</string>
+    <string name="comment_count">%d条评论</string>
+    <string name="like_count">%d赞</string>
 </resources>

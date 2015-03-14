@@ -2,6 +2,11 @@ package io.bxbxbai.zhuanlan.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import com.android.volley.toolbox.NetworkImageView;
+import io.bxbxbai.zhuanlan.App;
+import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
 
 import java.util.List;
@@ -19,11 +24,32 @@ public class PostListAdapter extends SimpleBaseAdapter<Post> {
 
     @Override
     public int getItemResource() {
-        return 0;
+        return R.layout.layout_post;
     }
 
     @Override
     public View getItemView(int position, View convertView, ViewHolder holder) {
-        return null;
+        Post post = getItem(position);
+
+        TextView title = holder.findView(R.id.tv_title);
+        title.setText(post.getTitle());
+
+        TextView author = holder.findView(R.id.tv_name);
+        author.setText(post.getAuthor().getName());
+
+        TextView commentCount = holder.findView(R.id.tv_comment_count);
+        commentCount.setText(context.getString(R.string.comment_count, post.getCommentsCount()));
+
+        TextView days = holder.findView(R.id.tv_date);
+        days.setText(context.getString(R.string.days_ago, 23));
+
+        TextView like = holder.findView(R.id.tv_like_count);
+        like.setText(context.getString(R.string.like_count, post.getLikesCount()));
+
+
+        NetworkImageView imageView = holder.findView(R.id.iv_pic);
+        imageView.setImageUrl(post.getTitleImage(), App.getInstance().getImageLoader());
+
+        return convertView;
     }
 }
