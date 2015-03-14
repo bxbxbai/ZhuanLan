@@ -18,18 +18,18 @@ public final class RequestManager {
 
     }
 
-    public static final void addRequest(Request<?>  request, Object tag){
+    public static void addRequest(Request<?>  request, Object tag){
         if(tag != null) {
             request.setTag(tag);
         }
         mRequestQueue.add(request);
     }
 
-    public static final void cancelAll(Object tag ){
+    public static void cancelAll(Object tag ){
         mRequestQueue.cancelAll(tag);
     }
 
-    public static final RequestQueue getRequestQueue(){
+    public static RequestQueue getRequestQueue(){
         return mRequestQueue;
     }
 }

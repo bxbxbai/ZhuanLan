@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,12 +23,13 @@ import io.bxbxbai.zhuanlan.utils.StopWatch;
 import java.io.IOException;
 import java.util.Scanner;
 
+
 /**
  * WebActivity
  *
  * @author bxbxbai
  */
-public class WebActivity extends ActionBarActivity {
+public class WebActivity extends BaseActivity {
 
     public static final String KEY_URL = "key_url";
 
@@ -53,8 +53,7 @@ public class WebActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        initToolBar();
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,14 +61,6 @@ public class WebActivity extends ActionBarActivity {
                 finish();
             }
         });
-
-        MaterialMenuIconToolbar materialMenu = new MaterialMenuIconToolbar(this, Color.WHITE, MaterialMenuDrawable.Stroke.REGULAR) {
-            @Override
-            public int getToolbarViewId() {
-                return R.id.toolbar;
-            }
-        };
-        toolbar.inflateMenu(R.menu.main);
         materialMenu.setState(MaterialMenuDrawable.IconState.ARROW);
 
         mWebView = (WebView) findViewById(R.id.web_view);
@@ -84,13 +75,26 @@ public class WebActivity extends ActionBarActivity {
 
         TextView textView = (TextView) findViewById(R.id.tv_html);
 
-        String html = "\"距离大玩家第一次用<b>Lifemiles</b>换票，已经过了两年。这两年来，我算是发现了" +
-                "：Lifemiles早就习惯变着法打折卖里程了。<br><br>上个月，Lifemiles曾推出转让里程送100%的" +
-                "活动，而近期，他们又有里程<b>买一送一</b>的活动。<br><br><b>科普时间</b><br><br><b" +
-                ">Lifemiles是什么？</b><br><br>";
+        String html = "<p>写了这些长时间公众号和知乎专栏，我终于清楚地感觉到了一件事：</p><br><p>" +
+                "我的读者都是吃货。</p><br><p>无论是幽静闲雅的茶禅之旅，还是小清新的猫岛探秘，都比不" +
+                "上你们在公众号里对我「吃吃吃」的催促。好吧，从今天起，我来写个「寿司百科全书」，争取" +
+                "把寿司的食材种类一网打尽。几个事情先说明一下：</p><br><p>1. 这里不教你「如何有逼格" +
+                "地吃寿司」，也不会诱使你「在气势上压倒寿司师傅」。吃寿司是一件简单的事情，何必复杂化" +
+                "。</p><p>2. 不推荐店面，也不盲目崇拜某些「正宗、传统、神」之类的做法。你去点了寿司" +
+                "，觉得好吃，吃着痛快，就足够了。<br></p><p>3. 关于寿司的所有评价，都是来自本人的主观" +
+                "感受，不排除片面的可能性。<br></p><p><u>4. 睡觉前别看。</u><br></p><br><p>细分的" +
+                "话，寿司的食材种类估计有200-300种，我大约吃过不下150种，基本上覆盖了市面上出现的大部分" +
+                "食材。不排除在世界上某个角落，有人在制作黑松露云腿埃及蜜枣吐鲁番蜜瓜手卷寿司，所以请别用" +
+                "这个清单来当作什么字典。</p><br><p>另一方面，如果您在国外前往寿司店，但是担心自己点不出" +
+                "来东西的话，这个清单也许可以给您一些参考。价格、口味等等的评价，完全根据我个人的经验所言" +
+                "，期待您的反馈。</p><br><br><p><b><u>第一部分，寿司食材常见分类</u></b></p><p>1. 赤" +
+                "身鱼</p><p>赤身鱼顾名思义，鱼肉呈红色或褐色，普遍属于回游鱼。这种鱼类一般生活在浅海区域或" +
+                "者海面附近，在海中的运动量相当大，所以体内的肌肉组织发达，血液含氧量丰富，使得鱼肉呈现红色" +
+                "。</p><p>代表鱼类是金枪鱼， 鲣鱼，鰤鱼等。";
 
+        textView.setVisibility(View.VISIBLE);
 //        textView.setTypeface(Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf"));
-//        textView.setText(Html.fromHtml(html));
+        textView.setText(Html.fromHtml(html));
 
         initWebView();
 
@@ -109,6 +113,7 @@ public class WebActivity extends ActionBarActivity {
         settings.setLoadsImagesAutomatically(true);
         settings.setDefaultTextEncodingName(ENCODING_UTF_8);
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        settings.setLoadWithOverviewMode(true);
 
         mWebView.setHorizontalScrollBarEnabled(false);
         mWebView.setWebChromeClient(new WebChromeClient() {
@@ -130,7 +135,19 @@ public class WebActivity extends ActionBarActivity {
     }
 
     private void loadData() {
-        mWebView.loadDataWithBaseURL(null, mContent, MIME_TYPE, ENCODING_UTF_8, null);
+//        mWebView.loadDataWithBaseURL(null, mContent, MIME_TYPE, ENCODING_UTF_8, null);
+
+        AssetManager manager = getAssets();
+        try {
+            Scanner scanner = new Scanner(manager.open("web.txt"));
+            StringBuilder builder = new StringBuilder();
+            while(scanner.hasNext()) {
+                builder.append(scanner.next());
+            }
+            mWebView.loadDataWithBaseURL(null, builder.toString(), MIME_TYPE, ENCODING_UTF_8, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void startActivity(Context context, String url) {

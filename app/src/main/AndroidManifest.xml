@@ -56,6 +56,8 @@
                   android:configChanges="orientation|keyboardHidden|screenSize"/>
         <activity android:name=".ui.activity.WebActivity"
                   android:parentActivityName=".ui.activity.MainActivity"/>
+        <activity android:name=".ui.activity.PostListActivity"
+                  android:parentActivityName=".ui.activity.MainActivity"/>
     </application>
 
 </manifest>

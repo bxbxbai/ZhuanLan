@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 
     public static final int NUM_FRAGMENTS = 7;
@@ -35,24 +35,33 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initToolBar();
 
-        Toolbar toolbar = ButterKnife.findById(this, R.id.toolbar);
-        setSupportActionBar(toolbar);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_settings:
+                        return prepareIntent(PrefsActivity.class);
+                    case R.id.action_pick_date:
+                        return prepareIntent(PortalActivity.class);
+                    case R.id.action_go_to_search:
+                        return PostListActivity.start(MainActivity.this, "limiao");
+                    case R.id.action_about:
+                        return prepareIntent(CardListActivity.class);
+                }
+                return false;
+            }
+        });
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // open drawer
+                //todo open drawer
             }
         });
-
-        materialMenu = new MaterialMenuIconToolbar(this, Color.WHITE, MaterialMenuDrawable.Stroke.REGULAR) {
-            @Override
-            public int getToolbarViewId() {
-                return R.id.toolbar;
-            }
-        };
         toolbar.inflateMenu(R.menu.main);
+
 
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.main_pager_tabs);
         ViewPager viewPager = (ViewPager) findViewById(R.id.main_pager);
@@ -110,21 +119,6 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                return prepareIntent(PrefsActivity.class);
-            case R.id.action_pick_date:
-                return prepareIntent(PortalActivity.class);
-            case R.id.action_go_to_search:
-                return prepareIntent(SearchActivity.class);
-            case R.id.action_about:
-                return prepareIntent(CardListActivity.class);
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private boolean prepareIntent(Class clazz) {
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, clazz);
@@ -164,9 +158,7 @@ public class MainActivity extends ActionBarActivity {
             Calendar displayDate = Calendar.getInstance();
             displayDate.add(Calendar.DAY_OF_YEAR, -position);
 
-            String date = new SimpleDateFormat(getString(R.string.display_format)).
-                    format(displayDate.getTime());
-
+            String date = new SimpleDateFormat(getString(R.string.display_format)).format(displayDate.getTime());
             if (position == 0) {
                 return getString(R.string.zhihu_daily_today) + " " + date;
             } else {
