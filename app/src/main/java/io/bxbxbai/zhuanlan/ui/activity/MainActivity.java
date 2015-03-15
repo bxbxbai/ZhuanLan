@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity {
 
         setOverflowShowAlways();
         EventBus.getDefault().register(this);
+        PostListActivity.start(this, "");
     }
 
     @Override

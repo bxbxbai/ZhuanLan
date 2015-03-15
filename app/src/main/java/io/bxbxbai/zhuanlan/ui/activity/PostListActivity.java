@@ -13,6 +13,8 @@ import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.data.GsonRequest;
 import io.bxbxbai.zhuanlan.data.RequestManager;
 import io.bxbxbai.zhuanlan.utils.EndlessScrollListener;
+import io.bxbxbai.zhuanlan.utils.StopWatch;
+import io.bxbxbai.zhuanlan.utils.ToastUtils;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
 
 import java.util.List;
@@ -27,6 +29,9 @@ public class PostListActivity extends BaseActivity {
 
     private ListView listView;
 
+    private String id = "limiao";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +43,28 @@ public class PostListActivity extends BaseActivity {
         final PostListAdapter adapter = new PostListAdapter(this, null);
         listView.setAdapter(adapter);
 
+        final Response.Listener listener = new Response.Listener<List<Post>>() {
+            @Override
+            public void onResponse(List<Post> response) {
+                if (response.size() == 0) {
+                    ToastUtils.showShort("没有数据了");
+                }
+                adapter.addAll(response);
+            }
+        };
+
         listView.setOnScrollListener(new EndlessScrollListener() {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
-
+                GsonRequest<List<Post>> request = ZhuanLanApi.getPostListRequest(id,
+                        String.valueOf((page - 1) * ZhuanLanApi.COUNT));
+                request.setSuccessListener(listener);
+                RequestManager.addRequest(request, id);
             }
         });
 
-        String id = "limiao";
-
-        final GsonRequest<List<Post>> request = ZhuanLanApi.getPostListRequest(id);
-        request.setSuccessListener(new Response.Listener<List<Post>>() {
-            @Override
-            public void onResponse(List<Post> response) {
-                adapter.addAll(response);
-            }
-        });
+        GsonRequest<List<Post>> request = ZhuanLanApi.getPostListRequest(id, "0");
+        request.setSuccessListener(listener);
         RequestManager.addRequest(request, id);
 
     }

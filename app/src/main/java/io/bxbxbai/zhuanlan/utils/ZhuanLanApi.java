@@ -1,19 +1,23 @@
 package io.bxbxbai.zhuanlan.utils;
 
+import android.support.v4.util.ArrayMap;
+import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import io.bxbxbai.zhuanlan.bean.Post;
-import io.bxbxbai.zhuanlan.bean.PostResult;
 import io.bxbxbai.zhuanlan.bean.User;
 import io.bxbxbai.zhuanlan.data.GsonRequest;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author bxbxbai
  */
 public final class ZhuanLanApi {
+
+    public static final int COUNT = 10;
 
     private static final String POSTS = "/posts";
 
@@ -27,9 +31,16 @@ public final class ZhuanLanApi {
 
 
 
-    public static GsonRequest<List<Post>> getPostListRequest(String id) {
-        return new GsonRequest<List<Post>>(String.format(API_POST_LIST, id),
-                buildDefaultErrorListener());
+    public static GsonRequest<List<Post>> getPostListRequest(String id, final String offset) {
+        String url = new StringBuilder(String.format(API_POST_LIST, id))
+                .append("?")
+                .append(LIMIT + "=" + COUNT)
+                .append("&")
+                .append(OFFSET)
+                .append("=")
+                .append(offset).toString();
+
+        return new GsonRequest<List<Post>>(url, buildDefaultErrorListener());
     }
 
     public static GsonRequest<User> getUserInfoRequest(String id) {
