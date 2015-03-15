@@ -15,9 +15,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+import com.android.volley.toolbox.NetworkImageView;
 import io.bxbxbai.zhuanlan.R;
 
-public class CircleImageView extends ImageView {
+public class CircleImageView extends NetworkImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 

@@ -95,6 +95,11 @@ public abstract class SimpleBaseAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void add(T elem) {
+        data.add(elem);
+        notifyDataSetChanged();
+    }
+
     public void remove(T elem) {
         data.remove(elem);
         notifyDataSetChanged();

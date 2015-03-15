@@ -139,49 +139,8 @@ public abstract class BaseNewsFragment extends Fragment
         }
 
         clearListChoice();
-
         DailyNews dailyNews = newsList.get(position);
-
-//        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-//        intent.putExtra(NewsDetailActivity.FLAG_WEB_CONTENT, dailyNews.getHtmlBody());
-//        intent.putExtra(NewsDetailActivity.FLAG_WEB_TITLE, dailyNews.getDailyTitle());
-//        getActivity().startActivity(intent);
-
         WebActivity.startActivity(getActivity(), dailyNews.getDailyTitle(), dailyNews.getHtmlBody());
-
-//        if (dailyNews.isMulti()) {
-//            String[] questionTitles = dailyNews.getQuestionTitleList()
-//                    .toArray(new String[dailyNews.getQuestionTitleList().size()]);
-//
-//            // Convert title to Traditional Chinese to meet the displaying language
-//            if (Locale.getDefault().equals(Locale.TRADITIONAL_CHINESE)) {
-//                JChineseConvertor convertor = null;
-//                boolean canConvert = true;
-//
-//                try {
-//                    convertor = JChineseConvertor.getInstance();
-//                } catch (IOException e) {
-//                    canConvert = false;
-//                }
-//
-//                if (canConvert) {
-//                    for (int i = 0; i < questionTitles.length; i++) {
-//                        questionTitles[i] = convertor.s2t(questionTitles[i]);
-//                    }
-//                }
-//            }
-//
-//            new AlertDialog.Builder(getActivity())
-//                    .setTitle(dailyNews.getDailyTitle())
-//                    .setItems(questionTitles, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            goToZhihu(newsList.get(position).getQuestionUrlList().get(which));
-//                        }
-//                    }).show();
-//        } else {
-//            goToZhihu(dailyNews.getQuestionUrl());
-//        }
     }
 
     private void goToZhihu(String url) {

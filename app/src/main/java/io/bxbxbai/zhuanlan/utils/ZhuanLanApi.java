@@ -32,8 +32,15 @@ public final class ZhuanLanApi {
     private static final String API_POST_LIST = API_BASE + KEY_POSTS;
 
 
-    private static final String PIC_SIZE_XL = "xl";
-    private static final String PIC_SIZE_xs = "xs";
+    public static final String PIC_SIZE_XL = "xl";
+    public static final String PIC_SIZE_XS = "xs";
+
+    public static final String TEMPLATE_ID = "{id}";
+    public static final String TEMPLATE_SIZE = "{size}";
+
+
+
+
 
     private static final String API_RATING = API_BASE + KEY_POSTS + "{post_id}" + KEY_RATING;
 

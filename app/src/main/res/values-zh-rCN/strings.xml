@@ -41,4 +41,6 @@
     <string name="days_ago">%d天前</string>
     <string name="comment_count">%d条评论</string>
     <string name="like_count">%d赞</string>
+    <string name="follower">%d人关注</string>
+    <string name="post_count">%d专栏</string>
 </resources>

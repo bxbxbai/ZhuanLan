@@ -12,23 +12,15 @@ import android.widget.ListView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
-import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.data.GsonRequest;
-import io.bxbxbai.zhuanlan.bean.DailyNews;
 import io.bxbxbai.zhuanlan.bean.NewsResult;
 import io.bxbxbai.zhuanlan.support.Constants;
-import io.bxbxbai.zhuanlan.task.AccelerateGetNewsTask;
-import io.bxbxbai.zhuanlan.task.BaseGetNewsTask;
-import io.bxbxbai.zhuanlan.task.MyAsyncTask;
-import io.bxbxbai.zhuanlan.task.OriginalGetNewsTask;
 import io.bxbxbai.zhuanlan.ui.widget.SwipeRefreshLayout;
 
-import java.util.List;
 
 public class NewsListFragment extends BaseNewsFragment
-        implements SwipeRefreshLayout.OnRefreshListener, BaseGetNewsTask.UpdateUIListener {
+        implements SwipeRefreshLayout.OnRefreshListener {
     private String date;
 
     private boolean isAutoRefresh;
@@ -75,8 +67,6 @@ public class NewsListFragment extends BaseNewsFragment
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-        new RecoverNewsListTask().executeOnExecutor(MyAsyncTask.THREAD_POOL_EXECUTOR);
-
         return view;
     }
 
@@ -102,15 +92,12 @@ public class NewsListFragment extends BaseNewsFragment
 
             }
         });
-
-        refresh((isToday || isSingle) && isAutoRefresh && !isRefreshed);
     }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
 
-        refresh(isVisibleToUser && isAutoRefresh && !isRefreshed);
     }
 
     @Override
@@ -137,71 +124,9 @@ public class NewsListFragment extends BaseNewsFragment
         mListView.setItemChecked(position, true);
     }
 
-    private void refresh(boolean prerequisite) {
-        if (prerequisite) {
-            doRefresh();
-        }
-    }
-
-    private void doRefresh() {
-        if (isToday) {
-            new OriginalGetNewsTask(date, this).execute();
-        } else {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            if (sharedPreferences.getBoolean("using_accelerate_server?", false)) {
-                String serverCode;
-                if (sharedPreferences.getString("which_accelerate_server", Constants.ServerCode.SAE)
-                        .equals(Constants.ServerCode.SAE)) {
-                    serverCode = Constants.ServerCode.SAE;
-                } else {
-                    serverCode = Constants.ServerCode.HEROKU;
-                }
-                new AccelerateGetNewsTask(serverCode, date, this).execute();
-            } else {
-                new OriginalGetNewsTask(date, this).execute();
-            }
-        }
-    }
 
     @Override
     public void onRefresh() {
-        doRefresh();
-    }
 
-    @Override
-    public void beforeTaskStart() {
-        mSwipeRefreshLayout.setRefreshing(true);
-    }
-
-    @Override
-    public void afterTaskFinished(List<DailyNews> resultList, boolean isRefreshSuccess, boolean isContentSame) {
-        clearActionMode();
-        mSwipeRefreshLayout.setRefreshing(false);
-        isRefreshed = true;
-
-        if (isRefreshSuccess) {
-            if (!isContentSame) {
-                newsList = resultList;
-                listAdapter.updateNewsList(newsList);
-            }
-        } else if (isAdded()) {
-            Crouton.makeText(getActivity(), getActivity().getString(R.string.network_error), Style.ALERT).show();
-        }
-    }
-
-    private class RecoverNewsListTask extends MyAsyncTask<Void, Void, List<DailyNews>> {
-
-        @Override
-        protected List<DailyNews> doInBackground(Void... params) {
-            return App.getInstance().getDataSource().newsOfTheDay(date);
-        }
-
-        @Override
-        protected void onPostExecute(List<DailyNews> newsListRecovered) {
-            if (newsListRecovered != null) {
-                newsList = newsListRecovered;
-                listAdapter.updateNewsList(newsListRecovered);
-            }
-        }
     }
 }

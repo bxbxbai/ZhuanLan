@@ -14,14 +14,12 @@
             android:layout_width="match_parent"
             android:layout_height="25dip"
             android:background="@null"
+            android:visibility="gone"
             android:textColor="@color/title_gray"
             app:pstsTextAllCaps="false"
             app:pstsIndicatorHeight="2dp"/>
 
-    <android.support.v4.view.ViewPager
-            android:id="@+id/main_pager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            tools:context=".ui.activity.MainActivity"/>
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+            android:id="@+id/container"/>
 </LinearLayout>

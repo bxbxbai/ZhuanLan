@@ -18,6 +18,7 @@ import de.greenrobot.event.EventBus;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.support.Constants;
 import io.bxbxbai.zhuanlan.ui.fragment.NewsListFragment;
+import io.bxbxbai.zhuanlan.ui.fragment.PeopleListFragment;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -62,18 +63,12 @@ public class MainActivity extends BaseActivity {
         });
         toolbar.inflateMenu(R.menu.main);
 
-
-        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.main_pager_tabs);
-        ViewPager viewPager = (ViewPager) findViewById(R.id.main_pager);
-        viewPager.setOffscreenPageLimit(NUM_FRAGMENTS);
-
-        viewPager.setAdapter(new MainPagerAdapter(getSupportFragmentManager()));
-        tabs.setViewPager(viewPager);
-        tabs.setIndicatorColor(getResources().getColor(R.color.holo_blue));
+        getSupportFragmentManager().beginTransaction().add(R.id.container, PeopleListFragment.instate())
+                .commit();
 
         setOverflowShowAlways();
-        EventBus.getDefault().register(this);
-        PostListActivity.start(this, "");
+//        EventBus.getDefault().register(this);
+//        PostListActivity.start(this, "");
     }
 
     @Override
@@ -87,10 +82,6 @@ public class MainActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.main, menu);
 
         return true;
-    }
-
-    public void onEvent(Object event){
-
     }
 
     @Override
