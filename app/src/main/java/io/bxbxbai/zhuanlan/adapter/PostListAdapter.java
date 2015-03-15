@@ -50,6 +50,7 @@ public class PostListAdapter extends SimpleBaseAdapter<Post> {
         NetworkImageView imageView = holder.findView(R.id.iv_pic);
         imageView.setImageUrl(post.getTitleImage(), App.getInstance().getImageLoader());
 
+        convertView.setTag(R.id.key_data, post);
         return convertView;
     }
 }

@@ -1,13 +1,14 @@
 package io.bxbxbai.zhuanlan.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by baia on 15/3/13.
  *
  * @author bxbxbai
  */
-public class Post {
+public class Post implements Parcelable {
 
     @SerializedName("rating")
     private String rating;
@@ -127,4 +128,54 @@ public class Post {
         String name;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.rating);
+        dest.writeString(this.sourceUrl);
+        dest.writeString(this.publishedTime);
+        dest.writeParcelable(this.author, flags);
+        dest.writeString(this.title);
+        dest.writeString(this.titleImage);
+        dest.writeString(this.summary);
+        dest.writeString(this.content);
+        dest.writeString(this.url);
+        dest.writeString(this.state);
+        dest.writeString(this.href);
+        dest.writeInt(this.commentsCount);
+        dest.writeInt(this.likesCount);
+    }
+
+    public Post() {
+    }
+
+    private Post(Parcel in) {
+        this.rating = in.readString();
+        this.sourceUrl = in.readString();
+        this.publishedTime = in.readString();
+        this.author = in.readParcelable(Author.class.getClassLoader());
+        this.title = in.readString();
+        this.titleImage = in.readString();
+        this.summary = in.readString();
+        this.content = in.readString();
+        this.url = in.readString();
+        this.state = in.readString();
+        this.href = in.readString();
+        this.commentsCount = in.readInt();
+        this.likesCount = in.readInt();
+    }
+
+    public static final Parcelable.Creator<Post> CREATOR = new Parcelable.Creator<Post>() {
+        public Post createFromParcel(Parcel source) {
+            return new Post(source);
+        }
+
+        public Post[] newArray(int size) {
+            return new Post[size];
+        }
+    };
 }

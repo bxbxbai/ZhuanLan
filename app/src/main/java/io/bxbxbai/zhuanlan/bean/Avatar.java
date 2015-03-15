@@ -1,11 +1,14 @@
 package io.bxbxbai.zhuanlan.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by baia on 14-6-2.
+ *
+ * @author bxbxbai
  */
-public class Avatar {
+public class Avatar implements Parcelable {
 
     public static final String ID = "id";
 
@@ -32,4 +35,33 @@ public class Avatar {
     public void setTemplate(String template) {
         this.template = template;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.template);
+    }
+
+    public Avatar() {
+    }
+
+    private Avatar(Parcel in) {
+        this.id = in.readString();
+        this.template = in.readString();
+    }
+
+    public static final Parcelable.Creator<Avatar> CREATOR = new Parcelable.Creator<Avatar>() {
+        public Avatar createFromParcel(Parcel source) {
+            return new Avatar(source);
+        }
+
+        public Avatar[] newArray(int size) {
+            return new Avatar[size];
+        }
+    };
 }

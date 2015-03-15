@@ -3,6 +3,8 @@ package io.bxbxbai.zhuanlan.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import com.android.volley.Response;
@@ -26,6 +28,8 @@ import java.util.List;
 public class PostListActivity extends BaseActivity {
 
     private static final String KEY_ID = "id";
+
+    public static final String KEY_DATA = "data";
 
     private ListView listView;
 
@@ -66,6 +70,14 @@ public class PostListActivity extends BaseActivity {
         GsonRequest<List<Post>> request = ZhuanLanApi.getPostListRequest(id, "0");
         request.setSuccessListener(listener);
         RequestManager.addRequest(request, id);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Post post = (Post) view.getTag(R.id.key_data);
+
+            }
+        });
 
     }
 

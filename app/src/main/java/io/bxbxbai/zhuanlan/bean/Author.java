@@ -1,12 +1,14 @@
 package io.bxbxbai.zhuanlan.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 /**
- *
+ * Author
  * @author bxbxbai
  */
-public class Author {
+public class Author implements Parcelable {
 
     public static final String BIO = "bio";
 
@@ -99,4 +101,43 @@ public class Author {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.bio);
+        dest.writeString(this.hash);
+        dest.writeString(this.description);
+        dest.writeString(this.profileUrl);
+        dest.writeParcelable(this.avatar, flags);
+        dest.writeString(this.slug);
+        dest.writeString(this.name);
+    }
+
+    public Author() {
+    }
+
+    private Author(Parcel in) {
+        this.bio = in.readString();
+        this.hash = in.readString();
+        this.description = in.readString();
+        this.profileUrl = in.readString();
+        this.avatar = in.readParcelable(Avatar.class.getClassLoader());
+        this.slug = in.readString();
+        this.name = in.readString();
+    }
+
+    public static final Parcelable.Creator<Author> CREATOR = new Parcelable.Creator<Author>() {
+        public Author createFromParcel(Parcel source) {
+            return new Author(source);
+        }
+
+        public Author[] newArray(int size) {
+            return new Author[size];
+        }
+    };
 }
