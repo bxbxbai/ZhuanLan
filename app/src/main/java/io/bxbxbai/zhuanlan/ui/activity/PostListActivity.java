@@ -75,7 +75,7 @@ public class PostListActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Post post = (Post) view.getTag(R.id.key_data);
-
+                WebActivity.startActivity(PostListActivity.this, post);
             }
         });
 

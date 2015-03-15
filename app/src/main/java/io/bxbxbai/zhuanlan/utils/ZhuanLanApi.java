@@ -19,24 +19,31 @@ public final class ZhuanLanApi {
 
     public static final int COUNT = 10;
 
-    private static final String POSTS = "/posts";
+    private static final String KEY_POSTS = "/posts";
 
-    private static final String LIMIT = "limit";
+    private static final String KEY_LIMIT = "limit";
 
-    private static final String OFFSET = "offset";
+    private static final String KEY_OFFSET = "offset";
+
+    private static final String KEY_RATING = "rating";
 
     private static final String API_BASE = "http://zhuanlan.zhihu.com/api/columns/%s";
 
-    private static final String API_POST_LIST = API_BASE + POSTS;
+    private static final String API_POST_LIST = API_BASE + KEY_POSTS;
 
+
+    private static final String PIC_SIZE_XL = "xl";
+    private static final String PIC_SIZE_xs = "xs";
+
+    private static final String API_RATING = API_BASE + KEY_POSTS + "{post_id}" + KEY_RATING;
 
 
     public static GsonRequest<List<Post>> getPostListRequest(String id, final String offset) {
         String url = new StringBuilder(String.format(API_POST_LIST, id))
                 .append("?")
-                .append(LIMIT + "=" + COUNT)
+                .append(KEY_LIMIT + "=" + COUNT)
                 .append("&")
-                .append(OFFSET)
+                .append(KEY_OFFSET)
                 .append("=")
                 .append(offset).toString();
 

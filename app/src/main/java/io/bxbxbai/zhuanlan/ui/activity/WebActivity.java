@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.extras.toolbar.MaterialMenuIconToolbar;
 import io.bxbxbai.zhuanlan.R;
+import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.utils.StopWatch;
 
 import java.io.IOException;
@@ -37,6 +38,11 @@ public class WebActivity extends BaseActivity {
 
     public static final String KEY_TITLE = "title";
 
+    public static final String KEY_POST = "post";
+
+    private static final String CSS_STYLE = "<style>*{font-size:30px;line-height:20px;color:#222;}p{color:#222;}</style>";
+
+
     private static final String ENCODING_UTF_8 = "UTF-8";
     private static final String MIME_TYPE = "text/html";
     private static final String FILE_NAME = "web.txt";
@@ -46,6 +52,7 @@ public class WebActivity extends BaseActivity {
     private String mUrl;
     private String mTitle;
     private String mContent;
+    private Post mPost;
 
 
     @Override
@@ -69,6 +76,7 @@ public class WebActivity extends BaseActivity {
             mUrl = bundle.getString(KEY_URL);
             mTitle = bundle.getString(KEY_TITLE);
             mContent = bundle.getString(KEY_CONTENT);
+            mPost = bundle.getParcelable(KEY_POST);
         }
 
         toolbar.setTitle(mTitle);
@@ -92,9 +100,9 @@ public class WebActivity extends BaseActivity {
                 "者海面附近，在海中的运动量相当大，所以体内的肌肉组织发达，血液含氧量丰富，使得鱼肉呈现红色" +
                 "。</p><p>代表鱼类是金枪鱼， 鲣鱼，鰤鱼等。";
 
-        textView.setVisibility(View.VISIBLE);
+//        textView.setVisibility(View.VISIBLE);
 //        textView.setTypeface(Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf"));
-        textView.setText(Html.fromHtml(html));
+//        textView.setText(Html.fromHtml(html));
 
         initWebView();
 
@@ -103,7 +111,10 @@ public class WebActivity extends BaseActivity {
         } else {
             loadData();
         }
+//        mWebView.loadDataWithBaseURL(null, CSS_STYLE + mPost.getContent(), MIME_TYPE, ENCODING_UTF_8, null);
+        mWebView.loadUrl("http://zhuanlan.zhihu.com/limiao/19975729");
     }
+
 
 
     private void initWebView() {
@@ -113,6 +124,8 @@ public class WebActivity extends BaseActivity {
         settings.setLoadsImagesAutomatically(true);
         settings.setDefaultTextEncodingName(ENCODING_UTF_8);
         settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        settings.setLoadWithOverviewMode(true);
+        settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
 
         mWebView.setHorizontalScrollBarEnabled(false);
@@ -135,19 +148,19 @@ public class WebActivity extends BaseActivity {
     }
 
     private void loadData() {
-//        mWebView.loadDataWithBaseURL(null, mContent, MIME_TYPE, ENCODING_UTF_8, null);
 
-        AssetManager manager = getAssets();
-        try {
-            Scanner scanner = new Scanner(manager.open("web.txt"));
-            StringBuilder builder = new StringBuilder();
-            while(scanner.hasNext()) {
-                builder.append(scanner.next());
-            }
-            mWebView.loadDataWithBaseURL(null, builder.toString(), MIME_TYPE, ENCODING_UTF_8, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+//        AssetManager manager = getAssets();
+//        try {
+//            Scanner scanner = new Scanner(manager.open("web.txt"));
+//            StringBuilder builder = new StringBuilder();
+//            while(scanner.hasNext()) {
+//                builder.append(scanner.next());
+//            }
+//            mWebView.loadDataWithBaseURL(null, builder.toString(), MIME_TYPE, ENCODING_UTF_8, null);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static void startActivity(Context context, String url) {
@@ -160,6 +173,12 @@ public class WebActivity extends BaseActivity {
         Intent i = new Intent(context, WebActivity.class);
         i.putExtra(KEY_TITLE, title);
         i.putExtra(KEY_CONTENT, content);
+        context.startActivity(i);
+    }
+
+    public static void startActivity(Context context, Post post) {
+        Intent i = new Intent(context, WebActivity.class);
+        i.putExtra(KEY_POST, post);
         context.startActivity(i);
     }
 }
