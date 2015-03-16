@@ -2,12 +2,7 @@ package io.bxbxbai.zhuanlan.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -16,13 +11,13 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 import com.balysv.materialmenu.MaterialMenuDrawable;
-import com.balysv.materialmenu.extras.toolbar.MaterialMenuIconToolbar;
+import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.utils.StopWatch;
-
-import java.io.IOException;
-import java.util.Scanner;
+import io.bxbxbai.zhuanlan.utils.Utils;
+import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
+import io.bxbxbai.zhuanlan.view.CircleImageView;
 
 
 /**
@@ -40,7 +35,9 @@ public class WebActivity extends BaseActivity {
 
     public static final String KEY_POST = "post";
 
-    private static final String CSS_STYLE = "<style>*{font-size:30px;line-height:20px;color:#222;}p{color:#222;}</style>";
+    private static final String CSS_STYLE = "<style>*{font-size:40px;line-height:55px;}" +
+            "p{color:#000; margin:50px 30px;font-family:Courier New,Arial;}" +
+            "img {min-width:100%; max-width:100%; display:block; margin:30px auto 30px;}</style>";
 
 
     private static final String ENCODING_UTF_8 = "UTF-8";
@@ -48,6 +45,8 @@ public class WebActivity extends BaseActivity {
     private static final String FILE_NAME = "web.txt";
 
     private WebView mWebView;
+    private TextView mTitleView, mNameView;
+    private CircleImageView mAvatarView;
 
     private String mUrl;
     private String mTitle;
@@ -71,6 +70,10 @@ public class WebActivity extends BaseActivity {
         materialMenu.setState(MaterialMenuDrawable.IconState.ARROW);
 
         mWebView = (WebView) findViewById(R.id.web_view);
+        mTitleView = (TextView) findViewById(R.id.tv_title);
+        mNameView = (TextView) findViewById(R.id.tv_name);
+        mAvatarView = (CircleImageView) findViewById(R.id.iv_avatar);
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             mUrl = bundle.getString(KEY_URL);
@@ -112,7 +115,23 @@ public class WebActivity extends BaseActivity {
             loadData();
         }
 //        mWebView.loadDataWithBaseURL(null, CSS_STYLE + mPost.getContent(), MIME_TYPE, ENCODING_UTF_8, null);
-        mWebView.loadUrl("http://zhuanlan.zhihu.com/limiao/19975729");
+        if (mPost != null) {
+//            mWebView.loadUrl("http://zhuanlan.zhihu.com" + mPost.getUrl());
+            mWebView.loadDataWithBaseURL(null, CSS_STYLE + mPost.getContent(), MIME_TYPE, ENCODING_UTF_8, null);
+            toolbar.setTitle(mPost.getTitle());
+            mTitleView.setText(mPost.getTitle());
+            mNameView.setText(mPost.getAuthor().getName());
+
+            String id = mPost.getAuthor().getAvatar().getId();
+            String picUrl = Utils.getAuthorAvatarUrl(mPost.getAuthor().getAvatar().getTemplate(),
+                    id, ZhuanLanApi.PIC_SIZE_XL);
+
+            mAvatarView.setImageUrl(picUrl, App.getInstance().getImageLoader());
+        } else if (mUrl != null) {
+            mWebView.loadUrl(mUrl);
+        } else {
+            mWebView.loadUrl("http://zhihu.com");
+        }
     }
 
 
@@ -123,8 +142,9 @@ public class WebActivity extends BaseActivity {
         settings.setBuiltInZoomControls(false);
         settings.setLoadsImagesAutomatically(true);
         settings.setDefaultTextEncodingName(ENCODING_UTF_8);
-        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-        settings.setLoadWithOverviewMode(true);
+//        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        settings.setBlockNetworkImage(false);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
 

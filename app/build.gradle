@@ -28,6 +28,7 @@ dependencies {
     compile 'de.greenrobot:eventbus:2.2.1'
     compile 'com.google.code.gson:gson:2.3'
     compile 'org.jsoup:jsoup:1.7.+'
+    compile 'com.squareup.picasso:picasso:2.5.0'
     compile 'se.emilsjolander:stickylistheaders:2.1.0'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.squareup:android-times-square:1.5.0@aar'

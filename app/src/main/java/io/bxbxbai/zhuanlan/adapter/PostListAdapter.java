@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.volley.toolbox.NetworkImageView;
+import com.squareup.picasso.Picasso;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
@@ -49,6 +50,7 @@ public class PostListAdapter extends SimpleBaseAdapter<Post> {
 
         NetworkImageView imageView = holder.findView(R.id.iv_pic);
         imageView.setImageUrl(post.getTitleImage(), App.getInstance().getImageLoader());
+//        Picasso.with(context).load(post.getTitleImage()).placeholder(R.drawable.bxbxbai).into(imageView);
 
         convertView.setTag(R.id.key_data, post);
         return convertView;

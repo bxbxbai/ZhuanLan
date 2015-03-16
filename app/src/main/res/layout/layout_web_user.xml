@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@android:color/white"
+              android:paddingLeft="8dp"
+              android:paddingRight="8dp"
+              android:layout_height="match_parent">
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_title"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="bxbxbai"/>
+
+    <io.bxbxbai.zhuanlan.view.CircleImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/tv_title"
+            android:src="@drawable/bxbxbai"
+            android:id="@+id/iv_avatar"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="20dp"
+            android:layout_below="@id/tv_title"
+            android:text="bxbxbai"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@id/iv_avatar"
+            android:id="@id/tv_name"/>
+
+</RelativeLayout>

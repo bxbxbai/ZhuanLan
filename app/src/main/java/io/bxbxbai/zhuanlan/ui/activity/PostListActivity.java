@@ -42,6 +42,13 @@ public class PostListActivity extends BaseActivity {
         setContentView(R.layout.activity_post_list);
         initToolBar();
         materialMenu.setState(MaterialMenuDrawable.IconState.ARROW);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        
         listView = ButterKnife.findById(this, R.id.lv_post);
 
         final PostListAdapter adapter = new PostListAdapter(this, null);
@@ -56,6 +63,8 @@ public class PostListActivity extends BaseActivity {
                 adapter.addAll(response);
             }
         };
+
+        id = getIntent().getStringExtra(KEY_ID);
 
         listView.setOnScrollListener(new EndlessScrollListener() {
             @Override

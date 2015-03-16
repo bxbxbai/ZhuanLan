@@ -29,6 +29,12 @@ public final class ZhuanLanApi {
 
     private static final String API_BASE = "http://zhuanlan.zhihu.com/api/columns/%s";
 
+
+    /**
+     * 知乎日报启动画面api（手机分辨率的长和宽）
+     */
+    public static final String API_START_IMAGE = "http://news-at.zhihu.com/api/4/start-image/%d*%d";
+
     private static final String API_POST_LIST = API_BASE + KEY_POSTS;
 
 
@@ -67,7 +73,7 @@ public final class ZhuanLanApi {
         return new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                ToastUtils.showLong(error.getMessage());
+                ToastUtils.showLong("Error");
             }
         };
     }

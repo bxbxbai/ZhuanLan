@@ -20,7 +20,7 @@ public class User {
     private Author author;
 
     @SerializedName("topics")
-    private List<String> topics;
+    private List<Topic> topics;
 
     @SerializedName("href")
     private String href;
@@ -68,7 +68,7 @@ public class User {
         return author;
     }
 
-    public List<String> getTopics() {
+    public List<Topic> getTopics() {
         return topics;
     }
 
@@ -114,5 +114,28 @@ public class User {
 
     public boolean isActivateAuthorRequested() {
         return activateAuthorRequested;
+    }
+
+    public static class Topic {
+        @SerializedName("url")
+        private String url;
+
+        @SerializedName("id")
+        private String id;
+
+        @SerializedName("name")
+        private String name;
+
+        public String getUrl() {
+            return url;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 }

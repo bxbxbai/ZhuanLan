@@ -42,5 +42,6 @@
     <string name="comment_count">%d条评论</string>
     <string name="like_count">%d赞</string>
     <string name="follower">%d人关注</string>
-    <string name="post_count">%d专栏</string>
+    <string name="post_count">%d文</string>
+    <string name="user_count">%d专栏</string>
 </resources>

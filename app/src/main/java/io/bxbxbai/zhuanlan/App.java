@@ -30,19 +30,19 @@ public class App extends Application {
         dataSource = new DailyNewsDataSource(getApplicationContext());
         dataSource.open();
 
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-        .detectDiskReads()
-        .detectDiskWrites()
-        .detectNetwork()
-        .penaltyLog()
-        .build());
-
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-        .detectActivityLeaks()
-        .detectLeakedSqlLiteObjects()
-        .penaltyLog()
-        .penaltyDeath()
-        .build());
+//        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+//        .detectDiskReads()
+//        .detectDiskWrites()
+//        .detectNetwork()
+//        .penaltyLog()
+//        .build());
+//
+//        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+//        .detectActivityLeaks()
+//        .detectLeakedSqlLiteObjects()
+//        .penaltyLog()
+//        .penaltyDeath()
+//        .build());
 
         
     }

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import com.android.volley.Response;
 import io.bxbxbai.zhuanlan.R;
@@ -13,6 +14,7 @@ import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
 import io.bxbxbai.zhuanlan.bean.User;
 import io.bxbxbai.zhuanlan.data.GsonRequest;
 import io.bxbxbai.zhuanlan.data.RequestManager;
+import io.bxbxbai.zhuanlan.ui.activity.PostListActivity;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
 
 /**
@@ -37,11 +39,15 @@ public class PeopleListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mAdapter = new PeopleListAdapter(getActivity(), null);
         mListView.setAdapter(mAdapter);
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String slug = (String) view.getTag(R.id.key_data);
+                PostListActivity.start(getActivity(), slug);
+            }
+        });
+
         String[] ids = getActivity().getResources().getStringArray(R.array.people_ids);
 
         for (String id : ids) {
@@ -54,6 +60,11 @@ public class PeopleListFragment extends Fragment {
             });
             RequestManager.addRequest(request, this);
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
