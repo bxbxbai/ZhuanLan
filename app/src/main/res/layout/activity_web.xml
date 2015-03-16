@@ -4,21 +4,16 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <include layout="@layout/toolbar"/>
-
-    <ScrollView android:layout_width="match_parent"
-                android:layout_height="match_parent">
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                android:orientation="vertical">
-            <include layout="@layout/layout_web_user"/>
-            <WebView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginRight="0dp"
-                    android:paddingRight="0dp"
-                    android:paddingLeft="0dp"
-                    android:id="@+id/web_view"/>
-        </LinearLayout>
-    </ScrollView>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <WebView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:paddingRight="0dp"
+                android:paddingLeft="0dp"
+                android:id="@+id/web_view"/>
+    </LinearLayout>
 </LinearLayout>

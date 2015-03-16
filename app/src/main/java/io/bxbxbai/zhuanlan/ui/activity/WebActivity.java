@@ -2,6 +2,7 @@ package io.bxbxbai.zhuanlan.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -118,15 +119,15 @@ public class WebActivity extends BaseActivity {
         if (mPost != null) {
 //            mWebView.loadUrl("http://zhuanlan.zhihu.com" + mPost.getUrl());
             mWebView.loadDataWithBaseURL(null, CSS_STYLE + mPost.getContent(), MIME_TYPE, ENCODING_UTF_8, null);
-            toolbar.setTitle(mPost.getTitle());
-            mTitleView.setText(mPost.getTitle());
-            mNameView.setText(mPost.getAuthor().getName());
-
-            String id = mPost.getAuthor().getAvatar().getId();
-            String picUrl = Utils.getAuthorAvatarUrl(mPost.getAuthor().getAvatar().getTemplate(),
-                    id, ZhuanLanApi.PIC_SIZE_XL);
-
-            mAvatarView.setImageUrl(picUrl, App.getInstance().getImageLoader());
+            getSupportActionBar().setTitle(mPost.getTitle());
+//            mTitleView.setText(mPost.getTitle());
+//            mNameView.setText(mPost.getAuthor().getName());
+//
+//            String id = mPost.getAuthor().getAvatar().getId();
+//            String picUrl = Utils.getAuthorAvatarUrl(mPost.getAuthor().getAvatar().getTemplate(),
+//                    id, ZhuanLanApi.PIC_SIZE_XL);
+//
+//            mAvatarView.setImageUrl(picUrl, App.getInstance().getImageLoader());
         } else if (mUrl != null) {
             mWebView.loadUrl(mUrl);
         } else {
@@ -142,7 +143,6 @@ public class WebActivity extends BaseActivity {
         settings.setBuiltInZoomControls(false);
         settings.setLoadsImagesAutomatically(true);
         settings.setDefaultTextEncodingName(ENCODING_UTF_8);
-//        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         settings.setBlockNetworkImage(false);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setUseWideViewPort(true);

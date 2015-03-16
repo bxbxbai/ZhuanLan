@@ -43,8 +43,9 @@ public class PeopleListFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String slug = (String) view.getTag(R.id.key_data);
-                PostListActivity.start(getActivity(), slug);
+                String slug = (String) view.getTag(R.id.key_slug);
+                String name = (String) view.getTag(R.id.key_name);
+                PostListActivity.start(getActivity(), slug, name);
             }
         });
 

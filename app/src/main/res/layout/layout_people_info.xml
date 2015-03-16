@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tv_name"
             android:text="bxbxbai"
+            android:textColor="@android:color/black"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="18dp"
             android:textSize="18sp"

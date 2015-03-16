@@ -30,8 +30,6 @@ public class MainActivity extends BaseActivity {
 
     public static final int NUM_FRAGMENTS = 7;
 
-    private MaterialMenuIconToolbar materialMenu;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

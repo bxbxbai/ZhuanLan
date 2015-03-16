@@ -54,7 +54,8 @@ public class PeopleListAdapter extends SimpleBaseAdapter<User> {
         TextView description = holder.findView(R.id.tv_description);
         description.setText(user.getAuthor().getBio());
 
-        convertView.setTag(R.id.key_data, user.getSlug());
+        convertView.setTag(R.id.key_slug, user.getSlug());
+        convertView.setTag(R.id.key_name, user.getName());
         return convertView;
     }
 }

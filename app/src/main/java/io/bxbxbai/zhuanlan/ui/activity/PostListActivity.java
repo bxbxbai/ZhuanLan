@@ -3,6 +3,8 @@ package io.bxbxbai.zhuanlan.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -28,12 +30,13 @@ import java.util.List;
 public class PostListActivity extends BaseActivity {
 
     private static final String KEY_ID = "id";
+    private static final String KEY_NAME = "name";
 
     public static final String KEY_DATA = "data";
 
     private ListView listView;
 
-    private String id = "limiao";
+    private String id = "limiao", name;
 
 
     @Override
@@ -65,6 +68,12 @@ public class PostListActivity extends BaseActivity {
         };
 
         id = getIntent().getStringExtra(KEY_ID);
+        name = getIntent().getStringExtra(KEY_NAME);
+
+        if (!TextUtils.isEmpty(name)) {
+            getSupportActionBar().setTitle(name);
+        }
+
 
         listView.setOnScrollListener(new EndlessScrollListener() {
             @Override
@@ -91,9 +100,14 @@ public class PostListActivity extends BaseActivity {
     }
 
     public static boolean start(Context context, String id) {
+        return start(context, id, null);
+    }
+
+    public static boolean start(Context context, String id, String name) {
         Intent intent = new Intent();
         intent.setClass(context, PostListActivity.class);
         intent.putExtra(KEY_ID, id);
+        intent.putExtra(KEY_NAME, name);
         context.startActivity(intent);
         return true;
     }
