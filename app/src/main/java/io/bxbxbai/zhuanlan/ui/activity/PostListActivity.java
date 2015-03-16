@@ -48,7 +48,7 @@ public class PostListActivity extends BaseActivity {
                 finish();
             }
         });
-        
+
         listView = ButterKnife.findById(this, R.id.lv_post);
 
         final PostListAdapter adapter = new PostListAdapter(this, null);

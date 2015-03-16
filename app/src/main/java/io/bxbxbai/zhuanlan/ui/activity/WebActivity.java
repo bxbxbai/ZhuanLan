@@ -35,7 +35,7 @@ public class WebActivity extends BaseActivity {
 
     public static final String KEY_POST = "post";
 
-    private static final String CSS_STYLE = "<style>*{font-size:40px;line-height:55px;}" +
+    private static final String CSS_STYLE = "<style>*{font-size:42px;line-height:59px;}" +
             "p{color:#000; margin:50px 30px;font-family:Courier New,Arial;}" +
             "img {min-width:100%; max-width:100%; display:block; margin:30px auto 30px;}</style>";
 
@@ -84,7 +84,7 @@ public class WebActivity extends BaseActivity {
 
         toolbar.setTitle(mTitle);
 
-        TextView textView = (TextView) findViewById(R.id.tv_html);
+//        TextView textView = (TextView) findViewById(R.id.tv_html);
 
         String html = "<p>写了这些长时间公众号和知乎专栏，我终于清楚地感觉到了一件事：</p><br><p>" +
                 "我的读者都是吃货。</p><br><p>无论是幽静闲雅的茶禅之旅，还是小清新的猫岛探秘，都比不" +
