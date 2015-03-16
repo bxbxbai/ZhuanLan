@@ -38,11 +38,6 @@
                 android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
         <activity
-                android:name="io.bxbxbai.zhuanlan.ui.activity.CardListActivity"
-                android:alwaysRetainTaskState="true"
-                android:configChanges="orientation|keyboardHidden|screenSize">
-        </activity>
-        <activity
                 android:name=".ui.activity.AboutActivity"
                 android:label="@string/title_activity_about">
             <intent-filter>

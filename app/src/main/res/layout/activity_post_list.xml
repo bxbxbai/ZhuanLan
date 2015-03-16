@@ -4,9 +4,17 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <include layout="@layout/toolbar"/>
-
-    <ListView android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:divider="@drawable/post_list_divider"
-            android:id="@+id/lv_post"/>
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+        <ListView android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:visibility="gone"
+                  android:divider="@drawable/post_list_divider"
+                  android:id="@+id/lv_post"/>
+        <io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView
+                android:layout_width="@dimen/loading_view_size"
+                android:layout_height="@dimen/loading_view_size"
+                android:layout_gravity="center"
+                android:id="@+id/v_loading"/>
+    </FrameLayout>
 </LinearLayout>

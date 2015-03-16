@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,9 +16,9 @@ import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.data.GsonRequest;
 import io.bxbxbai.zhuanlan.data.RequestManager;
 import io.bxbxbai.zhuanlan.utils.EndlessScrollListener;
-import io.bxbxbai.zhuanlan.utils.StopWatch;
 import io.bxbxbai.zhuanlan.utils.ToastUtils;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
+import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
 
 import java.util.List;
 
@@ -36,7 +35,7 @@ public class PostListActivity extends BaseActivity {
 
     private ListView listView;
 
-    private String id = "limiao", name;
+    private String id = "limiao";
 
 
     @Override
@@ -53,6 +52,7 @@ public class PostListActivity extends BaseActivity {
         });
 
         listView = ButterKnife.findById(this, R.id.lv_post);
+        final CircularLoadingView view = ButterKnife.findById(this ,R.id.v_loading);
 
         final PostListAdapter adapter = new PostListAdapter(this, null);
         listView.setAdapter(adapter);
@@ -63,12 +63,14 @@ public class PostListActivity extends BaseActivity {
                 if (response.size() == 0) {
                     ToastUtils.showShort("没有数据了");
                 }
+                listView.setVisibility(View.VISIBLE);
+                view.setVisibility(View.GONE);
                 adapter.addAll(response);
             }
         };
 
         id = getIntent().getStringExtra(KEY_ID);
-        name = getIntent().getStringExtra(KEY_NAME);
+        String name = getIntent().getStringExtra(KEY_NAME);
 
         if (!TextUtils.isEmpty(name)) {
             getSupportActionBar().setTitle(name);

@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:id="@+id/list_view"
-              android:layout_height="match_parent"/>
+
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ListView
+            android:layout_width="match_parent"
+            android:id="@+id/list_view"
+            android:visibility="gone"
+            android:layout_height="match_parent"/>
+    <io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView
+            android:layout_width="@dimen/loading_view_size"
+            android:layout_height="@dimen/loading_view_size"
+            android:layout_gravity="center"
+            android:id="@+id/v_loading"/>
+</FrameLayout>

@@ -8,24 +8,47 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.*;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.Button;
+import butterknife.ButterKnife;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.view.AnimTabsView;
 import io.bxbxbai.zhuanlan.view.FloatView;
 
-public class AboutActivity extends FragmentActivity {
+public class AboutActivity extends BaseActivity {
     private static final String TAG = "AboutActivity";
+
+    public static final String URL_BXBXBAI = "http://bxbxbai.gitcafe.io/about/";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        if(savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment()).commit();
-        }
-        createView();
+        initToolBar();
+        getSupportActionBar().setTitle("About Me");
+
+        WebView view = ButterKnife.findById(this, R.id.web_view);
+
+        WebSettings settings = view.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setBuiltInZoomControls(false);
+        settings.setLoadsImagesAutomatically(true);
+        settings.setDefaultTextEncodingName(WebActivity.ENCODING_UTF_8);
+        settings.setBlockNetworkImage(false);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
+
+        view.loadUrl(URL_BXBXBAI);
+
+//        if(savedInstanceState == null) {
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.container, new PlaceholderFragment()).commit();
+//        }
+//        createView();
     }
 
     private void createView() {
@@ -52,40 +75,6 @@ public class AboutActivity extends FragmentActivity {
         });
 
         wm.addView(view, wmParams);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        private AnimTabsView mTabsView;
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_about, container, false);
-            setupViews(rootView);
-            return rootView;
-        }
-
-        private void setupViews(View rootView) {
-            mTabsView = (AnimTabsView) rootView.findViewById(R.id.publiclisten_tab);
-            mTabsView.addItem("推荐");
-            mTabsView.addItem("排行榜");
-            mTabsView.addItem("歌单");
-            mTabsView.addItem("DJ节目");
-
-            mTabsView.setOnAnimTabsItemViewChangeListener(
-                    new AnimTabsView.IAnimTabsItemViewChangeListener() {
-                @Override
-                public void onChange(AnimTabsView tabsView, int oldPosition, int currentPosition) {
-                }
-            });
-        }
     }
 
 }

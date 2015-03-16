@@ -28,8 +28,6 @@ import java.util.Calendar;
 public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
 
-    public static final int NUM_FRAGMENTS = 7;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +40,10 @@ public class MainActivity extends BaseActivity {
                 switch (item.getItemId()) {
                     case R.id.action_settings:
                         return prepareIntent(PrefsActivity.class);
-                    case R.id.action_pick_date:
-                        return prepareIntent(PortalActivity.class);
                     case R.id.action_go_to_search:
                         return PostListActivity.start(MainActivity.this, "limiao");
                     case R.id.action_about:
-                        return prepareIntent(CardListActivity.class);
+                        return prepareIntent(AboutActivity.class);
                 }
                 return false;
             }
@@ -105,7 +101,7 @@ public class MainActivity extends BaseActivity {
             menuKeyField.setAccessible(true);
             menuKeyField.setBoolean(conf, true);
         }catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
@@ -114,46 +110,5 @@ public class MainActivity extends BaseActivity {
         intent.setClass(MainActivity.this, clazz);
         startActivity(intent);
         return true;
-    }
-
-    final class MainPagerAdapter extends FragmentStatePagerAdapter {
-        public MainPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int i) {
-            Bundle bundle = new Bundle();
-            Fragment newFragment = new NewsListFragment();
-            newFragment.setArguments(bundle);
-
-            Calendar dateToGetUrl = Calendar.getInstance();
-            dateToGetUrl.add(Calendar.DAY_OF_YEAR, 1 - i);
-            String date = Constants.Date.simpleDateFormat.format(dateToGetUrl.getTime());
-
-            bundle.putBoolean("first_page?", i == 0);
-            bundle.putBoolean("single?", false);
-            bundle.putString("date", date);
-
-            return newFragment;
-        }
-
-        @Override
-        public int getCount() {
-            return NUM_FRAGMENTS;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            Calendar displayDate = Calendar.getInstance();
-            displayDate.add(Calendar.DAY_OF_YEAR, -position);
-
-            String date = new SimpleDateFormat(getString(R.string.display_format)).format(displayDate.getTime());
-            if (position == 0) {
-                return getString(R.string.zhihu_daily_today) + " " + date;
-            } else {
-                return date;
-            }
-        }
     }
 }

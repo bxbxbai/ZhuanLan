@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import butterknife.ButterKnife;
 import com.android.volley.Response;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
@@ -16,6 +17,7 @@ import io.bxbxbai.zhuanlan.data.GsonRequest;
 import io.bxbxbai.zhuanlan.data.RequestManager;
 import io.bxbxbai.zhuanlan.ui.activity.PostListActivity;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
+import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
 
 /**
  *
@@ -24,13 +26,14 @@ import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
 public class PeopleListFragment extends Fragment {
 
     private ListView mListView;
+    private CircularLoadingView mLoadingView;
     private PeopleListAdapter mAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.common_list, container, false);
-        mListView = (ListView) v.findViewById(R.id.list_view);
-
+        mListView = ButterKnife.findById(v, R.id.list_view);
+        mLoadingView = ButterKnife.findById(v, R.id.v_loading);
         return v;
     }
 
@@ -38,6 +41,7 @@ public class PeopleListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mAdapter = new PeopleListAdapter(getActivity(), null);
+
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -56,6 +60,8 @@ public class PeopleListFragment extends Fragment {
             request.setSuccessListener(new Response.Listener<User>() {
                 @Override
                 public void onResponse(User response) {
+                    mListView.setVisibility(View.VISIBLE);
+                    mLoadingView.setVisibility(View.GONE);
                     mAdapter.add(response);
                 }
             });

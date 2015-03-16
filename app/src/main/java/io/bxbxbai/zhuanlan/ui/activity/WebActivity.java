@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
+import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.utils.StopWatch;
 import io.bxbxbai.zhuanlan.utils.Utils;
@@ -41,7 +42,7 @@ public class WebActivity extends BaseActivity {
             "img {min-width:100%; max-width:100%; display:block; margin:30px auto 30px;}</style>";
 
 
-    private static final String ENCODING_UTF_8 = "UTF-8";
+    public static final String ENCODING_UTF_8 = "UTF-8";
     private static final String MIME_TYPE = "text/html";
     private static final String FILE_NAME = "web.txt";
 
