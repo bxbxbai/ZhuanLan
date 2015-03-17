@@ -7,10 +7,10 @@
             android:title="@string/action_settings"/>
 
     <item
-            android:id="@+id/action_go_to_search"
+            android:id="@+id/action_search"
             android:orderInCategory="100"
             app:showAsAction="ifRoom"
-            android:icon="@drawable/ic_action_search"
+            android:icon="@drawable/abs__ic_search"
             android:title="@string/action_search"/>
     <item
         android:id="@+id/action_about"

@@ -60,16 +60,7 @@ public class WebActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
-
         initToolBar();
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        materialMenu.setState(MaterialMenuDrawable.IconState.ARROW);
 
         mWebView = (WebView) findViewById(R.id.web_view);
         mTitleView = (TextView) findViewById(R.id.tv_title);

@@ -4,17 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.*;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.Button;
 import butterknife.ButterKnife;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.view.AnimTabsView;
 import io.bxbxbai.zhuanlan.view.FloatView;
 
 public class AboutActivity extends BaseActivity {

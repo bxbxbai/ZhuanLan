@@ -8,7 +8,7 @@
     <string name="auto_refresh">Auto Refresh</string>
     <string name="settings_settings">General Settings</string>
     <string name="settings_others">Others</string>
-    <string name="settings_others_about">About</string>
+    <string name="settings_others_about">About Me</string>
     <string name="licences_header">Zhihu Daily Purify is built based on the open source projects list down below:</string>
     <string name="licenses_subheader">Every project is licensed under the Apache License, Version 2.0, which follows:</string>
     <string name="apache_license" tools:ignore="TypographyOther,MissingTranslation">"Apache License

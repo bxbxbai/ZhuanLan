@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
@@ -18,6 +20,7 @@ import io.bxbxbai.zhuanlan.data.RequestManager;
 import io.bxbxbai.zhuanlan.utils.EndlessScrollListener;
 import io.bxbxbai.zhuanlan.utils.ToastUtils;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
+import io.bxbxbai.zhuanlan.utils.ZhuanLanRetryPolicy;
 import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
 
 import java.util.List;
@@ -43,13 +46,6 @@ public class PostListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_list);
         initToolBar();
-        materialMenu.setState(MaterialMenuDrawable.IconState.ARROW);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         listView = ButterKnife.findById(this, R.id.lv_post);
         final CircularLoadingView view = ButterKnife.findById(this ,R.id.v_loading);
@@ -89,6 +85,7 @@ public class PostListActivity extends BaseActivity {
 
         GsonRequest<List<Post>> request = ZhuanLanApi.getPostListRequest(id, "0");
         request.setSuccessListener(listener);
+        request.setRetryPolicy(new ZhuanLanRetryPolicy());
         RequestManager.addRequest(request, id);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
