@@ -11,10 +11,6 @@
                   android:visibility="gone"
                   android:divider="@drawable/post_list_divider"
                   android:id="@+id/lv_post"/>
-        <io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView
-                android:layout_width="@dimen/loading_view_size"
-                android:layout_height="@dimen/loading_view_size"
-                android:layout_gravity="center"
-                android:id="@+id/v_loading"/>
+        <include layout="@layout/layout_loading"/>
     </FrameLayout>
 </LinearLayout>

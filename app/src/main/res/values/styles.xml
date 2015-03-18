@@ -34,4 +34,5 @@
         <item name="android:minHeight">14dip</item>
         <item name="android:maxHeight">14dip</item>
     </style>
+
 </resources>

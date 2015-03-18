@@ -37,7 +37,7 @@ public class WebActivity extends BaseActivity {
 
     public static final String KEY_POST = "post";
 
-    private static final String CSS_STYLE = "<style>*{font-size:42px;line-height:59px;}" +
+    private static final String CSS_STYLE = "<style>*{font-size:42px;line-height:65px;}" +
             "p{color:#000; margin:50px 30px;font-family:Courier New,Arial;}" +
             "img {min-width:100%; max-width:100%; display:block; margin:30px auto 30px;}</style>";
 

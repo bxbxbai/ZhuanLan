@@ -1,14 +1,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:id="@+id/container"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             android:orientation="vertical"
-             tools:context="tree.love.animtabsview.demo.MainActivity"
-             tools:ignore="MergeRootFrame" >
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/container"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="tree.love.animtabsview.demo.MainActivity"
+              tools:ignore="MergeRootFrame">
     <include layout="@layout/toolbar"/>
-    <WebView android:layout_width="match_parent"
-             android:id="@+id/web_view"
-             android:background="@android:color/white"
-             android:layout_height="match_parent"/>
-    </LinearLayout>
+    <include layout="@layout/web_page_progress_bar"/>
+
+    <FrameLayout android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+        <WebView android:layout_width="match_parent"
+                 android:id="@+id/web_view"
+                 android:background="@android:color/white"
+                 android:layout_height="match_parent"/>
+
+        <include layout="@layout/layout_loading"/>
+    </FrameLayout>
+
+</LinearLayout>

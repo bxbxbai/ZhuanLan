@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="@dimen/loading_view_size"
+        android:layout_height="@dimen/loading_view_size"
+        android:layout_gravity="center"
+        android:id="@+id/v_loading"/>

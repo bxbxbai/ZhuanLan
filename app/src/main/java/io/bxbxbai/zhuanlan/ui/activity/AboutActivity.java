@@ -6,17 +6,21 @@ import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import butterknife.ButterKnife;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
+import io.bxbxbai.zhuanlan.utils.ZhuanLanWebChromeClient;
 import io.bxbxbai.zhuanlan.view.FloatView;
 
 public class AboutActivity extends BaseActivity {
     private static final String TAG = "AboutActivity";
 
-    public static final String URL_BXBXBAI = "http://bxbxbai.gitcafe.io/about/";
+    public static final String URL_BXBXBAI = "http://bxbxbai.gitcafe.io/";
 
 
     @Override
@@ -27,6 +31,9 @@ public class AboutActivity extends BaseActivity {
         getSupportActionBar().setTitle("About Me");
 
         WebView view = ButterKnife.findById(this, R.id.web_view);
+        ProgressBar bar = ButterKnife.findById(this, R.id.progress_bar);
+        bar.setVisibility(View.GONE);
+        View v = ButterKnife.findById(this ,R.id.v_loading);
 
         WebSettings settings = view.getSettings();
         settings.setJavaScriptEnabled(true);
@@ -37,6 +44,7 @@ public class AboutActivity extends BaseActivity {
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
+        view.setWebChromeClient(new ZhuanLanWebChromeClient(bar, v));
 
         view.loadUrl(URL_BXBXBAI);
 
