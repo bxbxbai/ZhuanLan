@@ -20,7 +20,7 @@ import io.bxbxbai.zhuanlan.view.FloatView;
 public class AboutActivity extends BaseActivity {
     private static final String TAG = "AboutActivity";
 
-    public static final String URL_BXBXBAI = "http://bxbxbai.gitcafe.io/";
+    public static final String URL_BXBXBAI = "http://bxbxbai.gitcafe.io/about/";
 
 
     @Override
