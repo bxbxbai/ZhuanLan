@@ -9,6 +9,7 @@ import com.squareup.picasso.Picasso;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
+import io.bxbxbai.zhuanlan.utils.Utils;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class PostListAdapter extends SimpleBaseAdapter<Post> {
         commentCount.setText(context.getString(R.string.comment_count, post.getCommentsCount()));
 
         TextView days = holder.findView(R.id.tv_date);
-        days.setText(context.getString(R.string.days_ago, 23));
+        days.setText(Utils.convertPublishTime(post.getPublishedTime()));
 
         TextView like = holder.findView(R.id.tv_like_count);
         like.setText(context.getString(R.string.like_count, post.getLikesCount()));
