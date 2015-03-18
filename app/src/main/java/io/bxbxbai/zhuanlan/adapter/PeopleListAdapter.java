@@ -52,7 +52,7 @@ public class PeopleListAdapter extends SimpleBaseAdapter<User> {
         postCount.setText(context.getString(R.string.post_count, user.getPostCount()));
 
         TextView description = holder.findView(R.id.tv_description);
-        description.setText(user.getAuthor().getBio());
+        description.setText(user.getDescription());
 
         convertView.setTag(R.id.key_slug, user.getSlug());
         convertView.setTag(R.id.key_name, user.getName());
