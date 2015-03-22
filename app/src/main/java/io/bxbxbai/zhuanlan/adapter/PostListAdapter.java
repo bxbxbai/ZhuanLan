@@ -1,10 +1,15 @@
 package io.bxbxbai.zhuanlan.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.volley.toolbox.NetworkImageView;
+import com.mikepenz.iconics.Iconics;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.typeface.FontAwesome;
+import com.mikepenz.iconics.typeface.ITypeface;
 import com.squareup.picasso.Picasso;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
@@ -49,8 +54,8 @@ public class PostListAdapter extends SimpleBaseAdapter<Post> {
         like.setText(context.getString(R.string.like_count, post.getLikesCount()));
 
 
-        NetworkImageView imageView = holder.findView(R.id.iv_pic);
-        imageView.setImageUrl(post.getTitleImage(), App.getInstance().getImageLoader());
+        NetworkImageView pic = holder.findView(R.id.iv_pic);
+        pic.setImageUrl(post.getTitleImage(), App.getInstance().getImageLoader());
 //        Picasso.with(context).load(post.getTitleImage()).placeholder(R.drawable.bxbxbai).into(imageView);
 
         convertView.setTag(R.id.key_data, post);

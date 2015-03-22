@@ -17,10 +17,7 @@ import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.data.GsonRequest;
 import io.bxbxbai.zhuanlan.data.RequestManager;
-import io.bxbxbai.zhuanlan.utils.EndlessScrollListener;
-import io.bxbxbai.zhuanlan.utils.ToastUtils;
-import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
-import io.bxbxbai.zhuanlan.utils.ZhuanLanRetryPolicy;
+import io.bxbxbai.zhuanlan.utils.*;
 import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
 
 import java.util.List;
@@ -102,12 +99,17 @@ public class PostListActivity extends BaseActivity {
         return start(context, id, null);
     }
 
-    public static boolean start(Context context, String id, String name) {
-        Intent intent = new Intent();
+    public static boolean start(final Context context, String id, String name) {
+        final Intent intent = new Intent();
         intent.setClass(context, PostListActivity.class);
         intent.putExtra(KEY_ID, id);
         intent.putExtra(KEY_NAME, name);
-        context.startActivity(intent);
+        ZhuanLanHandler.get().postDelay(new Runnable() {
+            @Override
+            public void run() {
+                context.startActivity(intent);
+            }
+        }, 300);
         return true;
     }
 }

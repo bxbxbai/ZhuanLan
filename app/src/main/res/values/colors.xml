@@ -37,4 +37,9 @@
     <color name="colorPrimary">#6570da</color>
     <color name="colorPrimaryDark">#4b529c</color>
 
+
+    <color name="text_color">#414141</color>
+    <color name="ldrawer_color">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+
 </resources>

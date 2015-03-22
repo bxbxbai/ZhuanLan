@@ -1,6 +1,10 @@
 package io.bxbxbai.zhuanlan.ui.fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,6 +20,7 @@ import io.bxbxbai.zhuanlan.bean.User;
 import io.bxbxbai.zhuanlan.data.GsonRequest;
 import io.bxbxbai.zhuanlan.data.RequestManager;
 import io.bxbxbai.zhuanlan.ui.activity.PostListActivity;
+import io.bxbxbai.zhuanlan.utils.SharedPreferencesUtils;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
 import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
 
@@ -47,9 +52,14 @@ public class PeopleListFragment extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String slug = (String) view.getTag(R.id.key_slug);
-                String name = (String) view.getTag(R.id.key_name);
-                PostListActivity.start(getActivity(), slug, name);
+                final String slug = (String) view.getTag(R.id.key_slug);
+                final String name = (String) view.getTag(R.id.key_name);
+                mListView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+//                        PostListActivity.start(getActivity(), slug, name);
+                    }
+                }, 500);
             }
         });
 

@@ -16,6 +16,8 @@ import io.bxbxbai.zhuanlan.db.DailyNewsDataSource;
 public class App extends Application {
     private static App mContext;
 
+    public static final String PACKAGE_NAME = "io.bxbxbai.zhuanlan";
+
     private DailyNewsDataSource dataSource;
 
     /** 开发测试模式 */

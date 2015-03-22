@@ -33,6 +33,7 @@ dependencies {
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'com.squareup:android-times-square:1.5.0@aar'
     compile 'com.jakewharton:butterknife:5.1.2'
+    compile 'com.mikepenz.iconics:library:0.7.9@aar'
     // stock actionBar
     compile 'com.balysv.materialmenu:material-menu:1.5.1'
     compile 'com.balysv.materialmenu:material-menu-toolbar:1.5.0'

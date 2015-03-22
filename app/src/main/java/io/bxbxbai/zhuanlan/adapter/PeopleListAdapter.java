@@ -7,6 +7,7 @@ import com.squareup.picasso.Picasso;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.User;
+import io.bxbxbai.zhuanlan.ui.activity.PostListActivity;
 import io.bxbxbai.zhuanlan.utils.Utils;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
 import io.bxbxbai.zhuanlan.view.CircleImageView;
@@ -31,7 +32,7 @@ public class PeopleListAdapter extends SimpleBaseAdapter<User> {
 
     @Override
     public View getItemView(int position, View convertView, ViewHolder holder) {
-        User user = getItem(position);
+        final User user = getItem(position);
 
         final CircleImageView imageView = holder.findView(R.id.avatar);
 
@@ -56,6 +57,14 @@ public class PeopleListAdapter extends SimpleBaseAdapter<User> {
 
         convertView.setTag(R.id.key_slug, user.getSlug());
         convertView.setTag(R.id.key_name, user.getName());
+
+        View v = holder.findView(R.id.ripple_layout);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PostListActivity.start(context, user.getSlug(), user.getName());
+            }
+        });
         return convertView;
     }
 }

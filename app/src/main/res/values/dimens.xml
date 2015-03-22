@@ -20,4 +20,17 @@
 
     <dimen name="loading_view_size">30dp</dimen>
     <dimen name="web_pag_progress_height">3dp</dimen>
+
+    <dimen name="ldrawer_drawableSize">50dp</dimen>
+    <dimen name="ldrawer_barSize">18dp</dimen>
+    <dimen name="ldrawer_topBottomBarArrowSize">11dp</dimen>
+    <dimen name="ldrawer_thickness">2dp</dimen>
+    <dimen name="ldrawer_gapBetweenBars">3dp</dimen>
+    <dimen name="ldrawer_middleBarArrowSize">16dp</dimen>
+    <dimen name="navigation_drawer_width">240dp</dimen>
+    <dimen name="card_margin_top">8.0dip</dimen>
+    <dimen name="card_main_height_one">264.0dip</dimen>
+    <dimen name="max_height_header">200dp</dimen>
+    <dimen name="footer_height">60dp</dimen>
+
 </resources>

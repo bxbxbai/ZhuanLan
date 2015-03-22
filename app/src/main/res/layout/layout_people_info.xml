@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:paddingLeft="18dp"
-              android:paddingRight="18dp"
-              android:background="@android:color/white"
-              android:layout_height="match_parent">
+<io.bxbxbai.zhuanlan.view.RippleRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:id="@+id/ripple_layout"
+        app:rv_color="#ccc"
+        app:rv_type="rectangle"
+        app:rv_rippleDuration="200"
+        android:background="@android:color/white"
+        android:layout_height="match_parent">
+
  <io.bxbxbai.zhuanlan.view.CircleImageView
          android:layout_width="70dp"
          android:layout_height="70dp"
@@ -72,4 +79,4 @@
             android:layout_below="@id/tv_follower"
             android:layout_toRightOf="@id/avatar"/>
 
-</RelativeLayout>
+</io.bxbxbai.zhuanlan.view.RippleRelativeLayout>
