@@ -13,7 +13,7 @@
             android:allowBackup="true"
             android:theme="@style/AppTheme.Toolbar">
         <activity
-                android:name="io.bxbxbai.zhuanlan.ui.activity.MainActivity"
+                android:name="io.bxbxbai.zhuanlan.ui.activity.EntryActivity"
                 android:alwaysRetainTaskState="true"
                 android:screenOrientation="portrait"
                 android:configChanges="orientation|keyboardHidden|screenSize"
@@ -23,6 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name="io.bxbxbai.zhuanlan.ui.activity.MainActivity"
+                android:alwaysRetainTaskState="true"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait"
+                android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
         <activity
                 android:name="io.bxbxbai.zhuanlan.ui.activity.PrefsActivity"
                 android:label="@string/action_settings">
@@ -49,8 +58,10 @@
                   android:alwaysRetainTaskState="true"
                   android:launchMode="singleTop"
                   android:configChanges="orientation|keyboardHidden|screenSize"/>
+
         <activity android:name=".ui.activity.WebActivity"
                   android:parentActivityName=".ui.activity.MainActivity"/>
+
         <activity android:name=".ui.activity.PostListActivity"
                   android:parentActivityName=".ui.activity.MainActivity"/>
     </application>

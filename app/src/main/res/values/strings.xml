@@ -113,5 +113,6 @@ Unless required by applicable law or agreed to in writing, software distributed 
     <string name="time_error">时间有问题</string>
     <string name="title_activity_about">AboutActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="bxbxbai">bxbxbai</string>
 
 </resources>

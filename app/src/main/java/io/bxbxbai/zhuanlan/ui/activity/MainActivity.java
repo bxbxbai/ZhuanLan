@@ -1,5 +1,6 @@
 package io.bxbxbai.zhuanlan.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -96,5 +97,9 @@ public class MainActivity extends BaseActivity {
         intent.setClass(MainActivity.this, clazz);
         startActivity(intent);
         return true;
+    }
+
+    public static void start(Activity activity) {
+        activity.startActivity(new Intent(activity, MainActivity.class));
     }
 }
