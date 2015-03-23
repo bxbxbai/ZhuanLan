@@ -23,7 +23,7 @@ public class Utils {
     private static final int MONTH = DAY * 30;
     private static final int YEAR = MONTH * 12;
 
-    private static final DateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+    private static final DateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 
 
     public static String getAuthorAvatarUrl(String origin, String userId, String size) {
@@ -32,34 +32,29 @@ public class Utils {
     }
 
     public static String convertPublishTime(String time) {
-        time = time.split("T")[0];
         try {
-            Date date = FORMAT.parse(time);
+            long s = TimeUnit.MILLISECONDS.toSeconds(
+                    new Date().getTime() - FORMAT.parse(time).getTime());
 
-            long s = TimeUnit.MILLISECONDS.toSeconds(new Date().getTime() - date.getTime());
-
-            long year = s / YEAR;
-            if (year != 0) {
-                return year + "年前";
+            long count = s / YEAR;
+            if (count != 0) {
+                return count + "年前";
             }
 
-
-            long month = s / MONTH;
-            if (month != 0) {
-                return month + "月前";
+            count = s / MONTH;
+            if (count != 0) {
+                return count + "月前";
             }
 
-            long day = s / DAY;
-            if (day != 0) {
-                return day + "天前";
+            count = s / DAY;
+            if (count != 0) {
+                return count + "天前";
             }
 
             return "今天";
-
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return "";
+        return "未知时间";
     }
-
 }
