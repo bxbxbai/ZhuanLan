@@ -9,7 +9,6 @@ import android.os.SystemClock;
 import android.widget.ImageView;
 import butterknife.ButterKnife;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.utils.ZhuanLanHandler;
 
 import java.util.Random;
 
@@ -19,6 +18,10 @@ import java.util.Random;
  * @author bxbxbai
  */
 public class EntryActivity extends BaseActivity {
+
+    private static final int ANIMATION_DURATION = 2000;
+    private static final float SCALE_END = 1.13F;
+
 
     private static final int[] SPLASH_ARRAY = {
         R.drawable.splash0,
@@ -48,11 +51,11 @@ public class EntryActivity extends BaseActivity {
     }
 
     private void animateImage() {
-        ObjectAnimator animatorX = ObjectAnimator.ofFloat(mSplashImage, "scaleX", 1f, 1.1f);
-        ObjectAnimator animatorY = ObjectAnimator.ofFloat(mSplashImage, "scaleY", 1f, 1.1f);
+        ObjectAnimator animatorX = ObjectAnimator.ofFloat(mSplashImage, "scaleX", 1f, SCALE_END);
+        ObjectAnimator animatorY = ObjectAnimator.ofFloat(mSplashImage, "scaleY", 1f, SCALE_END);
 
         AnimatorSet set = new AnimatorSet();
-        set.setDuration(2000).play(animatorX).with(animatorY);
+        set.setDuration(ANIMATION_DURATION).play(animatorX).with(animatorY);
         set.start();
 
         set.addListener(new AnimatorListenerAdapter() {
