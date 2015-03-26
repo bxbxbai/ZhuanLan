@@ -93,7 +93,8 @@ public class RippleRelativeLayout extends RelativeLayout {
 			return;
 
 		final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RippleRelativeLayout);
-		rippleColor = typedArray.getColor(R.styleable.RippleRelativeLayout_rv_color, getResources().getColor(R.color.white));
+		rippleColor = typedArray.getColor(R.styleable.RippleRelativeLayout_rv_color,
+                getResources().getColor(R.color.white));
 		rippleType = typedArray.getInt(R.styleable.RippleRelativeLayout_rv_type, 0);
 		hasToZoom = typedArray.getBoolean(R.styleable.RippleRelativeLayout_rv_zoom, false);
 		isCentered = typedArray.getBoolean(R.styleable.RippleRelativeLayout_rv_centered, false);
@@ -159,7 +160,8 @@ public class RippleRelativeLayout extends RelativeLayout {
 					durationEmpty = DURATION - timer * FRAME_RATE;
 
 				timerEmpty++;
-				final Bitmap tmpBitmap = getCircleBitmap((int) ((radiusMax) * (((float) timerEmpty * FRAME_RATE) / (durationEmpty))));
+				final Bitmap tmpBitmap = getCircleBitmap((int) ((radiusMax)
+                        * (((float) timerEmpty * FRAME_RATE) / (durationEmpty))));
 				canvas.drawBitmap(tmpBitmap, 0, 0, paint);
 				tmpBitmap.recycle();
 			}
@@ -168,11 +170,13 @@ public class RippleRelativeLayout extends RelativeLayout {
 
 			if (rippleType == 1) {
 				if ((((float) timer * FRAME_RATE) / DURATION) > 0.6f)
-					paint.setAlpha((int) (PAINT_ALPHA - ((PAINT_ALPHA) * (((float) timerEmpty * FRAME_RATE) / (durationEmpty)))));
+					paint.setAlpha((int) (PAINT_ALPHA - ((PAINT_ALPHA)
+                            * (((float) timerEmpty * FRAME_RATE) / (durationEmpty)))));
 				else
 					paint.setAlpha(PAINT_ALPHA);
 			} else
-				paint.setAlpha((int) (PAINT_ALPHA - ((PAINT_ALPHA) * (((float) timer * FRAME_RATE) / DURATION))));
+				paint.setAlpha((int) (PAINT_ALPHA - ((PAINT_ALPHA)
+                        * (((float) timer * FRAME_RATE) / DURATION))));
 
 			timer++;
 		}
@@ -230,10 +234,12 @@ public class RippleRelativeLayout extends RelativeLayout {
 	}
 
 	private Bitmap getCircleBitmap(final int radius) {
-		final Bitmap output = Bitmap.createBitmap(originBitmap.getWidth(), originBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+		final Bitmap output = Bitmap.createBitmap(originBitmap.getWidth(),
+                originBitmap.getHeight(), Bitmap.Config.ARGB_8888);
 		final Canvas canvas = new Canvas(output);
 		final Paint paint = new Paint();
-		final Rect rect = new Rect((int) (x - radius), (int) (y - radius), (int) (x + radius), (int) (y + radius));
+		final Rect rect = new Rect((int) (x - radius), (int) (y - radius),
+                (int) (x + radius), (int) (y + radius));
 
 		paint.setAntiAlias(true);
 		canvas.drawARGB(0, 0, 0, 0);

@@ -155,7 +155,8 @@ public class BasicNetwork implements Network {
                     networkResponse = new NetworkResponse(statusCode, responseContents,
                             responseHeaders, false, SystemClock.elapsedRealtime() - requestStart);
                     if (statusCode == HttpStatus.SC_UNAUTHORIZED ||
-                            statusCode == HttpStatus.SC_FORBIDDEN) {
+                            statusCode == HttpStatus.SC_FORBIDDEN ||
+                            statusCode == HttpStatus.SC_REQUEST_TIMEOUT) {
                         attemptRetryOnException("auth",
                                 request, new AuthFailureError(networkResponse));
                     } else {
