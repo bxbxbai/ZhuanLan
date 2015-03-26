@@ -2,6 +2,10 @@
 
 最近一直在利用空余时间开发一个完整的App，名字就叫“专栏”。开发这个App的目的主要是为了练练手，熟悉开发一个完整App的流程。就像造房子，亲手打地基，搬砖头，垒砖头，还自己装修（虽然装修的不好看）
 
+
+http://bxbxbai.gitcafe.io/2015/03/26/zhuanlan/
+
+
 看截图：
 
 
@@ -41,19 +45,21 @@
 
 
 ##用到的开源库
-Volley
-Gson
-Material-Menu
 
+- Volley
+- Gson
+- Material-Menu
 
+##关于我
 
+[http://bxbxbai.gitcafe.io/about/][5]
 
 
   [1]: http://i3.tietuku.com/88ec57d7fe3753ae.png
   [2]: http://i3.tietuku.com/3c275f04949e46d4.png
   [3]: http://i3.tietuku.com/106ec5a62e02d7ee.png
   [4]: http://i3.tietuku.com/360756eb6ec5cab6.png
-
+  [5]: http://bxbxbai.gitcafe.io/about/
 
 
 
