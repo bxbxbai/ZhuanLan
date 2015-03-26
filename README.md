@@ -5,6 +5,8 @@
 
 http://bxbxbai.gitcafe.io/2015/03/26/zhuanlan/
 
+下载使用： https://github.com/bxbxbai/ZhuanLan/tree/master/apk/zhuanlan.apk
+
 
 看截图：
 
