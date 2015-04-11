@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.widget.ImageView;
@@ -35,6 +36,12 @@ public class EntryActivity extends BaseActivity {
         R.drawable.splash8,
         R.drawable.splash9,
         R.drawable.splash10,
+        R.drawable.splash11,
+        R.drawable.splash12,
+        R.drawable.splash13,
+        R.drawable.splash14,
+        R.drawable.splash15,
+        R.drawable.splash16,
     };
 
     ImageView mSplashImage;
@@ -48,6 +55,12 @@ public class EntryActivity extends BaseActivity {
         Random r = new Random(SystemClock.elapsedRealtime());
         mSplashImage.setImageResource(SPLASH_ARRAY[r.nextInt(SPLASH_ARRAY.length)]);
         animateImage();
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mTintManager.setTintColor(getResources().getColor(android.R.color.transparent));
     }
 
     private void animateImage() {

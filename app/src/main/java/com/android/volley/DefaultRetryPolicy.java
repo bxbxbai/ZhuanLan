@@ -16,6 +16,8 @@
 
 package com.android.volley;
 
+import android.util.Log;
+
 /**
  * Default retry policy for requests.
  */
@@ -91,6 +93,7 @@ public class DefaultRetryPolicy implements RetryPolicy {
     public void retry(VolleyError error) throws VolleyError {
         mCurrentRetryCount++;
         mCurrentTimeoutMs += (mCurrentTimeoutMs * mBackoffMultiplier);
+        Log.i("StopWatch", "mCurrentRetryCount: " + mCurrentRetryCount);
         if (!hasAttemptRemaining()) {
             throw error;
         }

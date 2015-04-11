@@ -8,8 +8,8 @@ android {
         applicationId "io.bxbxbai.zhuanlan"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
     buildTypes {
         release {
@@ -34,11 +34,10 @@ dependencies {
     compile 'com.squareup:android-times-square:1.5.0@aar'
     compile 'com.jakewharton:butterknife:5.1.2'
     compile 'com.mikepenz.iconics:library:0.7.9@aar'
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     // stock actionBar
     compile 'com.balysv.materialmenu:material-menu:1.5.1'
     compile 'com.balysv.materialmenu:material-menu-toolbar:1.5.0'
-    // Shimmer-android https://github.com/RomainPiel/Shimmer-android
-    compile 'com.romainpiel.shimmer:library:1.2.0@aar'
     compile 'com.jakewharton:disklrucache:2.0.2'
     // stock actionBar
     dependencies {

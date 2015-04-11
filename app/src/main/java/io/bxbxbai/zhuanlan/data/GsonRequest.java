@@ -1,5 +1,7 @@
 package io.bxbxbai.zhuanlan.data;
 
+import android.support.v4.util.ArrayMap;
+import android.text.TextUtils;
 import android.util.Log;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -10,14 +12,11 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.internal.$Gson$Types;
 import com.google.gson.reflect.TypeToken;
 import io.bxbxbai.zhuanlan.bean.Post;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,29 +34,57 @@ public class GsonRequest<T> extends Request<T> {
     private Type type;
 
     private Listener mListener;
-    private Map<String, String> mHeader;
+    private Map<String, String> mParams;
 
     public GsonRequest(String url, ErrorListener errorListener) {
-        this(Method.GET, url, null, null, null, errorListener);
+        this(Method.GET, url, null, null, errorListener);
         type = new TypeToken<List<Post>>() {
         }.getType();
     }
 
     public GsonRequest(String url, Class clazz, Listener<T> listener, ErrorListener errorListener) {
-        this(Method.GET, url, clazz, null, listener, errorListener);
+        this(Method.GET, url, clazz, listener, errorListener);
+        type = TypeToken.get(clazz).getType();
     }
 
-    public GsonRequest(int method, String url, Class<T> clazz, Map<String, String> header,
+    public GsonRequest(int method, String url, Class<T> clazz,
                        Listener<T> listener, ErrorListener errorListener) {
         super(method, url, errorListener);
         mClazz = clazz;
         mListener = listener;
-        mHeader = header;
+        mParams = new ArrayMap<String, String>();
     }
 
-    public GsonRequest(int method, String url, Class<T> clazz, Map<String, String> header,
-                       ErrorListener errorListener) {
-        this(method, url, clazz, header, null, errorListener);
+    @Override
+    public String getUrl() {
+        return buildUrlParams(super.getUrl());
+    }
+
+    private String buildUrlParams(String url) {
+        StringBuilder newUrl = new StringBuilder(url);
+        if (!url.contains("?")) {
+            newUrl.append("?");
+        }
+
+        String value;
+        for (String key : mParams.keySet()) {
+            value = mParams.get(key);
+            if (!TextUtils.isEmpty(key) && !TextUtils.isEmpty(value)) {
+                newUrl.append("&").append(key).append("=").append(value);
+            }
+        }
+        return newUrl.toString();
+    }
+
+
+    public GsonRequest addParam(String key, String value) {
+        mParams.put(key, value);
+        return this;
+    }
+
+    public GsonRequest addParams(Map<String, String> params) {
+        mParams.putAll(params);
+        return this;
     }
 
     @Override

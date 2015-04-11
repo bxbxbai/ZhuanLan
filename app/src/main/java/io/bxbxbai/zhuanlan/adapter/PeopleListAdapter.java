@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
-import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.User;
 import io.bxbxbai.zhuanlan.ui.activity.PostListActivity;
@@ -19,7 +18,6 @@ import java.util.List;
  * @author bxbxbai
  */
 public class PeopleListAdapter extends SimpleBaseAdapter<User> {
-
 
     public PeopleListAdapter(Context context, List<User> data) {
         super(context, data);
@@ -41,16 +39,16 @@ public class PeopleListAdapter extends SimpleBaseAdapter<User> {
                 id, ZhuanLanApi.PIC_SIZE_XL);
 
 //        imageView.setImageUrl(picUrl, App.getInstance().getImageLoader());
-        Picasso.with(context).load(picUrl).placeholder(R.drawable.bxbxbai).into(imageView);
+        Picasso.with(mContext).load(picUrl).placeholder(R.drawable.bxbxbai).into(imageView);
 
         TextView name = holder.findView(R.id.tv_name);
         name.setText(user.getName());
 
         TextView follower = holder.findView(R.id.tv_follower);
-        follower.setText(context.getString(R.string.follower, user.getFollowerCount()));
+        follower.setText(mContext.getString(R.string.follower, user.getFollowerCount()));
 
         TextView postCount = holder.findView(R.id.tv_post_count);
-        postCount.setText(context.getString(R.string.post_count, user.getPostCount()));
+        postCount.setText(mContext.getString(R.string.post_count, user.getPostCount()));
 
         TextView description = holder.findView(R.id.tv_description);
         description.setText(user.getDescription());
@@ -62,7 +60,7 @@ public class PeopleListAdapter extends SimpleBaseAdapter<User> {
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PostListActivity.start(context, user.getSlug(), user.getName());
+                PostListActivity.start(mContext, user.getSlug(), user.getName());
             }
         });
         return convertView;

@@ -8,6 +8,7 @@ import android.view.View;
 import butterknife.ButterKnife;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.extras.toolbar.MaterialMenuIconToolbar;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import io.bxbxbai.zhuanlan.R;
 
 /**
@@ -19,10 +20,17 @@ public class BaseActivity extends ActionBarActivity {
 
     protected Toolbar toolbar;
     protected MaterialMenuIconToolbar materialMenu;
+    protected SystemBarTintManager mTintManager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mTintManager = new SystemBarTintManager(this);
+
+        mTintManager.setStatusBarTintEnabled(true);
+//        mTintManager.setNavigationBarTintEnabled(true);
+
+        mTintManager.setTintColor(getResources().getColor(R.color.primary));
     }
 
     protected void initToolBar() {

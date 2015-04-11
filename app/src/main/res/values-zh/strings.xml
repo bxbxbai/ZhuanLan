@@ -8,13 +8,11 @@
     <string name="settings_settings">綜合設定</string>
     <string name="settings_others">其他</string>
     <string name="settings_others_about">關於我</string>
-    <string name="licences_header">知乎日報·淨化 基於下列開源項目構建：
-
-    </string>
+    <string name="licences_header">知乎日報·淨化 基於下列開源項目構建：</string>
     <string name="licenses_subheader">所有上述開源項目均遵守 Apache 許可證 2.0 版本，如下所示：</string>
     <string name="action_pick_date">選擇日期</string>
     <string name="using_client">使用官方客戶端打開知乎討論</string>
-    <string name="network_error">網絡錯誤！</string>
+    <string name="network_error">網絡出錯啦~再試一下唄~</string>
     <string name="no_browser"><![CDATA[瀏覽器未安裝！>_<]]></string>
     <string name="not_coming"><![CDATA[此日仍未到來！>_<]]></string>
     <string name="not_born"><![CDATA[此日知乎日報未誕生！>_<]]></string>
@@ -30,7 +28,7 @@
     <string name="action_search">搜索</string>
     <string name="search_hint">輸入關鍵詞以搜索</string>
     <string name="no_result_found">抱歉，未找到相應結果</string>
-    <string name="searching">搜索中，請稍候…</string>
+    <string name="searching">搜索</string>
     <string name="display_format">M月d日 EEEE</string>
     <string name="which_accelerate_server_title">使用哪個加速服務器?</string>
     <string name="accelerate_server_dialog_title">請從下列服務器中選擇</string>
@@ -40,4 +38,11 @@
     <string name="share_to">分享至…</string>
     <string name="bxbxbai">bxbxbai开发</string>
     <string name="comment_count">%d 条评论</string>
+    <string name="all_people">所有内置用户</string>
+    <string name="recent_news">最近一周文章</string>
+    <string name="days_ago">%d 天前</string>
+    <string name="follower">%d 人关注</string>
+    <string name="like_count">%d 贊</string>
+    <string name="user_count">%d专栏</string>
+    <string name="origin_web_page">查看原网页</string>
 </resources>

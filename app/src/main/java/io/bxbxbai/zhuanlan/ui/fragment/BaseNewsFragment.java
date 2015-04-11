@@ -16,7 +16,6 @@ import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.NewsAdapter;
 import io.bxbxbai.zhuanlan.bean.DailyNews;
 import io.bxbxbai.zhuanlan.ui.activity.NewsDetailActivity;
-import io.bxbxbai.zhuanlan.ui.activity.WebActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,7 +139,7 @@ public abstract class BaseNewsFragment extends Fragment
 
         clearListChoice();
         DailyNews dailyNews = newsList.get(position);
-        WebActivity.startActivity(getActivity(), dailyNews.getDailyTitle(), dailyNews.getHtmlBody());
+        NewsDetailActivity.startActivity(getActivity(), dailyNews.getDailyTitle(), dailyNews.getHtmlBody());
     }
 
     private void goToZhihu(String url) {

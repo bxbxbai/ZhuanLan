@@ -1,19 +1,15 @@
 package io.bxbxbai.zhuanlan.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.text.TextUtils;
+import android.view.TextureView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.android.volley.toolbox.NetworkImageView;
-import com.mikepenz.iconics.Iconics;
-import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.typeface.FontAwesome;
-import com.mikepenz.iconics.typeface.ITypeface;
-import com.squareup.picasso.Picasso;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
+import io.bxbxbai.zhuanlan.utils.StopWatch;
 import io.bxbxbai.zhuanlan.utils.Utils;
 
 import java.util.List;
@@ -35,6 +31,17 @@ public class PostListAdapter extends SimpleBaseAdapter<Post> {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        Post post = getItem(position);
+        return TextUtils.isEmpty(post.getTitleImage()) ? 0 : 1;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
     public View getItemView(int position, View convertView, ViewHolder holder) {
         Post post = getItem(position);
 
@@ -45,18 +52,19 @@ public class PostListAdapter extends SimpleBaseAdapter<Post> {
         author.setText(post.getAuthor().getName());
 
         TextView commentCount = holder.findView(R.id.tv_comment_count);
-        commentCount.setText(context.getString(R.string.comment_count, post.getCommentsCount()));
+        commentCount.setText(mContext.getString(R.string.comment_count, post.getCommentsCount()));
 
         TextView days = holder.findView(R.id.tv_date);
         days.setText(Utils.convertPublishTime(post.getPublishedTime()));
 
         TextView like = holder.findView(R.id.tv_like_count);
-        like.setText(context.getString(R.string.like_count, post.getLikesCount()));
+        like.setText(String.valueOf(post.getLikesCount()));
 
 
         NetworkImageView pic = holder.findView(R.id.iv_pic);
         pic.setImageUrl(post.getTitleImage(), App.getInstance().getImageLoader());
-//        Picasso.with(context).load(post.getTitleImage()).placeholder(R.drawable.bxbxbai).into(imageView);
+        StopWatch.log("image url: " + post.getTitleImage());
+//        Picasso.with(mContext).load(post.getTitleImage()).placeholder(R.drawable.bxbxbai).into(imageView);
 
         convertView.setTag(R.id.key_data, post);
         return convertView;

@@ -1,15 +1,13 @@
 package io.bxbxbai.zhuanlan.utils;
 
-import android.support.v4.util.ArrayMap;
-import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.bean.User;
 import io.bxbxbai.zhuanlan.data.GsonRequest;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -17,50 +15,43 @@ import java.util.Map;
  */
 public final class ZhuanLanApi {
 
-    public static final int COUNT = 10;
+    public static final int DEFAULT_COUNT = 10;
 
     private static final String KEY_POSTS = "/posts";
-
     private static final String KEY_LIMIT = "limit";
-
     private static final String KEY_OFFSET = "offset";
-
     private static final String KEY_RATING = "rating";
 
-    private static final String API_BASE = "http://zhuanlan.zhihu.com/api/columns/%s";
-
-
+    public static final String ZHUAN_LAN_URL = "http://zhuanlan.zhihu.com";
+    private static final String API_BASE = ZHUAN_LAN_URL + "/api/columns/%s";
     /**
      * 知乎日报启动画面api（手机分辨率的长和宽）
      */
-    public static final String API_START_IMAGE = "http://news-at.zhihu.com/api/4/start-image/%d*%d";
-
+    private static final String API_START_IMAGE = "http://news-at.zhihu.com/api/4/start-image/%d*%d";
+    private static final String API_RATING = API_BASE + KEY_POSTS + "{post_id}" + KEY_RATING;
     private static final String API_POST_LIST = API_BASE + KEY_POSTS;
 
 
     public static final String PIC_SIZE_XL = "xl";
     public static final String PIC_SIZE_XS = "xs";
 
+
     public static final String TEMPLATE_ID = "{id}";
     public static final String TEMPLATE_SIZE = "{size}";
 
 
+    public static GsonRequest getPostListRequest(String id, final String offset) {
+        String url = String.format(API_POST_LIST, id);
+//                .append("?")
+//                .append(KEY_LIMIT + "=" + DEFAULT_COUNT)
+//                .append("&")
+//                .append(KEY_OFFSET)
+//                .append("=")
+//                .append(offset).toString();
 
-
-
-    private static final String API_RATING = API_BASE + KEY_POSTS + "{post_id}" + KEY_RATING;
-
-
-    public static GsonRequest<List<Post>> getPostListRequest(String id, final String offset) {
-        String url = new StringBuilder(String.format(API_POST_LIST, id))
-                .append("?")
-                .append(KEY_LIMIT + "=" + COUNT)
-                .append("&")
-                .append(KEY_OFFSET)
-                .append("=")
-                .append(offset).toString();
-
-        return new GsonRequest<List<Post>>(url, buildDefaultErrorListener());
+        return new GsonRequest<List<Post>>(url, buildDefaultErrorListener())
+                .addParam(KEY_LIMIT, String.valueOf(DEFAULT_COUNT))
+                .addParam(KEY_OFFSET, offset);
     }
 
     public static GsonRequest<User> getUserInfoRequest(String id) {
@@ -73,9 +64,8 @@ public final class ZhuanLanApi {
         return new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                ToastUtils.showLong("Error");
+                ToastUtils.showLong(R.string.network_error);
             }
         };
     }
-
 }

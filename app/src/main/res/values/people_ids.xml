@@ -2,10 +2,12 @@
 <resources>
     <string-array name="people_ids">
         <item>limiao</item>
+        <item>100offer</item>
         <item>andlib</item>
         <item>travelacrossjapan</item>
         <item>qinchao</item>
         <item>haoqishiyanshi</item>
+        <item>loveyou</item>
         <item>chenyuz</item>
         <item>youxia</item>
         <item>shizheng</item>

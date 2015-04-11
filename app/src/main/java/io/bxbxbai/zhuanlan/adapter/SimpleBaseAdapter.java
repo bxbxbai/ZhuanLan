@@ -15,11 +15,11 @@ import java.util.List;
  */
 public abstract class SimpleBaseAdapter<T> extends BaseAdapter {
 
-    protected Context context;
+    protected Context mContext;
     protected List<T> data;
 
     public SimpleBaseAdapter(Context context, List<T> data) {
-        this.context = context;
+        this.mContext = context;
         this.data = data == null ? new ArrayList<T>() : new ArrayList<T>(data);
     }
 
@@ -62,7 +62,7 @@ public abstract class SimpleBaseAdapter<T> extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (null == convertView) {
-            convertView = View.inflate(context, getItemResource(), null);
+            convertView = View.inflate(mContext, getItemResource(), null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else {

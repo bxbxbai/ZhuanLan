@@ -57,4 +57,32 @@ public class Utils {
         }
         return "未知时间";
     }
+
+    public static boolean withinDays(String time, int days) {
+        try {
+            long s = TimeUnit.MILLISECONDS.toSeconds(
+                    new Date().getTime() - FORMAT.parse(time).getTime());
+            long count = s / DAY;
+            if (0 < count && count <= days) {
+                return true;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static int compareTime(String a, String b) {
+        try {
+            long timeA = TimeUnit.MILLISECONDS.toSeconds(
+                    new Date().getTime() - FORMAT.parse(a).getTime());
+            long timeB = TimeUnit.MILLISECONDS.toSeconds(
+                    new Date().getTime() - FORMAT.parse(b).getTime());
+
+            return timeA >= timeB ? 1 : -1;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

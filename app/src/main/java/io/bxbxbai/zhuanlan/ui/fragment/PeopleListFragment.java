@@ -1,10 +1,6 @@
 package io.bxbxbai.zhuanlan.ui.fragment;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,8 +15,6 @@ import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
 import io.bxbxbai.zhuanlan.bean.User;
 import io.bxbxbai.zhuanlan.data.GsonRequest;
 import io.bxbxbai.zhuanlan.data.RequestManager;
-import io.bxbxbai.zhuanlan.ui.activity.PostListActivity;
-import io.bxbxbai.zhuanlan.utils.SharedPreferencesUtils;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
 import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
 

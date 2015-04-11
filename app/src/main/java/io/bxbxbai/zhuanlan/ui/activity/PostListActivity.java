@@ -9,9 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.balysv.materialmenu.MaterialMenuDrawable;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
 import io.bxbxbai.zhuanlan.bean.Post;
@@ -23,30 +20,15 @@ import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
 import java.util.List;
 
 /**
- *
  * @author bxbxbai
  */
-public class PostListActivity extends BaseActivity {
+public class PostListActivity extends ListBaseActivity {
 
-    private static final String KEY_ID = "id";
-    private static final String KEY_NAME = "name";
-
-    public static final String KEY_DATA = "data";
-
-    private ListView listView;
-
-    private String id = "limiao";
-
+    private String id = "bxbxbai";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_list);
-        initToolBar();
-
-        listView = ButterKnife.findById(this, R.id.lv_post);
-        final CircularLoadingView view = ButterKnife.findById(this ,R.id.v_loading);
-
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
         final PostListAdapter adapter = new PostListAdapter(this, null);
         listView.setAdapter(adapter);
 
@@ -57,7 +39,7 @@ public class PostListActivity extends BaseActivity {
                     ToastUtils.showShort("没有数据了");
                 }
                 listView.setVisibility(View.VISIBLE);
-                view.setVisibility(View.GONE);
+                mLoadingView.setVisibility(View.GONE);
                 adapter.addAll(response);
             }
         };
@@ -73,14 +55,14 @@ public class PostListActivity extends BaseActivity {
         listView.setOnScrollListener(new EndlessScrollListener() {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
-                GsonRequest<List<Post>> request = ZhuanLanApi.getPostListRequest(id,
-                        String.valueOf((page - 1) * ZhuanLanApi.COUNT));
+                GsonRequest request = ZhuanLanApi.getPostListRequest(id,
+                        String.valueOf((page - 1) * ZhuanLanApi.DEFAULT_COUNT));
                 request.setSuccessListener(listener);
                 RequestManager.addRequest(request, id);
             }
         });
 
-        GsonRequest<List<Post>> request = ZhuanLanApi.getPostListRequest(id, "0");
+        GsonRequest request = ZhuanLanApi.getPostListRequest(id, "0");
         request.setSuccessListener(listener);
         request.setRetryPolicy(new ZhuanLanRetryPolicy());
         RequestManager.addRequest(request, id);
@@ -89,7 +71,7 @@ public class PostListActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Post post = (Post) view.getTag(R.id.key_data);
-                WebActivity.startActivity(PostListActivity.this, post);
+                NewsDetailActivity.startActivity(PostListActivity.this, post);
             }
         });
 
@@ -109,7 +91,7 @@ public class PostListActivity extends BaseActivity {
             public void run() {
                 context.startActivity(intent);
             }
-        }, 300);
+        }, 420);
         return true;
     }
 }

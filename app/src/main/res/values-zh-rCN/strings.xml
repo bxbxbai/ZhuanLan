@@ -8,13 +8,11 @@
     <string name="settings_settings">综合设置</string>
     <string name="settings_others">其他</string>
     <string name="settings_others_about">关于我</string>
-    <string name="licences_header">知乎专栏 基于下列开源项目构建：
-
-    </string>
+    <string name="licences_header">知乎专栏 基于下列开源项目构建：</string>
     <string name="licenses_subheader">所有上述开源项目均遵守阿帕奇许可证 2.0 版本，如下所示：</string>
     <string name="action_pick_date">选择日期</string>
     <string name="using_client">使用官方客户端打开知乎讨论</string>
-    <string name="network_error">网络错误！</string>
+    <string name="network_error">网络出错啦~再试一下呗~</string>
     <string name="no_browser"><![CDATA[您没有安装浏览器呢~ >_<]]></string>
     <string name="not_coming"><![CDATA[这一天还没有来临呢！>_<]]></string>
     <string name="not_born"><![CDATA[这一天知乎专栏还没有诞生呢！>_<]]></string>
@@ -30,7 +28,7 @@
     <string name="action_search">搜索</string>
     <string name="search_hint">输入关键词以搜索</string>
     <string name="no_result_found">抱歉，未找到相应结果</string>
-    <string name="searching">搜索中，请稍候…</string>
+    <string name="searching">搜索</string>
     <string name="which_accelerate_server_title">使用哪个加速服务器？</string>
     <string name="accelerate_server_dialog_title">请从下列加速服务器中选择</string>
     <string name="accelerate_server_hint_dialog_title">是否使用加速服务器？</string>
@@ -40,9 +38,11 @@
 
     <string name="days_ago">%d天前</string>
     <string name="comment_count">%d条评论</string>
-    <string name="like_count">%d赞</string>
-    <string name="follower">%d人关注</string>
-    <string name="post_count">%d文</string>
+    <string name="like_count">%d 赞</string>
+    <string name="follower">%d人關注</string>
     <string name="user_count">%d专栏</string>
     <string name="bxbxbai">bxbxbai</string>
+    <string name="all_people">所有內置用戶</string>
+    <string name="origin_web_page">查看原网页</string>
+    <string name="recent_news">最近一周文章</string>
 </resources>

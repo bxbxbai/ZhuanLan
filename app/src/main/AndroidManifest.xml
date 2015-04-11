@@ -13,7 +13,7 @@
             android:allowBackup="true"
             android:theme="@style/AppTheme.Toolbar">
         <activity
-                android:name="io.bxbxbai.zhuanlan.ui.activity.EntryActivity"
+                android:name=".ui.activity.EntryActivity"
                 android:alwaysRetainTaskState="true"
                 android:screenOrientation="portrait"
                 android:configChanges="orientation|keyboardHidden|screenSize"
@@ -25,7 +25,7 @@
         </activity>
 
         <activity
-                android:name="io.bxbxbai.zhuanlan.ui.activity.MainActivity"
+                android:name=".ui.activity.MainActivity"
                 android:alwaysRetainTaskState="true"
                 android:launchMode="singleTask"
                 android:screenOrientation="portrait"
@@ -37,33 +37,34 @@
                 android:label="@string/action_settings">
         </activity>
         <activity
-                android:name="io.bxbxbai.zhuanlan.ui.activity.PortalActivity"
-                android:alwaysRetainTaskState="true"
-                android:configChanges="orientation|keyboardHidden|screenSize">
-        </activity>
-        <activity
                 android:name="io.bxbxbai.zhuanlan.ui.activity.SearchActivity"
                 android:alwaysRetainTaskState="true"
                 android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
         <activity
-                android:name=".ui.activity.AboutActivity"
+                android:name=".ui.activity.WebActivity"
                 android:label="@string/title_activity_about">
             <intent-filter>
                 <action android:name="com.bxbxbai.zhuanlan.ui.activity.AboutActivity"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name="io.bxbxbai.zhuanlan.ui.activity.NewsDetailActivity"
-                  android:alwaysRetainTaskState="true"
-                  android:launchMode="singleTop"
-                  android:configChanges="orientation|keyboardHidden|screenSize"/>
 
-        <activity android:name=".ui.activity.WebActivity"
+        <activity android:name=".ui.activity.NewsDetailActivity"
+                  android:screenOrientation="portrait"
                   android:parentActivityName=".ui.activity.MainActivity"/>
 
         <activity android:name=".ui.activity.PostListActivity"
+                  android:screenOrientation="portrait"
                   android:parentActivityName=".ui.activity.MainActivity"/>
+
+        <activity android:name=".ui.activity.AllPeopleActivity"
+                  android:launchMode="singleTask"
+                  android:parentActivityName=".ui.activity.MainActivity"/>
+
+        <activity android:name=".ui.activity.RecentPostListActivity"
+                  android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

@@ -60,8 +60,8 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         // if the total item count is zero and the previous isn't assume the list is invalidated and
         // should be reset back to initial state
-        StopWatch.log("firstVisible: " + firstVisibleItem + ", visibleItemCount: " + visibleItemCount + ", " +
-                "totalItemCount: " + totalItemCount);
+//        StopWatch.log("firstVisible: " + firstVisibleItem + ", visibleItemCount: " + visibleItemCount + ", " +
+//                "totalItemCount: " + totalItemCount);
         if (totalItemCount < previousTotalItemCount) {
             this.currentPage = this.startingPageIndex;
             this.previousTotalItemCount = totalItemCount;
@@ -88,6 +88,6 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
-        StopWatch.log("scrollstate: " + scrollState);
+//        StopWatch.log("scrollstate: " + scrollState);
     }
 }

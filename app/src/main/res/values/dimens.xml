@@ -33,4 +33,6 @@
     <dimen name="max_height_header">200dp</dimen>
     <dimen name="footer_height">60dp</dimen>
 
+    <dimen name="menu_item_height">30dp</dimen>
+
 </resources>

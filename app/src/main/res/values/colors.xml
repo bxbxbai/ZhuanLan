@@ -42,4 +42,7 @@
     <color name="ldrawer_color">#FFFFFF</color>
     <color name="transparent">#00000000</color>
 
+    <color name="bt_accent">#00B8D4</color>
+    <color name="drawer_header_background">@color/colorPrimaryDark</color>
+
 </resources>

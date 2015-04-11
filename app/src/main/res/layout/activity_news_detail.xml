@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
+              android:background="@android:color/white"
+              style="@style/FitSystemWindows"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-
-    <WebView android:layout_width="match_parent"
-             android:layout_height="match_parent"
-            android:id="@+id/ww_news_detail">
-
-             </WebView>
+    <include layout="@layout/toolbar"/>
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+        <WebView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:paddingRight="0dp"
+                android:paddingLeft="0dp"
+                android:id="@+id/web_view"/>
+        <include layout="@layout/layout_loading"/>
+    </LinearLayout>
 </LinearLayout>

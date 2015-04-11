@@ -63,7 +63,7 @@ public class Reservoir {
      *
      * @param key      the key string.
      * @param object   the object to be stored.
-     * @param callback a callback of type {@link com.anupcowkur.reservoir.Reservoir.PutCallback}
+     * @param callback a callback of type {@link PutCallback}
      *                 which is called upon completion.
      */
     public static void putAsync(String key, Object object, PutCallback callback) {
@@ -90,7 +90,7 @@ public class Reservoir {
      * Get an object from Reservoir with the given key asynchronously.
      *
      * @param key      the key string.
-     * @param callback a callback of type {@link com.anupcowkur.reservoir.Reservoir.GetCallback}
+     * @param callback a callback of type {@link GetCallback}
      *                 which is called upon completion.
      */
     public static <T> void getAsync(String key, Class<T> classOfT,
@@ -115,7 +115,7 @@ public class Reservoir {
      * key (if any) will be deleted.
      *
      * @param key      the key string.
-     * @param callback a callback of type {@link com.anupcowkur.reservoir.Reservoir.DeleteCallback}
+     * @param callback a callback of type {@link DeleteCallback}
      *                 which is called upon completion.
      */
     public static void deleteAsync(String key, DeleteCallback callback) {
