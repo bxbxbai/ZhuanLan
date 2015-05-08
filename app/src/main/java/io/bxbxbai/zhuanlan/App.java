@@ -1,26 +1,28 @@
 package io.bxbxbai.zhuanlan;
 
 import android.app.Application;
-import android.content.Context;
-import android.os.StrictMode;
 import android.view.WindowManager;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.facebook.stetho.Stetho;
 import io.bxbxbai.zhuanlan.data.BitmapLruCache;
-import io.bxbxbai.zhuanlan.db.DailyNewsDataSource;
+import io.bxbxbai.zhuanlan.db.ZhuanlanDataSource;
 
 /**
- * Created by baia on 14-6-4.
+ *
+ * @author bxbxbai
  */
 public class App extends Application {
     private static App mContext;
 
     public static final String PACKAGE_NAME = "io.bxbxbai.zhuanlan";
 
-    private DailyNewsDataSource dataSource;
+    private ZhuanlanDataSource dataSource;
 
-    /** 开发测试模式 */
+    /**
+     * 开发测试模式
+     */
     private static final boolean DEVELOPER_MODE = true;
 
 
@@ -29,7 +31,7 @@ public class App extends Application {
         super.onCreate();
         mContext = this;
 
-        dataSource = new DailyNewsDataSource(getApplicationContext());
+        dataSource = new ZhuanlanDataSource(getApplicationContext());
         dataSource.open();
 
 //        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
@@ -46,40 +48,18 @@ public class App extends Application {
 //        .penaltyDeath()
 //        .build());
 
-        
+        initStetho();
     }
 
 
-    public DailyNewsDataSource getDataSource() {
-        return dataSource;
+    private void initStetho() {
+        Stetho.initialize(Stetho.newInitializerBuilder(this)
+                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                .build());
     }
 
-    public static App getInstance(){
+    public static App getInstance() {
         return mContext;
-    }
-
-    private WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
-
-
-    public WindowManager.LayoutParams getWindowManagerParams() {
-        return wmParams;
-    }
-
-    private RequestQueue mRequestQueue;
-
-    private ImageLoader imageLoader;
-
-    public RequestQueue getRequestQueue() {
-        if (mRequestQueue == null) {
-            mRequestQueue = Volley.newRequestQueue(getInstance());
-        }
-        return mRequestQueue;
-    }
-
-    public ImageLoader getImageLoader() {
-        if (imageLoader == null) {
-            imageLoader = new ImageLoader(getRequestQueue(), new BitmapLruCache());
-        }
-        return imageLoader;
     }
 }

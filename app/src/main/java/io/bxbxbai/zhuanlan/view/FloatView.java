@@ -1,10 +1,7 @@
 package io.bxbxbai.zhuanlan.view;
 import android.content.Context;
 import android.os.SystemClock;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -25,8 +22,7 @@ public class FloatView extends RelativeLayout {
     private ProgressBar pBar;
     private WindowManager wm = (WindowManager) getContext()
             .getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-    private WindowManager.LayoutParams wmParams = ((App) getContext()
-            .getApplicationContext()).getWindowManagerParams();
+    private WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
 
     private Context context;
 
@@ -49,7 +45,6 @@ public class FloatView extends RelativeLayout {
         this.context = context;
 
         textTraffic.setText("test");
-
 
         new Thread(new Runnable() {
             @Override

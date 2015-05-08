@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
 import io.bxbxbai.zhuanlan.bean.User;
@@ -102,6 +103,7 @@ public class PeopleListFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        RequestManager.getRequestQueue().cancelAll(this);
     }
 
     @Override

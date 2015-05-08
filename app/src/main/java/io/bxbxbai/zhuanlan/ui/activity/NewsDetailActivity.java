@@ -15,7 +15,9 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
+import io.bxbxbai.zhuanlan.support.ZhuanLanWebViewClient;
 import io.bxbxbai.zhuanlan.utils.StopWatch;
+import io.bxbxbai.zhuanlan.utils.Utils;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanWebChromeClient;
 import io.bxbxbai.zhuanlan.view.CircleImageView;
@@ -139,11 +141,21 @@ public class NewsDetailActivity extends BaseActivity {
     }
 
 
-
     private void initWebView() {
         WebSettings settings = mWebView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setBuiltInZoomControls(false);
+        //设置缓存模式
+        settings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        //开启DOM storage API功能
+        settings.setDomStorageEnabled(true);
+        //开启database storage 功能
+        settings.setDatabaseEnabled(true);
+
+        String cacheDir = getFilesDir().getAbsolutePath() + "web_cache";
+        settings.setAppCachePath(cacheDir);
+        settings.setAppCacheEnabled(true);
+
         settings.setLoadsImagesAutomatically(true);
         settings.setDefaultTextEncodingName(ENCODING_UTF_8);
         settings.setBlockNetworkImage(false);
@@ -153,15 +165,8 @@ public class NewsDetailActivity extends BaseActivity {
 
         mWebView.setHorizontalScrollBarEnabled(false);
         mWebView.setWebChromeClient(new ZhuanLanWebChromeClient(null, mLoadingView));
-
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                StopWatch.log("url " + url);
-                NewsDetailActivity.startActivity(NewsDetailActivity.this, url);
-                return true;
-            }
-        });
+        mWebView.setWebViewClient(new ZhuanLanWebViewClient(this));
+//        mWebView.addJavascriptInterface();
     }
 
     private void loadData() {

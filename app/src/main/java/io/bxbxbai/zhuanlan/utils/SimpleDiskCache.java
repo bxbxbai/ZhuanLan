@@ -1,7 +1,7 @@
 package io.bxbxbai.zhuanlan.utils;
 
-import com.jakewharton.disklrucache.DiskLruCache;
 
+import com.jakewharton.disklrucache.DiskLruCache;
 import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedOutputStream;

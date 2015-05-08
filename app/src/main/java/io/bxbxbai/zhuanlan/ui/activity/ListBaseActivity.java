@@ -45,4 +45,10 @@ public class ListBaseActivity extends BaseActivity {
         listView = ButterKnife.findById(this, R.id.lv_post);
         mLoadingView = ButterKnife.findById(this, R.id.v_loading);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RequestManager.getRequestQueue().cancelAll(this);
+    }
 }

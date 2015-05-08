@@ -1,6 +1,8 @@
 package io.bxbxbai.zhuanlan.utils;
 
+import android.app.Activity;
 import android.text.format.DateUtils;
+import android.view.View;
 import io.bxbxbai.zhuanlan.App;
 
 import java.text.DateFormat;

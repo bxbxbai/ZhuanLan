@@ -4,13 +4,13 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public final class DBHelper extends SQLiteOpenHelper {
-    public static final String TABLE_NAME = "daily_news_lists";
+public final class ZhuanlanDBHelper extends SQLiteOpenHelper {
+    public static final String TABLE_NAME = "all_news";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_DATE = "date";
     public static final String COLUMN_CONTENT = "content";
 
-    public static final String DATABASE_NAME = "daily_news.db";
+    public static final String DATABASE_NAME = "zhuan_lan.db";
     public static final int DATABASE_VERSION = 1;
 
     private static final String DATABASE_CREATE
@@ -19,7 +19,7 @@ public final class DBHelper extends SQLiteOpenHelper {
             + COLUMN_DATE + " CHAR(8) UNIQUE, "
             + COLUMN_CONTENT + " TEXT NOT NULL);";
 
-    public DBHelper(Context context) {
+    public ZhuanlanDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

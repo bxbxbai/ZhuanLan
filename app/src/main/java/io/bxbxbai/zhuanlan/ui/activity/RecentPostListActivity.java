@@ -3,20 +3,15 @@ package io.bxbxbai.zhuanlan.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
-import butterknife.ButterKnife;
 import com.android.volley.Response;
-import com.jakewharton.disklrucache.Util;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.data.GsonRequest;
 import io.bxbxbai.zhuanlan.data.RequestManager;
 import io.bxbxbai.zhuanlan.utils.*;
-import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,7 +46,7 @@ public class RecentPostListActivity extends ListBaseActivity {
         final Response.Listener listener = new Response.Listener<List<Post>>() {
             @Override
             public void onResponse(List<Post> response) {
-                if (postList.size() == 0) {
+                if (postList.size() > 0) {
                     listView.setVisibility(View.VISIBLE);
                     mLoadingView.setVisibility(View.GONE);
                 }
@@ -79,7 +74,7 @@ public class RecentPostListActivity extends ListBaseActivity {
             GsonRequest request = ZhuanLanApi.getPostListRequest(id, "0");
             request.setSuccessListener(listener);
             request.setRetryPolicy(new ZhuanLanRetryPolicy());
-            RequestManager.addRequest(request, id);
+            RequestManager.addRequest(request, this);
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

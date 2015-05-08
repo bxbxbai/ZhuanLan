@@ -58,14 +58,14 @@ public class PostListActivity extends ListBaseActivity {
                 GsonRequest request = ZhuanLanApi.getPostListRequest(id,
                         String.valueOf((page - 1) * ZhuanLanApi.DEFAULT_COUNT));
                 request.setSuccessListener(listener);
-                RequestManager.addRequest(request, id);
+                RequestManager.addRequest(request, this);
             }
         });
 
         GsonRequest request = ZhuanLanApi.getPostListRequest(id, "0");
         request.setSuccessListener(listener);
         request.setRetryPolicy(new ZhuanLanRetryPolicy());
-        RequestManager.addRequest(request, id);
+        RequestManager.addRequest(request, this);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -74,7 +74,12 @@ public class PostListActivity extends ListBaseActivity {
                 NewsDetailActivity.startActivity(PostListActivity.this, post);
             }
         });
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RequestManager.getRequestQueue().cancelAll(this);
     }
 
     public static boolean start(Context context, String id) {

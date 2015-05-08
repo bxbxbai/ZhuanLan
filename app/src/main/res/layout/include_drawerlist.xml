@@ -22,7 +22,6 @@
     android:layout_gravity="start"
     android:background="@color/white"
     android:layout_marginTop="?actionBarSize"
-    android:fitsSystemWindows="true"
     android:clickable="true"
     custom:insetForeground="#4000">
     <ImageView

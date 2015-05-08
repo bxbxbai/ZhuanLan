@@ -2,6 +2,7 @@ package io.bxbxbai.zhuanlan.data;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import io.bxbxbai.zhuanlan.App;
 
@@ -13,6 +14,8 @@ import io.bxbxbai.zhuanlan.App;
 public final class RequestManager {
 
     private static final RequestQueue mRequestQueue = Volley.newRequestQueue(App.getInstance());
+
+    private static ImageLoader imageLoader;
 
     private RequestManager(){
 
@@ -29,7 +32,14 @@ public final class RequestManager {
         mRequestQueue.cancelAll(tag);
     }
 
-    public static RequestQueue getRequestQueue(){
+    public static RequestQueue getRequestQueue() {
         return mRequestQueue;
+    }
+
+    public static ImageLoader getImageLoader() {
+        if (imageLoader == null) {
+            imageLoader = new ImageLoader(getRequestQueue(), new BitmapLruCache());
+        }
+        return imageLoader;
     }
 }

@@ -2,38 +2,65 @@ package io.bxbxbai.zhuanlan.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.TextureView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
+import butterknife.ButterKnife;
 import com.android.volley.toolbox.NetworkImageView;
-import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
+import io.bxbxbai.zhuanlan.data.RequestManager;
 import io.bxbxbai.zhuanlan.utils.StopWatch;
 import io.bxbxbai.zhuanlan.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author bxbxbai
  */
-public class PostListAdapter extends SimpleBaseAdapter<Post> {
+public class PostListAdapter extends BaseAdapter {
 
+    private static final int VIEW_TYPE_TEXT = 0;
+    private static final int VIEW_TYPE_IMAGE = 1;
+
+    private Context mContext;
+    private List<Post> mPosts;
+    private LayoutInflater mInflater;
 
     public PostListAdapter(Context context, List<Post> data) {
-        super(context, data);
+        mContext = context;
+        mPosts = new ArrayList<>();
+
+        if (data != null) {
+            mPosts.addAll(data);
+        }
+
+        mInflater = LayoutInflater.from(mContext);
     }
 
     @Override
-    public int getItemResource() {
-        return R.layout.layout_post;
+    public int getCount() {
+        return mPosts.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return mPosts.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
     public int getItemViewType(int position) {
-        Post post = getItem(position);
-        return TextUtils.isEmpty(post.getTitleImage()) ? 0 : 1;
+        Post post = (Post) getItem(position);
+        return TextUtils.isEmpty(post.getTitleImage()) ? VIEW_TYPE_TEXT : VIEW_TYPE_IMAGE;
     }
 
     @Override
@@ -42,31 +69,66 @@ public class PostListAdapter extends SimpleBaseAdapter<Post> {
     }
 
     @Override
-    public View getItemView(int position, View convertView, ViewHolder holder) {
-        Post post = getItem(position);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Post post = mPosts.get(position);
 
-        TextView title = holder.findView(R.id.tv_title);
-        title.setText(post.getTitle());
+        int type = getItemViewType(position);
 
-        TextView author = holder.findView(R.id.tv_name);
-        author.setText(post.getAuthor().getName());
+        if (convertView == null) {
+            if (type == VIEW_TYPE_IMAGE) {
+                convertView = mInflater.inflate(R.layout.layout_post_image, parent, false);
+                convertView.setTag(new ViewHolder(convertView));
+            } else {
+                convertView = mInflater.inflate(R.layout.layout_post_text, parent, false);
+                convertView.setTag(new ViewHolder(convertView));
+            }
+        }
 
-        TextView commentCount = holder.findView(R.id.tv_comment_count);
-        commentCount.setText(mContext.getString(R.string.comment_count, post.getCommentsCount()));
+        ViewHolder holder = (ViewHolder) convertView.getTag();
 
-        TextView days = holder.findView(R.id.tv_date);
-        days.setText(Utils.convertPublishTime(post.getPublishedTime()));
+        holder.mTitle.setText(post.getTitle());
+        holder.mAuthor.setText(post.getAuthor().getName());
+        holder.mCommentCount.setText(mContext.getString(R.string.comment_count, post.getCommentsCount()));
+        holder.mDays.setText(Utils.convertPublishTime(post.getPublishedTime()));
+        holder.mLike.setText(String.valueOf(post.getLikesCount()));
 
-        TextView like = holder.findView(R.id.tv_like_count);
-        like.setText(String.valueOf(post.getLikesCount()));
-
-
-        NetworkImageView pic = holder.findView(R.id.iv_pic);
-        pic.setImageUrl(post.getTitleImage(), App.getInstance().getImageLoader());
-        StopWatch.log("image url: " + post.getTitleImage());
-//        Picasso.with(mContext).load(post.getTitleImage()).placeholder(R.drawable.bxbxbai).into(imageView);
+        if (type == VIEW_TYPE_IMAGE) {
+            holder.mNetworkImageView.setImageUrl(post.getTitleImage(), RequestManager.getImageLoader());
+        } else {
+            holder.mSummary.setText(post.getSummary());
+        }
 
         convertView.setTag(R.id.key_data, post);
         return convertView;
+    }
+
+    private static class ViewHolder {
+        TextView mTitle;
+        TextView mAuthor;
+        TextView mCommentCount;
+        TextView mDays;
+        TextView mLike;
+
+        NetworkImageView mNetworkImageView;
+        TextView mSummary;
+
+        public ViewHolder(View v) {
+            mTitle = ButterKnife.findById(v, R.id.tv_title);
+            mAuthor = ButterKnife.findById(v, R.id.tv_name);
+            mCommentCount = ButterKnife.findById(v, R.id.tv_comment_count);
+            mDays = ButterKnife.findById(v, R.id.tv_date);
+            mLike = ButterKnife.findById(v, R.id.tv_like_count);
+            mNetworkImageView = ButterKnife.findById(v, R.id.iv_pic);
+            mSummary = ButterKnife.findById(v, R.id.tv_summary);
+        }
+    }
+
+    public void addAll(List<Post> posts) {
+        mPosts.addAll(posts);
+    }
+
+    public void replaceAll(List<Post> posts) {
+        mPosts.clear();
+        addAll(posts);
     }
 }

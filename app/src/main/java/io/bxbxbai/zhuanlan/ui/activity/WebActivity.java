@@ -85,7 +85,7 @@ public class WebActivity extends BaseActivity {
 
         WindowManager wm = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
 
-        WindowManager.LayoutParams wmParams = ((App) getApplication()).getWindowManagerParams();
+        WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
         wmParams.type = WindowManager.LayoutParams.TYPE_PHONE;
         wmParams.format = PixelFormat.RGBA_8888;
         wmParams.flags |= 8;

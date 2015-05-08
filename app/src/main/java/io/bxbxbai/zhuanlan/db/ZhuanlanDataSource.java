@@ -12,17 +12,17 @@ import io.bxbxbai.zhuanlan.bean.DailyNews;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public final class DailyNewsDataSource {
+public final class ZhuanlanDataSource {
     private SQLiteDatabase database;
-    private DBHelper dbHelper;
+    private ZhuanlanDBHelper dbHelper;
     private String[] allColumns = {
-            DBHelper.COLUMN_ID,
-            DBHelper.COLUMN_DATE,
-            DBHelper.COLUMN_CONTENT
+            ZhuanlanDBHelper.COLUMN_ID,
+            ZhuanlanDBHelper.COLUMN_DATE,
+            ZhuanlanDBHelper.COLUMN_CONTENT
     };
 
-    public DailyNewsDataSource(Context context) {
-        dbHelper = new DBHelper(context);
+    public ZhuanlanDataSource(Context context) {
+        dbHelper = new ZhuanlanDBHelper(context);
     }
 
     public void open() throws SQLException {
@@ -31,13 +31,13 @@ public final class DailyNewsDataSource {
 
     public List<DailyNews> insertDailyNewsList(String date, String content) {
         ContentValues values = new ContentValues();
-        values.put(DBHelper.COLUMN_DATE, date);
-        values.put(DBHelper.COLUMN_CONTENT, content);
+        values.put(ZhuanlanDBHelper.COLUMN_DATE, date);
+        values.put(ZhuanlanDBHelper.COLUMN_CONTENT, content);
 
-        long insertId = database.insert(DBHelper.TABLE_NAME, null,
+        long insertId = database.insert(ZhuanlanDBHelper.TABLE_NAME, null,
                 values);
-        Cursor cursor = database.query(DBHelper.TABLE_NAME,
-                allColumns, DBHelper.COLUMN_ID + " = " + insertId, null,
+        Cursor cursor = database.query(ZhuanlanDBHelper.TABLE_NAME,
+                allColumns, ZhuanlanDBHelper.COLUMN_ID + " = " + insertId, null,
                 null, null, null);
         cursor.moveToFirst();
         List<DailyNews> newsList = cursorToNewsList(cursor);
@@ -47,9 +47,9 @@ public final class DailyNewsDataSource {
 
     public void updateNewsList(String date, String content) {
         ContentValues values = new ContentValues();
-        values.put(DBHelper.COLUMN_DATE, date);
-        values.put(DBHelper.COLUMN_CONTENT, content);
-        database.update(DBHelper.TABLE_NAME, values, DBHelper.COLUMN_DATE + "=" + date, null);
+        values.put(ZhuanlanDBHelper.COLUMN_DATE, date);
+        values.put(ZhuanlanDBHelper.COLUMN_CONTENT, content);
+        database.update(ZhuanlanDBHelper.TABLE_NAME, values, ZhuanlanDBHelper.COLUMN_DATE + "=" + date, null);
     }
 
     public void insertOrUpdateNewsList(String date, String content) {
@@ -62,8 +62,8 @@ public final class DailyNewsDataSource {
 
     // That reminds you of Queen, huh? ;-)
     public List<DailyNews> newsOfTheDay(String date) {
-        Cursor cursor = database.query(DBHelper.TABLE_NAME,
-                allColumns, DBHelper.COLUMN_DATE + " = " + date, null,
+        Cursor cursor = database.query(ZhuanlanDBHelper.TABLE_NAME,
+                allColumns, ZhuanlanDBHelper.COLUMN_DATE + " = " + date, null,
                 null, null, null);
 
         cursor.moveToFirst();

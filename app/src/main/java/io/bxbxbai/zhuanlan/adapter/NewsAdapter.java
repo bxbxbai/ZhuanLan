@@ -12,6 +12,7 @@ import com.android.volley.toolbox.NetworkImageView;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.DailyNews;
+import io.bxbxbai.zhuanlan.data.RequestManager;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import taobe.tec.jcc.JChineseConvertor;
 
@@ -96,7 +97,7 @@ public final class NewsAdapter extends BaseAdapter implements StickyListHeadersA
         DailyNews dailyNews = new DailyNews(newsList.get(position));
 
 //        imageLoader.displayImage(dailyNews.getThumbnailUrl(), holder.newsImage, options, animateFirstListener);
-        holder.newsImage.setImageUrl(dailyNews.getThumbnailUrl(), App.getInstance().getImageLoader());
+        holder.newsImage.setImageUrl(dailyNews.getThumbnailUrl(), RequestManager.getImageLoader());
 
         if (shouldConvert && canConvert) {
             if (dailyNews.isMulti()) {

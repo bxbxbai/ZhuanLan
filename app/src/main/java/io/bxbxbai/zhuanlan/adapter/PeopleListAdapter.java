@@ -3,9 +3,10 @@ package io.bxbxbai.zhuanlan.adapter;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
-import com.squareup.picasso.Picasso;
+import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.User;
+import io.bxbxbai.zhuanlan.data.RequestManager;
 import io.bxbxbai.zhuanlan.ui.activity.PostListActivity;
 import io.bxbxbai.zhuanlan.utils.Utils;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
@@ -38,8 +39,8 @@ public class PeopleListAdapter extends SimpleBaseAdapter<User> {
         String picUrl = Utils.getAuthorAvatarUrl(user.getAuthor().getAvatar().getTemplate(),
                 id, ZhuanLanApi.PIC_SIZE_XL);
 
-//        imageView.setImageUrl(picUrl, App.getInstance().getImageLoader());
-        Picasso.with(mContext).load(picUrl).placeholder(R.drawable.bxbxbai).into(imageView);
+        imageView.setImageUrl(picUrl, RequestManager.getImageLoader());
+//        Picasso.with(mContext).load(picUrl).placeholder(R.drawable.bxbxbai).into(imageView);
 
         TextView name = holder.findView(R.id.tv_name);
         name.setText(user.getName());
