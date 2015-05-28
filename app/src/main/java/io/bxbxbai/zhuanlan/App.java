@@ -6,6 +6,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.facebook.stetho.Stetho;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 import io.bxbxbai.zhuanlan.data.BitmapLruCache;
 import io.bxbxbai.zhuanlan.db.ZhuanlanDataSource;
 
@@ -18,8 +20,7 @@ public class App extends Application {
 
     public static final String PACKAGE_NAME = "io.bxbxbai.zhuanlan";
 
-    private ZhuanlanDataSource dataSource;
-
+    private RefWatcher mRefWatcher;
     /**
      * 开发测试模式
      */
@@ -31,7 +32,9 @@ public class App extends Application {
         super.onCreate();
         mContext = this;
 
-        dataSource = new ZhuanlanDataSource(getApplicationContext());
+        mRefWatcher = LeakCanary.install(this);
+
+        ZhuanlanDataSource dataSource = new ZhuanlanDataSource(getApplicationContext());
         dataSource.open();
 
 //        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
@@ -51,6 +54,9 @@ public class App extends Application {
         initStetho();
     }
 
+    public static RefWatcher getRefWatcher() {
+        return getInstance().mRefWatcher;
+    }
 
     private void initStetho() {
         Stetho.initialize(Stetho.newInitializerBuilder(this)

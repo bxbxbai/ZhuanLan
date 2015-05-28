@@ -13,6 +13,8 @@ import butterknife.ButterKnife;
 import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.extras.toolbar.MaterialMenuIconToolbar;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.squareup.leakcanary.RefWatcher;
+import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 
 /**
@@ -69,5 +71,11 @@ public class BaseActivity extends ActionBarActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        App.getRefWatcher().watch(this);
     }
 }

@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
 import io.bxbxbai.zhuanlan.bean.User;
@@ -18,6 +17,8 @@ import io.bxbxbai.zhuanlan.data.GsonRequest;
 import io.bxbxbai.zhuanlan.data.RequestManager;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
 import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -40,8 +41,7 @@ public class PeopleListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mAdapter = new PeopleListAdapter(getActivity(), null);
-
+        mAdapter = new PeopleListAdapter(getActivity(), new ArrayList<User>());
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

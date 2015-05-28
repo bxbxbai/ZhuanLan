@@ -14,14 +14,14 @@ import java.util.concurrent.Executors;
  */
 public class ZhuanLanHandler {
 
-        private static final ZhuanLanHandler HANDLER = new ZhuanLanHandler();
+    private static final ZhuanLanHandler HANDLER = new ZhuanLanHandler();
 
     private Handler mHandler;
     private ExecutorService mExecutorService;
 
     public ZhuanLanHandler() {
         mHandler = new Handler(Looper.getMainLooper());
-        mExecutorService = Executors.newSingleThreadExecutor();
+        mExecutorService = Executors.newFixedThreadPool(4);
     }
 
     public static ZhuanLanHandler get() {

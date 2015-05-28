@@ -23,7 +23,7 @@ public final class RequestManager {
 
     public static void addRequest(Request<?>  request, Object tag){
         if(tag != null) {
-            request.setTag(tag);
+            request.setTag(tag.hashCode());
         }
         mRequestQueue.add(request);
     }

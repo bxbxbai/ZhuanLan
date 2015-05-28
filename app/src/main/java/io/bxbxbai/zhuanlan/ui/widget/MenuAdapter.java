@@ -27,7 +27,7 @@ public class MenuAdapter extends SimpleBaseAdapter<DrawerMenuContent.DrawerItem>
     }
 
     @Override
-    public View getItemView(int position, View convertView, ViewHolder holder) {
+    public void bindData(int position, View convertView, ViewHolder holder) {
 
         DrawerMenuContent.DrawerItem item = getItem(position);
 
@@ -38,6 +38,5 @@ public class MenuAdapter extends SimpleBaseAdapter<DrawerMenuContent.DrawerItem>
         menuText.setText(item.title);
 
         convertView.setTag(R.id.key_data, item);
-        return convertView;
     }
 }

@@ -65,7 +65,7 @@ public class PostListActivity extends ListBaseActivity {
         GsonRequest request = ZhuanLanApi.getPostListRequest(id, "0");
         request.setSuccessListener(listener);
         request.setRetryPolicy(new ZhuanLanRetryPolicy());
-        RequestManager.addRequest(request, this);
+        RequestManager.addRequest(request, this.toString());
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

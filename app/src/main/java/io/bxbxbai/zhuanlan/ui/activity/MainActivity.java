@@ -23,6 +23,7 @@ import io.bxbxbai.zhuanlan.ui.widget.MenuAdapter;
 import io.bxbxbai.zhuanlan.utils.PrefUtils;
 import io.bxbxbai.zhuanlan.utils.T;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanHandler;
+import timber.log.Timber;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -39,6 +40,8 @@ public class MainActivity extends BaseActivity {
         mDrawerLayout = ButterKnife.findById(this, R.id.drawerLayout);
         super.initToolBar();
         initToolbarAndDrawer();
+        Timber.d(toString(), "test");
+        getResources().finishPreloading();
 
         DrawerMenuContent content = new DrawerMenuContent(this);
         ListView listView = ButterKnife.findById(this, R.id.drawer_list);
@@ -131,6 +134,11 @@ public class MainActivity extends BaseActivity {
         });
         materialMenu.setState(IconState.BURGER);
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Override

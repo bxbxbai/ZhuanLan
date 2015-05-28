@@ -30,7 +30,7 @@ public class PeopleListAdapter extends SimpleBaseAdapter<User> {
     }
 
     @Override
-    public View getItemView(int position, View convertView, ViewHolder holder) {
+    public void bindData(int position, View convertView, ViewHolder holder) {
         final User user = getItem(position);
 
         final CircleImageView imageView = holder.findView(R.id.avatar);
@@ -64,6 +64,5 @@ public class PeopleListAdapter extends SimpleBaseAdapter<User> {
                 PostListActivity.start(mContext, user.getSlug(), user.getName());
             }
         });
-        return convertView;
     }
 }

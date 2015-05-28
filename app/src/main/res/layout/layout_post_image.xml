@@ -32,6 +32,7 @@
                   android:layout_height="wrap_content"
                 android:id="@+id/tv_name"
                 android:text="@string/bxbxbai"
+                  android:background="@null"
                 android:textColor="@android:color/white"
                 android:layout_marginRight="8dp"
                 android:layout_below="@id/tv_title"/>
@@ -49,6 +50,7 @@
                   android:text="38条评论"
                   android:drawableLeft="@drawable/ic_comment_white_18dp"
                   android:drawablePadding="5dp"
+                  android:background="@null"
                   android:textColor="@android:color/white"
                   android:layout_below="@id/tv_title"
                   android:layout_toRightOf="@id/tv_date"/>

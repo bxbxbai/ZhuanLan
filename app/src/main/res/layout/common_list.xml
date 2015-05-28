@@ -8,6 +8,8 @@
             android:layout_width="match_parent"
             android:id="@+id/list_view"
             android:visibility="gone"
+            android:background="@color/feed_bg"
+            android:divider="@null"
             android:layout_height="match_parent"/>
     <io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView
             android:layout_width="@dimen/loading_view_size"

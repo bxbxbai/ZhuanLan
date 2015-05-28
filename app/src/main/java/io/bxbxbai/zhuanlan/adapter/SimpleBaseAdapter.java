@@ -2,6 +2,7 @@ package io.bxbxbai.zhuanlan.adapter;
 
 import android.content.Context;
 import android.util.SparseArray;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -16,10 +17,12 @@ import java.util.List;
 public abstract class SimpleBaseAdapter<T> extends BaseAdapter {
 
     protected Context mContext;
+    private LayoutInflater mInflater;
     protected List<T> data;
 
     public SimpleBaseAdapter(Context context, List<T> data) {
         this.mContext = context;
+        mInflater = LayoutInflater.from(mContext);
         this.data = data == null ? new ArrayList<T>() : new ArrayList<T>(data);
     }
 
@@ -55,20 +58,21 @@ public abstract class SimpleBaseAdapter<T> extends BaseAdapter {
      * @param holder holder
      * @return View
      */
-    public abstract View getItemView(int position, View convertView, ViewHolder holder);
+    public abstract void bindData(int position, View convertView, ViewHolder holder);
 
     @SuppressWarnings("unchecked")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (null == convertView) {
-            convertView = View.inflate(mContext, getItemResource(), null);
+            convertView = mInflater.inflate(getItemResource(), parent, false);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        return getItemView(position, convertView, holder);
+        bindData(position, convertView, holder);
+        return convertView;
     }
 
     public class ViewHolder {
