@@ -56,7 +56,6 @@ public abstract class SimpleBaseAdapter<T> extends BaseAdapter {
      * @param position position
      * @param convertView convertView
      * @param holder holder
-     * @return View
      */
     public abstract void bindData(int position, View convertView, ViewHolder holder);
 

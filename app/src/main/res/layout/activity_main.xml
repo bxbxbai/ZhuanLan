@@ -15,9 +15,10 @@
             android:layout_height="match_parent">
         <include layout="@layout/toolbar"/>
 
-        <FrameLayout android:layout_width="match_parent"
-                     android:layout_height="match_parent"
-                     android:id="@+id/container"/>
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/container"/>
     </LinearLayout>
-    <include layout="@layout/include_drawerlist"/>
+    <include layout="@layout/drawer_view"/>
 </android.support.v4.widget.DrawerLayout>

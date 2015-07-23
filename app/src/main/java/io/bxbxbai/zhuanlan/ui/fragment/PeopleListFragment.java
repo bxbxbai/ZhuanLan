@@ -13,8 +13,8 @@ import com.android.volley.Response;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
 import io.bxbxbai.zhuanlan.bean.User;
-import io.bxbxbai.zhuanlan.data.GsonRequest;
-import io.bxbxbai.zhuanlan.data.RequestManager;
+import io.bxbxbai.zhuanlan.support.GsonRequest;
+import io.bxbxbai.zhuanlan.support.RequestManager;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
 import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
 

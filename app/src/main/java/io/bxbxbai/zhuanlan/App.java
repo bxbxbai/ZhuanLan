@@ -1,14 +1,9 @@
 package io.bxbxbai.zhuanlan;
 
 import android.app.Application;
-import android.view.WindowManager;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.Volley;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
-import io.bxbxbai.zhuanlan.data.BitmapLruCache;
 import io.bxbxbai.zhuanlan.db.ZhuanlanDataSource;
 
 /**

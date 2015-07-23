@@ -17,22 +17,19 @@ public class AutoCompleteTextViewReflector {
 
     AutoCompleteTextViewReflector() {
         try {
-            doBeforeTextChanged = AutoCompleteTextView.class
-                    .getDeclaredMethod("doBeforeTextChanged");
+            doBeforeTextChanged = AutoCompleteTextView.class.getDeclaredMethod("doBeforeTextChanged");
             doBeforeTextChanged.setAccessible(true);
         } catch (NoSuchMethodException ignored) {
 
         }
         try {
-            doAfterTextChanged = AutoCompleteTextView.class
-                    .getDeclaredMethod("doAfterTextChanged");
+            doAfterTextChanged = AutoCompleteTextView.class.getDeclaredMethod("doAfterTextChanged");
             doAfterTextChanged.setAccessible(true);
         } catch (NoSuchMethodException ignored) {
 
         }
         try {
-            ensureImeVisible = AutoCompleteTextView.class
-                    .getMethod("ensureImeVisible", boolean.class);
+            ensureImeVisible = AutoCompleteTextView.class.getMethod("ensureImeVisible", boolean.class);
             ensureImeVisible.setAccessible(true);
         } catch (NoSuchMethodException ignored) {
 

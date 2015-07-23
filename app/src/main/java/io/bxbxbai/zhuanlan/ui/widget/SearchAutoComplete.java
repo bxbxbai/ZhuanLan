@@ -7,21 +7,21 @@ import android.view.KeyEvent;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 
-import static io.bxbxbai.zhuanlan.ui.widget.IzzySearchView.isLandscapeMode;
+import static io.bxbxbai.zhuanlan.ui.widget.SearchView.isLandscapeMode;
 
 /**
  * Created by baia on 15/3/13.
  */
 public class SearchAutoComplete extends AutoCompleteTextView {
     private int mThreshold;
-    private IzzySearchView mSearchView;
+    private SearchView mSearchView;
 
     public SearchAutoComplete(Context context, AttributeSet attrs) {
         super(context, attrs);
         mThreshold = getThreshold();
     }
 
-    void setSearchView(IzzySearchView searchView) {
+    void setSearchView(SearchView searchView) {
         mSearchView = searchView;
     }
 
@@ -48,7 +48,7 @@ public class SearchAutoComplete extends AutoCompleteTextView {
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
             inputManager.showSoftInput(this, 0);
             if (isLandscapeMode(getContext())) {
-                IzzySearchView.HIDDEN_METHOD_INVOKER.ensureImeVisible(this, true);
+                SearchView.HIDDEN_METHOD_INVOKER.ensureImeVisible(this, true);
             }
         }
     }

@@ -56,5 +56,7 @@
     <string name="like_count">%d Likes</string>
     <string name="origin_web_page">Origin Web Page</string>
     <string name="recent_news">Article of last week</string>
+    <string name="type_here">type here</string>
+    <string name="clear_input">clear input</string>
 
 </resources>

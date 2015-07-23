@@ -1,5 +1,6 @@
 package io.bxbxbai.zhuanlan.bean;
 
+import android.database.Cursor;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -25,9 +26,6 @@ public class User {
     @SerializedName("href")
     private String href;
 
-    @SerializedName("acceptSubmission")
-    private boolean acceptSubmission;
-
     @SerializedName("slug")
     private String slug;
 
@@ -40,21 +38,18 @@ public class User {
     @SerializedName("avatar")
     private Avatar avatar;
 
-    @SerializedName("commentPermission")
-    private String commentPermission;
-
     @SerializedName("following")
     private boolean following;
 
     @SerializedName("postsCount")
     private int postCount;
 
-    @SerializedName("canPost")
-    private boolean canPost;
+    public User() {
+        author = new Author();
+        avatar = new Avatar();
 
-    @SerializedName("activateAuthorRequested")
-    private boolean activateAuthorRequested;
 
+    }
 
     public int getFollowerCount() {
         return followerCount;
@@ -68,16 +63,8 @@ public class User {
         return author;
     }
 
-    public List<Topic> getTopics() {
-        return topics;
-    }
-
     public String getHref() {
         return href;
-    }
-
-    public boolean isAcceptSubmission() {
-        return acceptSubmission;
     }
 
     public String getSlug() {
@@ -96,24 +83,12 @@ public class User {
         return avatar;
     }
 
-    public String getCommentPermission() {
-        return commentPermission;
-    }
-
     public boolean isFollowing() {
         return following;
     }
 
     public int getPostCount() {
         return postCount;
-    }
-
-    public boolean isCanPost() {
-        return canPost;
-    }
-
-    public boolean isActivateAuthorRequested() {
-        return activateAuthorRequested;
     }
 
     public static class Topic {
@@ -137,5 +112,13 @@ public class User {
         public String getName() {
             return name;
         }
+    }
+
+
+    public static User fromCursor(Cursor cursor) {
+        User user = new User();
+        Avatar avatar = new Avatar();
+
+        return user;
     }
 }

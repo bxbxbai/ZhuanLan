@@ -8,18 +8,25 @@ import android.database.sqlite.SQLiteDatabase;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import io.bxbxbai.zhuanlan.bean.DailyNews;
+import io.bxbxbai.zhuanlan.bean.User;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class ZhuanlanDataSource {
     private SQLiteDatabase database;
     private ZhuanlanDBHelper dbHelper;
+
     private String[] allColumns = {
             ZhuanlanDBHelper.COLUMN_ID,
             ZhuanlanDBHelper.COLUMN_DATE,
             ZhuanlanDBHelper.COLUMN_CONTENT
     };
+
+
+
+
 
     public ZhuanlanDataSource(Context context) {
         dbHelper = new ZhuanlanDBHelper(context);
@@ -34,9 +41,9 @@ public final class ZhuanlanDataSource {
         values.put(ZhuanlanDBHelper.COLUMN_DATE, date);
         values.put(ZhuanlanDBHelper.COLUMN_CONTENT, content);
 
-        long insertId = database.insert(ZhuanlanDBHelper.TABLE_NAME, null,
+        long insertId = database.insert(ZhuanlanDBHelper.TABLE_POST, null,
                 values);
-        Cursor cursor = database.query(ZhuanlanDBHelper.TABLE_NAME,
+        Cursor cursor = database.query(ZhuanlanDBHelper.TABLE_POST,
                 allColumns, ZhuanlanDBHelper.COLUMN_ID + " = " + insertId, null,
                 null, null, null);
         cursor.moveToFirst();
@@ -49,7 +56,7 @@ public final class ZhuanlanDataSource {
         ContentValues values = new ContentValues();
         values.put(ZhuanlanDBHelper.COLUMN_DATE, date);
         values.put(ZhuanlanDBHelper.COLUMN_CONTENT, content);
-        database.update(ZhuanlanDBHelper.TABLE_NAME, values, ZhuanlanDBHelper.COLUMN_DATE + "=" + date, null);
+        database.update(ZhuanlanDBHelper.TABLE_POST, values, ZhuanlanDBHelper.COLUMN_DATE + "=" + date, null);
     }
 
     public void insertOrUpdateNewsList(String date, String content) {
@@ -62,7 +69,7 @@ public final class ZhuanlanDataSource {
 
     // That reminds you of Queen, huh? ;-)
     public List<DailyNews> newsOfTheDay(String date) {
-        Cursor cursor = database.query(ZhuanlanDBHelper.TABLE_NAME,
+        Cursor cursor = database.query(ZhuanlanDBHelper.TABLE_POST,
                 allColumns, ZhuanlanDBHelper.COLUMN_DATE + " = " + date, null,
                 null, null, null);
 
@@ -76,7 +83,6 @@ public final class ZhuanlanDataSource {
         if (cursor != null && cursor.getCount() > 0) {
             String string = cursor.getString(2);
             Type listType = new TypeToken<List<DailyNews>>() {
-
             }.getType();
 
             return new GsonBuilder().create().fromJson(string, listType);
@@ -84,4 +90,18 @@ public final class ZhuanlanDataSource {
             return null;
         }
     }
+
+    public List<User> getPeopleList() {
+        Cursor cursor = database.query(ZhuanlanDBHelper.TABLE_PEOPLE,
+                null, null, null, null, null, null);
+        boolean hasData = cursor.moveToFirst();
+        List<User> list = new ArrayList<>();
+
+        while (hasData) {
+            list.add(User.fromCursor(cursor));
+            hasData = cursor.moveToNext();
+        }
+        return list;
+    }
+
 }

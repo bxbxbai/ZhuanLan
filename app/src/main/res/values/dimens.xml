@@ -44,5 +44,8 @@
     <dimen name="footer_height">60dp</dimen>
 
     <dimen name="menu_item_height">30dp</dimen>
+    <dimen name="card_padding">8dp</dimen>
+    <dimen name="translation_outer_margin">8dp</dimen>
+    <dimen name="translation_inner_margin">8dp</dimen>
 
 </resources>

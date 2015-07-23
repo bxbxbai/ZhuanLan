@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
-import io.bxbxbai.zhuanlan.ui.widget.IzzySearchView;
+import io.bxbxbai.zhuanlan.ui.widget.SearchView;
 
 public class SearchActivity extends FragmentActivity {
-    private IzzySearchView searchView;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

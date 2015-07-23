@@ -9,8 +9,8 @@ import com.android.volley.Response;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
 import io.bxbxbai.zhuanlan.bean.Post;
-import io.bxbxbai.zhuanlan.data.GsonRequest;
-import io.bxbxbai.zhuanlan.data.RequestManager;
+import io.bxbxbai.zhuanlan.support.GsonRequest;
+import io.bxbxbai.zhuanlan.support.RequestManager;
 import io.bxbxbai.zhuanlan.utils.*;
 
 import java.util.ArrayList;

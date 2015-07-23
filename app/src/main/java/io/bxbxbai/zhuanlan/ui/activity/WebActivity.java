@@ -13,8 +13,10 @@ import android.widget.ProgressBar;
 import butterknife.ButterKnife;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
+import io.bxbxbai.zhuanlan.utils.JsHandler;
 import io.bxbxbai.zhuanlan.utils.ToastUtils;
 import io.bxbxbai.zhuanlan.utils.ZhuanLanWebChromeClient;
+import io.bxbxbai.zhuanlan.utils.ZhuanlanWebViewClient;
 import io.bxbxbai.zhuanlan.view.FloatView;
 
 public class WebActivity extends BaseActivity {
@@ -27,6 +29,8 @@ public class WebActivity extends BaseActivity {
 
     private String url, title;
 
+    private WebView mWebView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +42,13 @@ public class WebActivity extends BaseActivity {
         bar.setVisibility(View.GONE);
         View v = ButterKnife.findById(this, R.id.v_loading);
 
-        WebView view = ButterKnife.findById(this, R.id.web_view);
-        initWebSetting(view);
-        view.setWebChromeClient(new ZhuanLanWebChromeClient(bar, v, TextUtils.isEmpty(title) ?
+        mWebView = ButterKnife.findById(this, R.id.web_view);
+        initWebSetting(mWebView);
+        mWebView.setWebChromeClient(new ZhuanLanWebChromeClient(bar, v, TextUtils.isEmpty(title) ?
                 getSupportActionBar() : null));
-        view.loadUrl(url);
+
+        mWebView.setWebViewClient(new ZhuanlanWebViewClient());
+        mWebView.loadUrl(url);
     }
 
 
@@ -71,7 +77,17 @@ public class WebActivity extends BaseActivity {
     private void initWebSetting(WebView view) {
         WebSettings settings = view.getSettings();
         settings.setJavaScriptEnabled(true);
+
+        settings.setDomStorageEnabled(true);
+
         settings.setBuiltInZoomControls(false);
+        settings.setAllowFileAccess(true);
+
+        settings.setAppCacheEnabled(true);
+
+        JsHandler jsHandler = new JsHandler(this, mWebView);
+        mWebView.addJavascriptInterface(jsHandler, "JsHandler");
+
         settings.setLoadsImagesAutomatically(true);
         settings.setDefaultTextEncodingName(NewsDetailActivity.ENCODING_UTF_8);
         settings.setBlockNetworkImage(false);

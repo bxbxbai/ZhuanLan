@@ -7,6 +7,7 @@ import android.webkit.JsResult;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
+import de.greenrobot.event.EventBus;
 import io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView;
 
 /**
@@ -61,6 +62,9 @@ public class ZhuanLanWebChromeClient extends WebChromeClient {
     public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
         return super.onJsPrompt(view, url, message, defaultValue, result);
     }
+
+
+
 
 
 }

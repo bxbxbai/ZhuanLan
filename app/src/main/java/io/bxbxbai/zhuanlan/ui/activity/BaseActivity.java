@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
@@ -22,7 +23,7 @@ import io.bxbxbai.zhuanlan.R;
  *
  * @author bxbxbai
  */
-public class BaseActivity extends ActionBarActivity {
+public class BaseActivity extends AppCompatActivity {
 
     protected Toolbar toolbar;
     protected MaterialMenuIconToolbar materialMenu;
@@ -35,8 +36,7 @@ public class BaseActivity extends ActionBarActivity {
 
         mTintManager.setStatusBarTintEnabled(true);
 //        mTintManager.setNavigationBarTintEnabled(true);
-
-        mTintManager.setTintColor(getResources().getColor(R.color.primary));
+        mTintManager.setTintColor(getResources().getColor(R.color.primaryDark));
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)

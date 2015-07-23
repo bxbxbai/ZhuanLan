@@ -5,7 +5,7 @@ import com.android.volley.VolleyError;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.bean.User;
-import io.bxbxbai.zhuanlan.data.GsonRequest;
+import io.bxbxbai.zhuanlan.support.GsonRequest;
 
 import java.util.List;
 
