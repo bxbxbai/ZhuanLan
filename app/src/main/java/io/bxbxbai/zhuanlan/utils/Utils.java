@@ -1,15 +1,11 @@
 package io.bxbxbai.zhuanlan.utils;
 
-import android.app.Activity;
-import android.text.format.DateUtils;
-import android.view.View;
-import io.bxbxbai.zhuanlan.App;
+import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**

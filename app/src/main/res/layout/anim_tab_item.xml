@@ -15,6 +15,7 @@
             android:paddingRight="8.0dip"
             android:shadowColor="#bfffffff"
             android:shadowDy="2.0"
+            android:text="@string/hello_world"
             android:shadowRadius="1.0"
             android:textColor="@drawable/tab_item_text_color_selector"
             android:textSize="15.0sp"

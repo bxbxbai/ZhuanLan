@@ -5,11 +5,11 @@ import android.view.View;
 import android.widget.TextView;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.User;
-import io.bxbxbai.zhuanlan.support.RequestManager;
-import io.bxbxbai.zhuanlan.ui.activity.PostListActivity;
+import io.bxbxbai.zhuanlan.core.data.RequestManager;
+import io.bxbxbai.zhuanlan.activity.PostListActivity;
 import io.bxbxbai.zhuanlan.utils.Utils;
-import io.bxbxbai.zhuanlan.utils.ZhuanLanApi;
-import io.bxbxbai.zhuanlan.view.CircleImageView;
+import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
+import io.bxbxbai.zhuanlan.widget.CircleImageView;
 
 import java.util.List;
 

@@ -1,10 +1,12 @@
 package io.bxbxbai.zhuanlan;
 
 import android.app.Application;
+import android.view.Choreographer;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
-import io.bxbxbai.zhuanlan.db.ZhuanlanDataSource;
+import io.bxbxbai.zhuanlan.core.db.ZhuanlanDataSource;
+import io.bxbxbai.zhuanlan.utils.StopWatch;
 
 /**
  *
@@ -21,12 +23,17 @@ public class App extends Application {
      */
     private static final boolean DEVELOPER_MODE = true;
 
+    private static final Choreographer.FrameCallback FRAME_CALLBACK = new Choreographer.FrameCallback() {
+        @Override
+        public void doFrame(long frameTimeNanos) {
+            StopWatch.log("doFrame: " + frameTimeNanos);
+        }
+    };
 
     @Override
     public void onCreate() {
         super.onCreate();
         mContext = this;
-
         mRefWatcher = LeakCanary.install(this);
 
         ZhuanlanDataSource dataSource = new ZhuanlanDataSource(getApplicationContext());
@@ -47,6 +54,15 @@ public class App extends Application {
 //        .build());
 
         initStetho();
+
+        Choreographer choreographer = Choreographer.getInstance();
+        choreographer.postFrameCallback(FRAME_CALLBACK);
+        choreographer.postFrameCallback(FRAME_CALLBACK);
+        choreographer.postFrameCallback(FRAME_CALLBACK);
+        choreographer.postFrameCallback(FRAME_CALLBACK);
+        choreographer.postFrameCallback(FRAME_CALLBACK);
+        choreographer.postFrameCallback(FRAME_CALLBACK);
+        choreographer.postFrameCallback(FRAME_CALLBACK);
     }
 
     public static RefWatcher getRefWatcher() {

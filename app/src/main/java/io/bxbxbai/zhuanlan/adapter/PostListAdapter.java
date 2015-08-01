@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import com.android.volley.toolbox.NetworkImageView;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
-import io.bxbxbai.zhuanlan.support.RequestManager;
+import io.bxbxbai.zhuanlan.core.data.RequestManager;
 import io.bxbxbai.zhuanlan.utils.Utils;
 
 import java.util.ArrayList;
