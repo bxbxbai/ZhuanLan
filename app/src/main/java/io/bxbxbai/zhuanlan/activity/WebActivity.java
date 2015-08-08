@@ -6,16 +6,19 @@ import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.*;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 import butterknife.ButterKnife;
+import io.bxbxbai.common.T;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.utils.JsHandler;
-import io.bxbxbai.zhuanlan.utils.T;
 import io.bxbxbai.zhuanlan.core.ZhuanLanWebChromeClient;
+import io.bxbxbai.zhuanlan.utils.JsHandler;
 import io.bxbxbai.zhuanlan.utils.ZhuanlanWebViewClient;
 import io.bxbxbai.zhuanlan.widget.FloatView;
 
@@ -63,7 +66,7 @@ public class WebActivity extends BaseActivity {
         title = intent.getStringExtra(KEY_TITLE);
 
         if (TextUtils.isEmpty(url)) {
-            T.showShort("木有URL...");
+            T.showToast("木有URL...");
             finish();
         }
 

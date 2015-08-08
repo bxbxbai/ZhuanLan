@@ -2,11 +2,10 @@ package io.bxbxbai.zhuanlan.core;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import io.bxbxbai.common.T;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.bean.User;
-import io.bxbxbai.zhuanlan.core.data.GsonRequest;
-import io.bxbxbai.zhuanlan.utils.T;
 
 import java.util.List;
 
@@ -65,7 +64,7 @@ public final class ZhuanLanApi {
         return new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                T.showLong(R.string.network_error);
+                T.showToast(R.string.network_error);
             }
         };
     }

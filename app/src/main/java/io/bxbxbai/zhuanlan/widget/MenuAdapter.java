@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import io.bxbxbai.common.SimpleBaseAdapter;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.adapter.SimpleBaseAdapter;
 
 import java.util.List;
 

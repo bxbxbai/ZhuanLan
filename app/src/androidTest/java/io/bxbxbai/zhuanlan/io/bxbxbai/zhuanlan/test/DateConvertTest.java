@@ -1,7 +1,6 @@
 package io.bxbxbai.zhuanlan.io.bxbxbai.zhuanlan.test;
 
 import android.test.AndroidTestCase;
-import io.bxbxbai.zhuanlan.utils.StopWatch;
 import io.bxbxbai.zhuanlan.utils.Utils;
 
 /**

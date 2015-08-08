@@ -12,12 +12,12 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
+import io.bxbxbai.common.view.CircleImageView;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.core.ZhuanLanWebViewClient;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
 import io.bxbxbai.zhuanlan.core.ZhuanLanWebChromeClient;
-import io.bxbxbai.zhuanlan.widget.CircleImageView;
 
 
 /**

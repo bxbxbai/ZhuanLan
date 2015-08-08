@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import io.bxbxbai.common.StopWatch;
 import io.bxbxbai.zhuanlan.activity.NewsDetailActivity;
-import io.bxbxbai.zhuanlan.utils.StopWatch;
 
 /**
  *

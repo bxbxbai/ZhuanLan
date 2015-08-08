@@ -29,9 +29,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'io.bxbxbai:common:1.2.1'
-
-    compile 'com.android.support:cardview-v7:21.0.3'
+    compile 'io.bxbxbai:common:1.2.2'
 
     compile 'de.greenrobot:eventbus:2.2.1'
     compile 'com.facebook.stetho:stetho:1.1.0'

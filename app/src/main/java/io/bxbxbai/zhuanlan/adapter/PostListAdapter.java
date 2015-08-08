@@ -9,9 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import com.android.volley.toolbox.NetworkImageView;
+import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
-import io.bxbxbai.zhuanlan.core.data.RequestManager;
 import io.bxbxbai.zhuanlan.utils.Utils;
 
 import java.util.ArrayList;

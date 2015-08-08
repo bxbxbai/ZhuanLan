@@ -1,4 +1,4 @@
-package io.bxbxbai.zhuanlan.core.data;
+package io.bxbxbai.zhuanlan.core;
 
 import android.support.v4.util.ArrayMap;
 import android.text.TextUtils;

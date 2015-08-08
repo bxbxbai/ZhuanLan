@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<io.bxbxbai.zhuanlan.widget.circularprogress.CircularLoadingView
+<io.bxbxbai.common.view.CircularLoadingView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="@dimen/loading_view_size"
         android:layout_height="@dimen/loading_view_size"

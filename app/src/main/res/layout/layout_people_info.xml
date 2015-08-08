@@ -15,7 +15,7 @@
             android:layout_marginRight="@dimen/margin_8dp"
             android:layout_marginTop="@dimen/margin_4dp">
 
-        <io.bxbxbai.zhuanlan.widget.CircleImageView
+        <io.bxbxbai.common.view.CircleImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginLeft="@dimen/margin_8dp"

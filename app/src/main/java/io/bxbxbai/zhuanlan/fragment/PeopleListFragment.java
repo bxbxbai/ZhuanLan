@@ -10,13 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import com.android.volley.Response;
+import io.bxbxbai.common.core.RequestManager;
+import io.bxbxbai.common.view.CircularLoadingView;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
 import io.bxbxbai.zhuanlan.bean.User;
-import io.bxbxbai.zhuanlan.core.data.GsonRequest;
-import io.bxbxbai.zhuanlan.core.data.RequestManager;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
-import io.bxbxbai.zhuanlan.widget.circularprogress.CircularLoadingView;
+import io.bxbxbai.zhuanlan.core.GsonRequest;
 
 import java.util.ArrayList;
 

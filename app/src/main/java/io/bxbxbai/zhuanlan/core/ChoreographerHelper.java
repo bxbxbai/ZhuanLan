@@ -3,7 +3,7 @@ package io.bxbxbai.zhuanlan.core;
 import android.os.SystemClock;
 import android.support.v4.util.ArrayMap;
 import android.view.Choreographer;
-import io.bxbxbai.zhuanlan.utils.StopWatch;
+import io.bxbxbai.common.StopWatch;
 
 import java.util.Map;
 
@@ -67,7 +67,7 @@ public class ChoreographerHelper implements Choreographer.FrameCallback {
     }
 
     private void remove() {
-        for (Object tag: sChoreographerMap.keySet()) {
+        for (Object tag : sChoreographerMap.keySet()) {
             if (sChoreographerMap.get(tag.toString()) == this) {
                 sChoreographerMap.remove(tag.toString());
                 return;

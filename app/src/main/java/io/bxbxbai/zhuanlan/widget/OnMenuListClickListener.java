@@ -1,14 +1,15 @@
 package io.bxbxbai.zhuanlan.widget;
 
 import android.app.Activity;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
+import io.bxbxbai.common.T;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.activity.AllPeopleActivity;
 import io.bxbxbai.zhuanlan.activity.RecentPostListActivity;
-import io.bxbxbai.zhuanlan.utils.T;
 
 /**
  *
@@ -29,13 +30,13 @@ public class OnMenuListClickListener implements AdapterView.OnItemClickListener 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         DrawerMenuContent.DrawerItem item = (DrawerMenuContent.DrawerItem) view.getTag(R.id.key_data);
 
-        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(Gravity.START)) {
+        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawers();
         }
 
         switch (item.id) {
             case R.id.menu_search :
-                T.showShort("Coming soon...");
+                T.showToast("Coming soon...");
                 break;
 
             case R.id.menu_all_people:

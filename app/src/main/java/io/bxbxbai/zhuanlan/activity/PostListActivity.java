@@ -7,15 +7,15 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import com.android.volley.Response;
+import io.bxbxbai.common.T;
+import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
 import io.bxbxbai.zhuanlan.core.ZhuanLanHandler;
 import io.bxbxbai.zhuanlan.core.ZhuanLanRetryPolicy;
-import io.bxbxbai.zhuanlan.core.data.GsonRequest;
-import io.bxbxbai.zhuanlan.core.data.RequestManager;
-import io.bxbxbai.zhuanlan.utils.*;
+import io.bxbxbai.zhuanlan.core.GsonRequest;
 import io.bxbxbai.zhuanlan.widget.EndlessScrollListener;
 
 import java.util.List;
@@ -37,7 +37,7 @@ public class PostListActivity extends ListBaseActivity {
             @Override
             public void onResponse(List<Post> response) {
                 if (response.size() == 0) {
-                    T.showShort("没有数据了");
+                    T.showToast("没有数据了");
                 }
                 listView.setVisibility(View.VISIBLE);
                 mLoadingView.setVisibility(View.GONE);

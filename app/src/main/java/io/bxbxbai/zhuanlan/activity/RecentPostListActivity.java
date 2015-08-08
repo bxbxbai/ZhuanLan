@@ -6,15 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import com.android.volley.Response;
+import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
 import io.bxbxbai.zhuanlan.core.ZhuanLanHandler;
 import io.bxbxbai.zhuanlan.core.ZhuanLanRetryPolicy;
-import io.bxbxbai.zhuanlan.core.data.GsonRequest;
-import io.bxbxbai.zhuanlan.core.data.RequestManager;
-import io.bxbxbai.zhuanlan.utils.*;
+import io.bxbxbai.zhuanlan.core.GsonRequest;
+import io.bxbxbai.zhuanlan.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +22,6 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- *
  * @author bxbxbai
  */
 public class RecentPostListActivity extends ListBaseActivity {

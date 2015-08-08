@@ -3,18 +3,18 @@ package io.bxbxbai.zhuanlan.adapter;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
+import io.bxbxbai.common.SimpleBaseAdapter;
+import io.bxbxbai.common.core.RequestManager;
+import io.bxbxbai.common.view.CircleImageView;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.bean.User;
-import io.bxbxbai.zhuanlan.core.data.RequestManager;
 import io.bxbxbai.zhuanlan.activity.PostListActivity;
-import io.bxbxbai.zhuanlan.utils.Utils;
+import io.bxbxbai.zhuanlan.bean.User;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
-import io.bxbxbai.zhuanlan.widget.CircleImageView;
+import io.bxbxbai.zhuanlan.utils.Utils;
 
 import java.util.List;
 
 /**
- *
  * @author bxbxbai
  */
 public class PeopleListAdapter extends SimpleBaseAdapter<User> {

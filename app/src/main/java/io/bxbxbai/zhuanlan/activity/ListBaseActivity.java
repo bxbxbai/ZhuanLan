@@ -3,9 +3,9 @@ package io.bxbxbai.zhuanlan.activity;
 import android.os.Bundle;
 import android.widget.ListView;
 import butterknife.ButterKnife;
+import io.bxbxbai.common.core.RequestManager;
+import io.bxbxbai.common.view.CircularLoadingView;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.core.data.RequestManager;
-import io.bxbxbai.zhuanlan.widget.circularprogress.CircularLoadingView;
 
 /**
  * Created by baia on 15/4/11.

@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import com.balysv.materialmenu.MaterialMenuDrawable.AnimationState;
 import com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import io.bxbxbai.common.T;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.core.ChoreographerHelper;
 import io.bxbxbai.zhuanlan.widget.DrawerMenuContent;
@@ -24,7 +25,6 @@ import io.bxbxbai.zhuanlan.widget.OnMenuListClickListener;
 import io.bxbxbai.zhuanlan.fragment.PeopleListFragment;
 import io.bxbxbai.zhuanlan.widget.MenuAdapter;
 import io.bxbxbai.zhuanlan.core.PrefUtils;
-import io.bxbxbai.zhuanlan.utils.T;
 import io.bxbxbai.zhuanlan.core.ZhuanLanHandler;
 import timber.log.Timber;
 
@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_settings:
-                        T.showShort("Coming soon...");
+                        T.showToast("Coming soon...");
                         return prepareIntent(PrefsActivity.class);
 //                    case R.id.action_search:
 //                        return PostListActivity.start(MainActivity.this, "limiao");
