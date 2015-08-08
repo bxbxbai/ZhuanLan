@@ -53,13 +53,13 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void initToolBar() {
-        toolbar = ButterKnife.findById(this, R.id.toolbar);
+        toolbar = ButterKnife.findById(this, R.id.my_awesome_toolbar);
         setSupportActionBar(toolbar);
 
         materialMenu = new MaterialMenuIconToolbar(this, Color.WHITE, MaterialMenuDrawable.Stroke.REGULAR) {
             @Override
             public int getToolbarViewId() {
-                return R.id.toolbar;
+                return R.id.my_awesome_toolbar;
             }
         };
         materialMenu.setState(MaterialMenuDrawable.IconState.ARROW);

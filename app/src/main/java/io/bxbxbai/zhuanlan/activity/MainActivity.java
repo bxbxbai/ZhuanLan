@@ -3,12 +3,10 @@ package io.bxbxbai.zhuanlan.activity;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.FrameLayout;
@@ -20,12 +18,12 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import io.bxbxbai.common.T;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.core.ChoreographerHelper;
-import io.bxbxbai.zhuanlan.widget.DrawerMenuContent;
-import io.bxbxbai.zhuanlan.widget.OnMenuListClickListener;
-import io.bxbxbai.zhuanlan.fragment.PeopleListFragment;
-import io.bxbxbai.zhuanlan.widget.MenuAdapter;
-import io.bxbxbai.zhuanlan.core.PrefUtils;
+import io.bxbxbai.common.utils.PrefUtils;
 import io.bxbxbai.zhuanlan.core.ZhuanLanHandler;
+import io.bxbxbai.zhuanlan.fragment.PeopleListFragment;
+import io.bxbxbai.zhuanlan.widget.DrawerMenuContent;
+import io.bxbxbai.zhuanlan.widget.MenuAdapter;
+import io.bxbxbai.zhuanlan.widget.OnMenuListClickListener;
 import timber.log.Timber;
 
 import java.lang.reflect.Field;
@@ -79,7 +77,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT ) {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
             //貌似mDrawerLayout不能适应沉浸式通知栏的fitSystemWindow属性，必须手动设置它的topMargin值
             SystemBarTintManager.SystemBarConfig config = mTintManager.getConfig();
             FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) mDrawerLayout.getLayoutParams();
