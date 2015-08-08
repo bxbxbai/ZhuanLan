@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ChoreographerHelper.getInstance(this).start();
         mDrawerLayout = ButterKnife.findById(this, R.id.drawerLayout);
-        super.initToolBar();
+        initToolBar();
         initToolbarAndDrawer();
         Timber.d(toString(), "test");
         getResources().finishPreloading();
@@ -72,6 +72,8 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+
+//        NewsDetailActivity.startActivity(this, "http://youcai.ele.me/?code=0016314b0b2aaa3253f8497296ce8f6Z&state=123#/district");
     }
 
     @Override
@@ -160,7 +162,7 @@ public class MainActivity extends BaseActivity {
 
     public boolean closeDrawer() {
         // If the drawer is open, back will close it
-        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(Gravity.START)) {
+        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawers();
             return true;
         }

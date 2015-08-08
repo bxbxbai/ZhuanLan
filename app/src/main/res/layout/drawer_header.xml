@@ -8,7 +8,7 @@
               android:padding="8dp"
               android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <io.bxbxbai.zhuanlan.view.CircleImageView
+    <io.bxbxbai.zhuanlan.widget.CircleImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="16dp"

@@ -24,7 +24,7 @@
             app:backgroundTint="@color/primary"
             app:elevation="2dp"
             app:rippleColor="@color/primaryDark"/>
-    <io.bxbxbai.zhuanlan.view.circularprogress.CircularLoadingView
+    <io.bxbxbai.zhuanlan.widget.circularprogress.CircularLoadingView
             android:layout_width="@dimen/loading_view_size"
             android:layout_height="@dimen/loading_view_size"
             android:layout_gravity="center"
