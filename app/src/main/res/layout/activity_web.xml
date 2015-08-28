@@ -7,7 +7,6 @@
               style="@style/FitSystemWindows"
               tools:context="tree.love.animtabsview.demo.MainActivity"
               tools:ignore="MergeRootFrame">
-    <include layout="@layout/toolbar"/>
     <include layout="@layout/web_page_progress_bar"/>
 
     <FrameLayout android:layout_width="match_parent"

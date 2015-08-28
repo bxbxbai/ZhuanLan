@@ -10,13 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import com.android.volley.Response;
+import io.bxbxbai.common.core.GsonRequest;
 import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.common.view.CircularLoadingView;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
 import io.bxbxbai.zhuanlan.bean.User;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
-import io.bxbxbai.zhuanlan.core.GsonRequest;
 
 import java.util.ArrayList;
 
@@ -59,34 +59,18 @@ public class PeopleListFragment extends Fragment {
         });
 
         String[] ids = getActivity().getResources().getStringArray(R.array.people_ids);
-
         for (String id : ids) {
-            GsonRequest<User> request = ZhuanLanApi.getUserInfoRequest(id);
-            request.setSuccessListener(new Response.Listener<User>() {
+            GsonRequest<User> request = new GsonRequest<User>(String.format(ZhuanLanApi.API_BASE, id),
+                    ZhuanLanApi.buildDefaultErrorListener()) {
                 @Override
-                public void onResponse(User response) {
+                public void onResponse(User user) {
                     mListView.setVisibility(View.VISIBLE);
                     mLoadingView.setVisibility(View.GONE);
-                    mAdapter.add(response);
+                    mAdapter.add(user);
                 }
-            });
+            };
             RequestManager.addRequest(request, this);
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
     }
 
     @Override

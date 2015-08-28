@@ -1,5 +1,6 @@
 package io.bxbxbai.zhuanlan.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -15,6 +16,7 @@ import android.webkit.WebView;
 import android.widget.ProgressBar;
 import butterknife.ButterKnife;
 import io.bxbxbai.common.T;
+import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.core.ZhuanLanWebChromeClient;
@@ -125,7 +127,7 @@ public class WebActivity extends BaseActivity {
         wm.addView(view, wmParams);
     }
 
-    public static boolean start(BaseActivity activity, String url, String title) {
+    public static boolean start(Activity activity, String url, String title) {
         Intent intent = new Intent();
         intent.setClass(activity, WebActivity.class);
         intent.putExtra(KEY_URL, url);
@@ -135,7 +137,7 @@ public class WebActivity extends BaseActivity {
         return true;
     }
 
-    public static boolean start(BaseActivity activity, String url) {
+    public static boolean start(Activity activity, String url) {
         return start(activity, url, null);
     }
 }

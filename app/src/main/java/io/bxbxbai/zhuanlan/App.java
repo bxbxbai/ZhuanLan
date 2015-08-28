@@ -6,6 +6,7 @@ import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import io.bxbxbai.common.StopWatch;
+import io.bxbxbai.common.T;
 import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.zhuanlan.core.db.ZhuanlanDataSource;
 
@@ -37,6 +38,7 @@ public class App extends Application {
         mContext = this;
         mRefWatcher = LeakCanary.install(this);
         RequestManager.init(this);
+        T.init(this);
         ZhuanlanDataSource dataSource = new ZhuanlanDataSource(getApplicationContext());
         dataSource.open();
 
@@ -57,12 +59,6 @@ public class App extends Application {
         initStetho();
 
         Choreographer choreographer = Choreographer.getInstance();
-        choreographer.postFrameCallback(FRAME_CALLBACK);
-        choreographer.postFrameCallback(FRAME_CALLBACK);
-        choreographer.postFrameCallback(FRAME_CALLBACK);
-        choreographer.postFrameCallback(FRAME_CALLBACK);
-        choreographer.postFrameCallback(FRAME_CALLBACK);
-        choreographer.postFrameCallback(FRAME_CALLBACK);
         choreographer.postFrameCallback(FRAME_CALLBACK);
     }
 

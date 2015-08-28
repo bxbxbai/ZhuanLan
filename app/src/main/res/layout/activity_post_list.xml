@@ -5,7 +5,6 @@
               android:clipToPadding="false"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <include layout="@layout/toolbar"/>
     <FrameLayout android:layout_width="match_parent"
                  android:layout_height="match_parent">
         <ListView android:layout_width="match_parent"

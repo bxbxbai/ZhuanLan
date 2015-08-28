@@ -3,21 +3,19 @@ package io.bxbxbai.zhuanlan.activity;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import com.balysv.materialmenu.MaterialMenuDrawable.AnimationState;
 import com.balysv.materialmenu.MaterialMenuDrawable.IconState;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
+import io.bxbxbai.common.StopWatch;
 import io.bxbxbai.common.T;
+import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.core.ChoreographerHelper;
 import io.bxbxbai.common.utils.PrefUtils;
 import io.bxbxbai.zhuanlan.core.ZhuanLanHandler;
 import io.bxbxbai.zhuanlan.fragment.PeopleListFragment;
@@ -38,12 +36,20 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ChoreographerHelper.getInstance(this).start();
+//        ChoreographerHelper.getInstance(this).start();
         mDrawerLayout = ButterKnife.findById(this, R.id.drawerLayout);
         initToolBar();
         initToolbarAndDrawer();
-        Timber.d(toString(), "test");
-        getResources().finishPreloading();
+        Timber.plant(new Timber.DebugTree());
+        Timber.tag("StopBai");
+        Timber.plant(new Timber.Tree() {
+            @Override
+            protected void log(int priority, String tag, String message, Throwable t) {
+                StopWatch.log("MainActivity", "priority: " + priority + ", tag: " + tag + ", message: " + message + ", t: " + t);
+            }
+        });
+        Timber.d("onCreate");
+        Timber.i("onCreate2");
 
         DrawerMenuContent content = new DrawerMenuContent(this);
         ListView listView = ButterKnife.findById(this, R.id.drawer_list);
@@ -55,12 +61,11 @@ public class MainActivity extends BaseActivity {
         setOverflowShowAlways();
 
         //第一次启动，会打开抽屉菜单
-        final ZhuanLanHandler handler = ZhuanLanHandler.get();
-        handler.postOnWorkThread(new Runnable() {
+        ZhuanLanHandler.postOnWorkThread(new Runnable() {
             @Override
             public void run() {
                 if ((boolean) PrefUtils.getValue(MainActivity.this, PrefUtils.KEY_FIRST_ENTER, true)) {
-                    handler.postDelay(new Runnable() {
+                    ZhuanLanHandler.HANDLER.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             openDrawer();
@@ -71,18 +76,19 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-//        NewsDetailActivity.startActivity(this, "http://youcai.ele.me/?code=0016314b0b2aaa3253f8497296ce8f6Z&state=123#/district");
+//        NewsDetailActivity.startActivity(this, "http://music.163.com/m/topic/194001?type=android");
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-            //貌似mDrawerLayout不能适应沉浸式通知栏的fitSystemWindow属性，必须手动设置它的topMargin值
-            SystemBarTintManager.SystemBarConfig config = mTintManager.getConfig();
-            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) mDrawerLayout.getLayoutParams();
-            params.topMargin = config.getStatusBarHeight();
-        }
+//        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
+//            //貌似mDrawerLayout不能适应沉浸式通知栏的fitSystemWindow属性，必须手动设置它的topMargin值
+//            SystemBarTintManager.SystemBarConfig config = mTintManager.getConfig();
+//            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) mDrawerLayout.getLayoutParams();
+//            params.topMargin = config.getStatusBarHeight();
+//        }
+        Timber.i("onPostCreate");
     }
 
     private void initToolbarAndDrawer() {
@@ -92,7 +98,8 @@ public class MainActivity extends BaseActivity {
                 switch (item.getItemId()) {
                     case R.id.action_settings:
                         T.showToast("Coming soon...");
-                        return prepareIntent(PrefsActivity.class);
+                        break;
+//                        return prepareIntent(PrefsActivity.class);
 //                    case R.id.action_search:
 //                        return PostListActivity.start(MainActivity.this, "limiao");
                     case R.id.action_about:
@@ -219,7 +226,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ChoreographerHelper.getInstance(this).stop();
     }
 
     public static void start(Activity activity) {

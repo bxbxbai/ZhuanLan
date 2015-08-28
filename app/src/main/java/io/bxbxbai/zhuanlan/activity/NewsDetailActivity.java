@@ -12,6 +12,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 import butterknife.ButterKnife;
+import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.common.view.CircleImageView;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
@@ -81,7 +82,7 @@ public class NewsDetailActivity extends BaseActivity {
             }
         });
 
-        toolbar.setTitle(mTitle);
+        setTitle(mTitle);
 
 //        TextView textView = (TextView) findViewById(R.id.tv_html);
 
@@ -121,7 +122,7 @@ public class NewsDetailActivity extends BaseActivity {
 //            mWebView.loadUrl("http://zhuanlan.zhihu.com" + mPost.getUrl());
             mWebView.loadDataWithBaseURL(null, CSS_STYLE + mPost.getContent(),
                     MIME_TYPE, ENCODING_UTF_8, null);
-            getSupportActionBar().setTitle(mPost.getTitle());
+            setTitle(mPost.getTitle());
 //            mTitleView.setText(mPost.getTitle());
 //            mNameView.setText(mPost.getAuthor().getName());
 //

@@ -12,37 +12,20 @@ import java.util.concurrent.Executors;
  *
  * @author bxbxbai
  */
-public class ZhuanLanHandler {
+public final class ZhuanLanHandler {
 
     private static final int THREAD_POOL_SIZE = 4;
-    private static final ZhuanLanHandler HANDLER = new ZhuanLanHandler();
+    public static final Handler HANDLER = new Handler(Looper.getMainLooper());
+    private static ExecutorService mExecutorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
 
-    private Handler mHandler;
-    private ExecutorService mExecutorService;
-
-    public ZhuanLanHandler() {
-        mHandler = new Handler(Looper.getMainLooper());
-        mExecutorService = Executors.newFixedThreadPool(THREAD_POOL_SIZE);
+    private ZhuanLanHandler() {
     }
-
-    public static ZhuanLanHandler get() {
-        return HANDLER;
-    }
-
-    public void post(Runnable r) {
-        mHandler.post(r);
-    }
-
-    public void postDelay(Runnable r, long delayMillis) {
-        mHandler.postDelayed(r, delayMillis);
-    }
-
     /**
      * 在工作线程做
      *
      * @param r runnable
      */
-    public void postOnWorkThread(Runnable r) {
+    public static void postOnWorkThread(Runnable r) {
         mExecutorService.submit(r);
     }
 }

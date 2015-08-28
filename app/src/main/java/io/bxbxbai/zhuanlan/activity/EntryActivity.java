@@ -4,10 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.View;
 import android.widget.ImageView;
 import butterknife.ButterKnife;
+import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.zhuanlan.R;
 
 import java.util.Random;
@@ -54,6 +57,7 @@ public class EntryActivity extends BaseActivity {
         Random r = new Random(SystemClock.elapsedRealtime());
         mSplashImage.setImageResource(SPLASH_ARRAY[r.nextInt(SPLASH_ARRAY.length)]);
         animateImage();
+        toolbar.setVisibility(View.GONE);
     }
 
     @Override

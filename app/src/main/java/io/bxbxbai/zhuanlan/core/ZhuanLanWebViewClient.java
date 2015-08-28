@@ -2,9 +2,12 @@ package io.bxbxbai.zhuanlan.core;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import io.bxbxbai.common.StopWatch;
+import io.bxbxbai.common.T;
 import io.bxbxbai.zhuanlan.activity.NewsDetailActivity;
 
 /**
@@ -28,8 +31,26 @@ public class ZhuanLanWebViewClient extends WebViewClient {
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
         StopWatch.log("url " + url);
-        NewsDetailActivity.startActivity(mActivity, url);
+        if (url != null && url.startsWith("orpheus")) {
+            return true;
+        }
+        if (url != null && url.startsWith("http")) {
+            NewsDetailActivity.startActivity(mActivity, url);
+            return true;
+        }
         return true;
+    }
+
+    @Override
+    public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+        StopWatch.log("shouldInterceptRequest_old: " + url);
+        return super.shouldInterceptRequest(view, url);
+    }
+
+    @Override
+    public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+        StopWatch.log("shouldInterceptRequest_new: " + request);
+        return super.shouldInterceptRequest(view, request);
     }
 
     @Override

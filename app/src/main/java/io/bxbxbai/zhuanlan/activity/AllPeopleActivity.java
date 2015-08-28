@@ -3,6 +3,7 @@ package io.bxbxbai.zhuanlan.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.fragment.PeopleListFragment;
 
@@ -18,7 +19,7 @@ public class AllPeopleActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_people);
         initToolBar();
-        getSupportActionBar().setTitle(R.string.all_people);
+        setTitle(R.string.all_people);
 
         getSupportFragmentManager().beginTransaction().add(R.id.container,
                 PeopleListFragment.instate()).commit();

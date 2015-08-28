@@ -3,6 +3,7 @@ package io.bxbxbai.zhuanlan.activity;
 import android.os.Bundle;
 import android.widget.ListView;
 import butterknife.ButterKnife;
+import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.common.view.CircularLoadingView;
 import io.bxbxbai.zhuanlan.R;
@@ -16,6 +17,7 @@ public class ListBaseActivity extends BaseActivity {
 
     protected static final String KEY_ID = "id";
     protected static final String KEY_NAME = "name";
+    protected static final String KEY_USER = "_user";
 
     public static final String KEY_DATA = "data";
 
