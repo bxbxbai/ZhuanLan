@@ -20,10 +20,9 @@
 
     <TextView android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:maxLines="4"
+              android:maxLines="9"
               android:textSize="14sp"
               android:textColor="#808080"
-              android:text="Hillary for America希拉里克林顿的竞选网站，是个设计的好典范。Newbie to Expert Photo Editing in 5 Minutes用最直观的操作让你明白各种照片编辑的效果！温度、饱和度等等前端要给力之：红绿灯大战中的火星生命-P… "
               android:layout_below="@id/tv_title"
               android:id="@+id/tv_summary"/>
     <LinearLayout android:layout_width="match_parent"

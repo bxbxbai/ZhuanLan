@@ -1,5 +1,6 @@
 package io.bxbxbai.zhuanlan.utils;
 
+import android.text.TextUtils;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
 
 import java.text.DateFormat;
@@ -82,5 +83,32 @@ public class Utils {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public static String removeHtmlCode(String source) {
+        if (TextUtils.isEmpty(source)) {
+            return source;
+        }
+
+        StringBuilder dest = new StringBuilder();
+        for (int i = 0, flag = 0; i < source.length(); i++) {
+            char c  = source.charAt(i);
+
+            if (c == '<') {
+                flag = 1;
+            }
+
+            if (c == '>') {
+                flag = 0;
+                continue;
+            }
+
+            if (flag == 1) {
+                continue;
+            }
+            dest.append(c);
+        }
+
+        return dest.toString();
     }
 }

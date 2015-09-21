@@ -1,6 +1,7 @@
 package io.bxbxbai.zhuanlan.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,7 +95,7 @@ public class PostListAdapter extends BaseAdapter {
         if (type == VIEW_TYPE_IMAGE) {
             holder.mNetworkImageView.setImageUrl(post.getTitleImage(), RequestManager.getImageLoader());
         } else {
-            holder.mSummary.setText(post.getSummary());
+            holder.mSummary.setText(Utils.removeHtmlCode(post.getSummary()));
         }
 
         convertView.setTag(R.id.key_data, post);

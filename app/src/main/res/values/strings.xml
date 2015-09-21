@@ -3,7 +3,6 @@
 
     <string name="app_name">专栏</string>
     <string name="action_settings">Preference</string>
-    <string name="news_preview_image">Image Preview</string>
     <string name="auto_refresh_summary">Auto refresh when this app is launched?</string>
     <string name="auto_refresh">Auto Refresh</string>
     <string name="settings_settings">General Settings</string>
