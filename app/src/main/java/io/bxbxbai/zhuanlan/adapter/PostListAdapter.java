@@ -87,7 +87,7 @@ public class PostListAdapter extends BaseAdapter {
         ViewHolder holder = (ViewHolder) convertView.getTag();
 
         holder.mTitle.setText(post.getTitle());
-        holder.mAuthor.setText(post.getAuthor().getName());
+        holder.mAuthor.setText(post.getAuthorName());
         holder.mCommentCount.setText(mContext.getString(R.string.comment_count, post.getCommentsCount()));
         holder.mDays.setText(Utils.convertPublishTime(post.getPublishedTime()));
         holder.mLike.setText(String.valueOf(post.getLikesCount()));

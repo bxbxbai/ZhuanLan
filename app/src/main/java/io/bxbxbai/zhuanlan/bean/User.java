@@ -20,9 +20,6 @@ public class User {
     @SerializedName("creator")
     private Author author;
 
-    @SerializedName("topics")
-    private List<Topic> topics;
-
     @SerializedName("href")
     private String href;
 
@@ -38,17 +35,12 @@ public class User {
     @SerializedName("avatar")
     private Avatar avatar;
 
-    @SerializedName("following")
-    private boolean following;
-
     @SerializedName("postsCount")
     private int postCount;
 
     public User() {
         author = new Author();
         avatar = new Avatar();
-
-
     }
 
     public int getFollowerCount() {
@@ -59,8 +51,12 @@ public class User {
         return description;
     }
 
-    public Author getAuthor() {
-        return author;
+    public String getAvatarId() {
+        return author.getAvatar().getId();
+    }
+
+    public String getAvatarTemplate() {
+        return author.getAvatar().getTemplate();
     }
 
     public String getHref() {
@@ -71,54 +67,35 @@ public class User {
         return slug;
     }
 
-    public String getName() {
+    public String getZhuanlanName() {
         return name;
+    }
+
+    public String getAuthorName() {
+        return author.getName();
     }
 
     public String getUrl() {
         return url;
     }
 
-    public Avatar getAvatar() {
-        return avatar;
-    }
-
-    public boolean isFollowing() {
-        return following;
-    }
-
     public int getPostCount() {
         return postCount;
     }
 
-    public static class Topic {
-        @SerializedName("url")
-        private String url;
-
-        @SerializedName("id")
-        private String id;
-
-        @SerializedName("name")
-        private String name;
-
-        public String getUrl() {
-            return url;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public String getName() {
-            return name;
-        }
+    public UserEntity toUserEntity() {
+        UserEntity entity = new UserEntity();
+        entity.setFollowerCount(getFollowerCount());
+        entity.setAuthorName(getAuthorName());
+        entity.setAvatarId(getAvatarId());
+        entity.setAvatarTemplate(getAvatarTemplate());
+        entity.setHref(getHref());
+        entity.setZhuanlanName(getZhuanlanName());
+        entity.setDescription(getDescription());
+        entity.setSlug(getSlug());
+        entity.setPostCount(getPostCount());
+        entity.setUrl(getUrl());
+        return entity;
     }
 
-
-    public static User fromCursor(Cursor cursor) {
-        User user = new User();
-        Avatar avatar = new Avatar();
-
-        return user;
-    }
 }

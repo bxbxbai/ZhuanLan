@@ -24,10 +24,6 @@ public final class ZhuanlanDataSource {
             ZhuanlanDBHelper.COLUMN_CONTENT
     };
 
-
-
-
-
     public ZhuanlanDataSource(Context context) {
         dbHelper = new ZhuanlanDBHelper(context);
     }
@@ -89,18 +85,4 @@ public final class ZhuanlanDataSource {
             return null;
         }
     }
-
-    public List<User> getPeopleList() {
-        Cursor cursor = database.query(ZhuanlanDBHelper.TABLE_PEOPLE,
-                null, null, null, null, null, null);
-        boolean hasData = cursor.moveToFirst();
-        List<User> list = new ArrayList<>();
-
-        while (hasData) {
-            list.add(User.fromCursor(cursor));
-            hasData = cursor.moveToNext();
-        }
-        return list;
-    }
-
 }

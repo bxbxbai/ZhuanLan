@@ -3,25 +3,28 @@ package io.bxbxbai.zhuanlan.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import butterknife.ButterKnife;
-import com.android.volley.Response;
 import io.bxbxbai.common.core.GsonRequest;
 import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.common.view.CircularLoadingView;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
 import io.bxbxbai.zhuanlan.bean.User;
+import io.bxbxbai.zhuanlan.bean.UserEntity;
+import io.bxbxbai.zhuanlan.core.DataCenter;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
- *
  * @author bxbxbai
  */
 public class PeopleListFragment extends Fragment {
@@ -41,7 +44,7 @@ public class PeopleListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mAdapter = new PeopleListAdapter(getActivity(), new ArrayList<User>());
+        mAdapter = new PeopleListAdapter(getActivity(), new ArrayList<UserEntity>());
         mListView.setAdapter(mAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -59,40 +62,47 @@ public class PeopleListFragment extends Fragment {
         });
 
         String[] ids = getActivity().getResources().getStringArray(R.array.people_ids);
-        for (String id : ids) {
-            GsonRequest<User> request = new GsonRequest<User>(String.format(ZhuanLanApi.API_BASE, id),
-                    ZhuanLanApi.buildDefaultErrorListener()) {
-                @Override
-                public void onResponse(User user) {
-                    mListView.setVisibility(View.VISIBLE);
-                    mLoadingView.setVisibility(View.GONE);
-                    mAdapter.add(user);
-                }
-            };
-            RequestManager.addRequest(request, this);
+        List<UserEntity> list = DataCenter.instance().queryAll(UserEntity.class);
+
+
+        Map<String, UserEntity> map = new ArrayMap<>();
+        for (UserEntity entity : list) {
+            map.put(entity.getSlug(), entity);
         }
+
+        for (String id : ids) {
+            UserEntity entity = map.get(id);
+            if (entity != null) {
+                mAdapter.add(entity);
+                showListView();
+            } else {
+                makeRequest(id);
+            }
+        }
+    }
+
+    private void makeRequest(String id) {
+        GsonRequest<User> request = new GsonRequest<User>(String.format(ZhuanLanApi.API_BASE, id),
+                ZhuanLanApi.buildDefaultErrorListener()) {
+            @Override
+            public void onResponse(User user) {
+                showListView();
+                mAdapter.add(user.toUserEntity());
+                DataCenter.instance().save(user.toUserEntity());
+            }
+        };
+        RequestManager.addRequest(request, this);
+    }
+
+    private void showListView() {
+        mListView.setVisibility(View.VISIBLE);
+        mLoadingView.setVisibility(View.GONE);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         RequestManager.getRequestQueue().cancelAll(this);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        RequestManager.getRequestQueue().cancelAll(this);
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
     }
 
     public static PeopleListFragment instate() {

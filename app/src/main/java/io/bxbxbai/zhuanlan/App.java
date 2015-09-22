@@ -8,6 +8,7 @@ import com.squareup.leakcanary.RefWatcher;
 import io.bxbxbai.common.StopWatch;
 import io.bxbxbai.common.T;
 import io.bxbxbai.common.core.RequestManager;
+import io.bxbxbai.zhuanlan.core.DataCenter;
 import io.bxbxbai.zhuanlan.core.db.ZhuanlanDataSource;
 
 /**
@@ -39,8 +40,7 @@ public class App extends Application {
         mRefWatcher = LeakCanary.install(this);
         RequestManager.init(this);
         T.init(this);
-        ZhuanlanDataSource dataSource = new ZhuanlanDataSource(getApplicationContext());
-        dataSource.open();
+        DataCenter.init(this, "zhuanlan.db");
 
 //        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
 //        .detectDiskReads()

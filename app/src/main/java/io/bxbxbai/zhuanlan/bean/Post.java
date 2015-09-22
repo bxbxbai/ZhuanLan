@@ -75,6 +75,10 @@ public class Post implements Parcelable {
         return author;
     }
 
+    public String getAuthorName() {
+        return author.getName();
+    }
+
     public Column getColumn() {
         return column;
     }
