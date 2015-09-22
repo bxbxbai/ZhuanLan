@@ -105,7 +105,7 @@ public class PeopleListFragment extends Fragment {
         RequestManager.getRequestQueue().cancelAll(this);
     }
 
-    public static PeopleListFragment instate() {
+    public static PeopleListFragment newInstance() {
         Bundle bundle = new Bundle();
         PeopleListFragment fragment = new PeopleListFragment();
         fragment.setArguments(bundle);

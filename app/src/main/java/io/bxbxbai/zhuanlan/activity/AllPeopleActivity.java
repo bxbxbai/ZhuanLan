@@ -22,7 +22,7 @@ public class AllPeopleActivity extends BaseActivity {
         setTitle(R.string.all_people);
 
         getSupportFragmentManager().beginTransaction().add(R.id.container,
-                PeopleListFragment.instate()).commit();
+                PeopleListFragment.newInstance()).commit();
     }
 
     public static void start(Activity activity) {

@@ -57,7 +57,7 @@ public class MainActivity extends BaseActivity {
         listView.setOnItemClickListener(new OnMenuListClickListener(this, mDrawerLayout));
 
         getSupportFragmentManager().beginTransaction().add(R.id.container,
-                PeopleListFragment.instate()).commit();
+                PeopleListFragment.newInstance()).commit();
         setOverflowShowAlways();
 
         //第一次启动，会打开抽屉菜单
