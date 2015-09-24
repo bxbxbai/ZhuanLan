@@ -54,12 +54,10 @@ public final class DataCenter {
         db.save(o);
     }
 
-
     public <T> List<T> queryAll(Class<T> clazz) {
         List<T> list = db.query(clazz);
         return list == null ? new ArrayList<T>() : list;
     }
-
 
     private class CacheContainer<T> extends HashMap<Class<T>, Map<String, T>> {
 

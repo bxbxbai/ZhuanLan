@@ -10,12 +10,6 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Post implements Parcelable {
 
-    @SerializedName("rating")
-    private String rating;
-
-    @SerializedName("sourceUrl")
-    private String sourceUrl;
-
     @SerializedName("publishedTime")
     private String publishedTime;
 
@@ -32,7 +26,7 @@ public class Post implements Parcelable {
     private String title;
 
     @SerializedName("titleImage")
-    private String titleImage;
+    private String imageUrl;
 
     @SerializedName("summary")
     private String summary;
@@ -43,9 +37,6 @@ public class Post implements Parcelable {
     @SerializedName("url")
     private String url;
 
-    @SerializedName("state")
-    private String state;
-
     @SerializedName("href")
     private String href;
 
@@ -54,14 +45,6 @@ public class Post implements Parcelable {
 
     @SerializedName("likesCount")
     private int likesCount;
-
-    public String getRating() {
-        return rating;
-    }
-
-    public String getSourceUrl() {
-        return sourceUrl;
-    }
 
     public String getPublishedTime() {
         return publishedTime;
@@ -87,8 +70,8 @@ public class Post implements Parcelable {
         return title;
     }
 
-    public String getTitleImage() {
-        return titleImage;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public String getSummary() {
@@ -101,10 +84,6 @@ public class Post implements Parcelable {
 
     public String getUrl() {
         return url;
-    }
-
-    public String getState() {
-        return state;
     }
 
     public String getHref() {
@@ -139,16 +118,13 @@ public class Post implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.rating);
-        dest.writeString(this.sourceUrl);
         dest.writeString(this.publishedTime);
         dest.writeParcelable(this.author, flags);
         dest.writeString(this.title);
-        dest.writeString(this.titleImage);
+        dest.writeString(this.imageUrl);
         dest.writeString(this.summary);
         dest.writeString(this.content);
         dest.writeString(this.url);
-        dest.writeString(this.state);
         dest.writeString(this.href);
         dest.writeInt(this.commentsCount);
         dest.writeInt(this.likesCount);
@@ -158,16 +134,13 @@ public class Post implements Parcelable {
     }
 
     private Post(Parcel in) {
-        this.rating = in.readString();
-        this.sourceUrl = in.readString();
         this.publishedTime = in.readString();
         this.author = in.readParcelable(Author.class.getClassLoader());
         this.title = in.readString();
-        this.titleImage = in.readString();
+        this.imageUrl = in.readString();
         this.summary = in.readString();
         this.content = in.readString();
         this.url = in.readString();
-        this.state = in.readString();
         this.href = in.readString();
         this.commentsCount = in.readInt();
         this.likesCount = in.readInt();

@@ -7,8 +7,7 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import io.bxbxbai.common.StopWatch;
-import io.bxbxbai.common.T;
-import io.bxbxbai.zhuanlan.activity.NewsDetailActivity;
+import io.bxbxbai.zhuanlan.ui.WebActivity;
 
 /**
  *
@@ -35,7 +34,7 @@ public class ZhuanLanWebViewClient extends WebViewClient {
             return true;
         }
         if (url != null && url.startsWith("http")) {
-            NewsDetailActivity.startActivity(mActivity, url);
+            WebActivity.start(mActivity, url);
             return true;
         }
         return true;
@@ -67,6 +66,4 @@ public class ZhuanLanWebViewClient extends WebViewClient {
     public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
         super.onReceivedError(view, errorCode, description, failingUrl);
     }
-
-
 }

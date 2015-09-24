@@ -3,13 +3,12 @@ package io.bxbxbai.zhuanlan.widget;
 import android.app.Activity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import io.bxbxbai.common.T;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.activity.AllPeopleActivity;
-import io.bxbxbai.zhuanlan.activity.RecentPostListActivity;
+import io.bxbxbai.zhuanlan.ui.AllPeopleActivity;
+import io.bxbxbai.zhuanlan.ui.RecentPostListActivity;
 
 /**
  *

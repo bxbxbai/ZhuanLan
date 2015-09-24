@@ -3,13 +3,10 @@ package io.bxbxbai.zhuanlan;
 import android.app.Application;
 import android.view.Choreographer;
 import com.facebook.stetho.Stetho;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 import io.bxbxbai.common.StopWatch;
 import io.bxbxbai.common.T;
 import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.zhuanlan.core.DataCenter;
-import io.bxbxbai.zhuanlan.core.db.ZhuanlanDataSource;
 
 /**
  *
@@ -19,12 +16,6 @@ public class App extends Application {
     private static App mContext;
 
     public static final String PACKAGE_NAME = "io.bxbxbai.zhuanlan";
-
-    private RefWatcher mRefWatcher;
-    /**
-     * 开发测试模式
-     */
-    private static final boolean DEVELOPER_MODE = true;
 
     private static final Choreographer.FrameCallback FRAME_CALLBACK = new Choreographer.FrameCallback() {
         @Override
@@ -37,7 +28,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = this;
-        mRefWatcher = LeakCanary.install(this);
         RequestManager.init(this);
         T.init(this);
         DataCenter.init(this, "zhuanlan.db");
@@ -60,10 +50,6 @@ public class App extends Application {
 
         Choreographer choreographer = Choreographer.getInstance();
         choreographer.postFrameCallback(FRAME_CALLBACK);
-    }
-
-    public static RefWatcher getRefWatcher() {
-        return getInstance().mRefWatcher;
     }
 
     private void initStetho() {

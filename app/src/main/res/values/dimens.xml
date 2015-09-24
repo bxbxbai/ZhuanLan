@@ -48,4 +48,7 @@
     <dimen name="translation_outer_margin">8dp</dimen>
     <dimen name="translation_inner_margin">8dp</dimen>
 
+    <dimen name="article_header">100dp</dimen>
+    <dimen name="height_article_header">240dp</dimen>
+
 </resources>

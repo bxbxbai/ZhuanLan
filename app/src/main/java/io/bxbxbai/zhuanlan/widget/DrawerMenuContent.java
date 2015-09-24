@@ -3,9 +3,9 @@ package io.bxbxbai.zhuanlan.widget;
 import android.content.Context;
 import android.support.annotation.DrawableRes;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.activity.AllPeopleActivity;
-import io.bxbxbai.zhuanlan.activity.PostListActivity;
-import io.bxbxbai.zhuanlan.activity.SearchActivity;
+import io.bxbxbai.zhuanlan.ui.AllPeopleActivity;
+import io.bxbxbai.zhuanlan.ui.PostListActivity;
+import io.bxbxbai.zhuanlan.ui.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;

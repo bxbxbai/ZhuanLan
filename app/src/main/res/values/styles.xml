@@ -20,6 +20,10 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+    <style name="AppTheme.Toolbar.WhiteBackground" parent="AppTheme.Toolbar">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
     <style name="Toolbar" parent="Theme.AppCompat">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>

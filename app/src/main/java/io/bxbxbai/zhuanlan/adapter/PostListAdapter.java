@@ -1,7 +1,6 @@
 package io.bxbxbai.zhuanlan.adapter;
 
 import android.content.Context;
-import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +59,7 @@ public class PostListAdapter extends BaseAdapter {
     @Override
     public int getItemViewType(int position) {
         Post post = (Post) getItem(position);
-        return TextUtils.isEmpty(post.getTitleImage()) ? VIEW_TYPE_TEXT : VIEW_TYPE_IMAGE;
+        return TextUtils.isEmpty(post.getImageUrl()) ? VIEW_TYPE_TEXT : VIEW_TYPE_IMAGE;
     }
 
     @Override
@@ -93,7 +92,7 @@ public class PostListAdapter extends BaseAdapter {
         holder.mLike.setText(String.valueOf(post.getLikesCount()));
 
         if (type == VIEW_TYPE_IMAGE) {
-            holder.mNetworkImageView.setImageUrl(post.getTitleImage(), RequestManager.getImageLoader());
+            holder.mNetworkImageView.setImageUrl(post.getImageUrl(), RequestManager.getImageLoader());
         } else {
             holder.mSummary.setText(Utils.removeHtmlCode(post.getSummary()));
         }
