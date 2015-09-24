@@ -37,7 +37,6 @@ public class StoryActivity extends BaseActivity {
 
     private static final String KEY_POST = "_post";
 
-
     private ObservableScrollView scrollView;
     private CommonWebView mWebView;
     private CircleImageView mAvatarView;
@@ -68,7 +67,6 @@ public class StoryActivity extends BaseActivity {
         });
 
         mPost = getIntent().getParcelableExtra(KEY_POST);
-
         if (mPost == null) {
             finish();
             return;
