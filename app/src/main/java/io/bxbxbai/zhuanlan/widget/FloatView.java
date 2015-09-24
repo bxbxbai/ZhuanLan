@@ -26,9 +26,6 @@ public class FloatView extends RelativeLayout {
     private Context context;
 
     private Boolean showFlag = false;
-
-    private int progressTemp;
-    private int setTemp;
     private Boolean updateFlag = false;
 
     int i = 0;
