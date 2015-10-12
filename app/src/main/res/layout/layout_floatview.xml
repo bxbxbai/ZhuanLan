@@ -11,8 +11,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="4dip"
-            android:src="@drawable/ic_gprs"/>
+            android:layout_marginLeft="4dip"/>
 
     <ImageView
             android:id="@+id/image_line"
