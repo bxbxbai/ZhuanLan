@@ -3,6 +3,7 @@ package io.bxbxbai.zhuanlan.widget;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
 
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Created by xuebin on 15/9/23.
  */
-public class ObservableScrollView extends ScrollView {
+public class ObservableScrollView extends NestedScrollView {
 
     private List<OnScrollListener> listenerList = new ArrayList<>();
 
@@ -26,11 +27,6 @@ public class ObservableScrollView extends ScrollView {
 
     public ObservableScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public ObservableScrollView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override
