@@ -1,7 +1,9 @@
 package io.bxbxbai.zhuanlan.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import io.bxbxbai.common.SimpleBaseAdapter;
 import io.bxbxbai.common.core.RequestManager;
@@ -11,55 +13,67 @@ import io.bxbxbai.zhuanlan.ui.PostListActivity;
 import io.bxbxbai.zhuanlan.bean.UserEntity;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
 import io.bxbxbai.zhuanlan.utils.Utils;
+import io.bxbxbai.zhuanlan.widget.BaseRecyclerAdapter;
+import io.bxbxbai.zhuanlan.widget.BaseViewHolder;
 
 import java.util.List;
 
 /**
  * @author bxbxbai
  */
-public class PeopleListAdapter extends SimpleBaseAdapter<UserEntity> {
+public class PeopleListAdapter extends BaseRecyclerAdapter<UserEntity> {
 
-    public PeopleListAdapter(Context context, List<UserEntity> data) {
-        super(context, data);
+    public PeopleListAdapter(Context context) {
+        super(context);
     }
 
     @Override
-    public int getItemResource() {
-        return R.layout.layout_people_info;
+    public BaseViewHolder<UserEntity> onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new PeopleViewHolder(parent);
     }
 
     @Override
-    public void bindData(int position, View convertView, ViewHolder holder) {
-        final UserEntity user = getItem(position);
+    public void onBindViewHolder(BaseViewHolder<UserEntity> holder, final int position) {
+        final UserEntity entity = getItem(position);
+        holder.bind(entity);
+    }
 
-        final CircleImageView imageView = holder.findView(R.id.avatar);
+    private class PeopleViewHolder extends BaseViewHolder<UserEntity> {
 
-        String picUrl = Utils.getAuthorAvatarUrl(user.getAvatarTemplate(),
-                user.getAvatarId(), ZhuanLanApi.PIC_SIZE_XL);
-        imageView.setImageUrl(picUrl, RequestManager.getImageLoader());
-//        Picasso.with(mContext).load(picUrl).placeholder(R.drawable.bxbxbai).into(imageView);
+        public PeopleViewHolder(ViewGroup parent) {
+            super(parent, R.layout.layout_people_info);
+        }
 
-        TextView name = holder.findView(R.id.tv_name);
-        name.setText(user.getZhuanlanName());
+        @Override
+        public void bind(final UserEntity user) {
+            final Context context = itemView.getContext();
+            final CircleImageView imageView = findView(R.id.avatar);
 
-        TextView follower = holder.findView(R.id.tv_follower);
-        follower.setText(mContext.getString(R.string.follower, user.getFollowerCount()));
+            String picUrl = Utils.getAuthorAvatarUrl(user.getAvatarTemplate(),
+                    user.getAvatarId(), ZhuanLanApi.PIC_SIZE_XL);
+            imageView.setImageUrl(picUrl, RequestManager.getImageLoader());
 
-        TextView postCount = holder.findView(R.id.tv_post_count);
-        postCount.setText(mContext.getString(R.string.post_count, user.getPostCount()));
+            TextView name = findView(R.id.tv_name);
+            name.setText(user.getZhuanlanName());
 
-        TextView description = holder.findView(R.id.tv_description);
-        description.setText(user.getDescription());
+            TextView follower = findView(R.id.tv_follower);
+            follower.setText(context.getString(R.string.follower, user.getFollowerCount()));
 
-        convertView.setTag(R.id.key_slug, user.getSlug());
-        convertView.setTag(R.id.key_name, user.getZhuanlanName());
+            TextView postCount = findView(R.id.tv_post_count);
+            postCount.setText(context.getString(R.string.post_count, user.getPostCount()));
 
-        View v = holder.findView(R.id.ripple_layout);
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PostListActivity.start(mContext, user.getSlug(), user.getZhuanlanName());
-            }
-        });
+            TextView description = findView(R.id.tv_description);
+            description.setText(user.getDescription());
+
+            itemView.setTag(R.id.key_slug, user.getSlug());
+            itemView.setTag(R.id.key_name, user.getZhuanlanName());
+
+            findView(R.id.ripple_layout).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PostListActivity.start(context, user.getSlug(), user.getZhuanlanName());
+                }
+            });
+        }
     }
 }

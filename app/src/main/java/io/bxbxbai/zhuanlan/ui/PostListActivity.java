@@ -31,8 +31,8 @@ public class PostListActivity extends ListBaseActivity {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        adapter = new PostListAdapter(this, null);
-        listView.setAdapter(adapter);
+        adapter = new PostListAdapter(this);
+        recyclerView.setAdapter(adapter);
 
         id = getIntent().getStringExtra(KEY_ID);
         String name = getIntent().getStringExtra(KEY_NAME);
@@ -40,34 +40,26 @@ public class PostListActivity extends ListBaseActivity {
             setTitle(name);
         }
 
-        listView.setOnScrollListener(new EndlessScrollListener() {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount) {
-                StopWatch.log("page: " + page);
-                RequestManager.addRequest(buildRequest(page - 1), this);
-            }
-        });
+//        recyclerView.addOnScrollListener(new EndlessScrollListener() {
+//            @Override
+//            public void onLoadMore(int page, int totalItemsCount) {
+//                StopWatch.log("page: " + page);
+//                RequestManager.addRequest(buildRequest(page - 1), this);
+//            }
+//        });
 
         GsonRequest request = buildRequest(0);
         request.setRetryPolicy(new ZhuanLanRetryPolicy());
         RequestManager.addRequest(request, this.toString());
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Post post = (Post) view.getTag(R.id.key_data);
-                StoryActivity.startActivity(PostListActivity.this, post);
-            }
-        });
     }
 
     private void addData(List<Post> response) {
         if (response.size() == 0) {
             T.showToast("没有数据了");
         }
-        listView.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.VISIBLE);
         mLoadingView.setVisibility(View.GONE);
-        adapter.addAll(response);
+        adapter.addItemList(response);
     }
 
     public GsonRequest buildRequest(int page) {

@@ -1,7 +1,8 @@
 package io.bxbxbai.zhuanlan.ui;
 
 import android.os.Bundle;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import butterknife.ButterKnife;
 import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.common.core.RequestManager;
@@ -17,13 +18,9 @@ public class ListBaseActivity extends BaseActivity {
 
     protected static final String KEY_ID = "id";
     protected static final String KEY_NAME = "name";
-    protected static final String KEY_USER = "_user";
 
-    public static final String KEY_DATA = "data";
-
-    protected ListView listView;
+    protected RecyclerView recyclerView;
     protected CircularLoadingView mLoadingView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +28,8 @@ public class ListBaseActivity extends BaseActivity {
         setContentView(R.layout.activity_post_list);
         initToolBar();
 
-        listView = ButterKnife.findById(this, R.id.lv_post);
+        recyclerView = ButterKnife.findById(this, R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mLoadingView = ButterKnife.findById(this, R.id.v_loading);
     }
 

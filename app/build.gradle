@@ -29,6 +29,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'io.bxbxbai:common:1.2.7'
+    compile 'com.android.support:design:22.2.1'
     compile 'com.facebook.stetho:stetho:1.1.0'
     compile 'com.facebook.stetho:stetho-urlconnection:1.1.0'
 }

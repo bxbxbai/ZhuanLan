@@ -41,8 +41,8 @@ public class RecentPostListActivity extends ListBaseActivity {
         super.onCreate(savedInstanceState);
         setTitle(R.string.recent_news);
 
-        adapter = new PostListAdapter(this, new ArrayList<Post>());
-        listView.setAdapter(adapter);
+        adapter = new PostListAdapter(this);
+        recyclerView.setAdapter(adapter);
         postList = new ArrayList<>();
 
         String[] ids = getResources().getStringArray(R.array.people_ids);
@@ -53,14 +53,6 @@ public class RecentPostListActivity extends ListBaseActivity {
             request.setRetryPolicy(new ZhuanLanRetryPolicy());
             RequestManager.addRequest(request, this);
         }
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Post post = (Post) view.getTag(R.id.key_data);
-                StoryActivity.startActivity(RecentPostListActivity.this, post);
-            }
-        });
     }
 
     public GsonRequest buildRequest(String id, int page) {
@@ -78,12 +70,12 @@ public class RecentPostListActivity extends ListBaseActivity {
 
     private void onSuccess(List<Post> posts) {
         if (postList.size() > 0) {
-            listView.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
             mLoadingView.setVisibility(View.GONE);
         }
         postList.addAll(filterNews(posts));
         Collections.sort(postList, mPublishTimeComparator);
-        adapter.replaceAll(postList);
+        adapter.setItemList(postList);
     }
 
     public List<Post> filterNews(List<Post> origin) {

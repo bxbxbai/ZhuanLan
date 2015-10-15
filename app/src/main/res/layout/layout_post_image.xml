@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:orientation="vertical"
-             android:layout_marginLeft="18dp"
-             android:layout_marginRight="18dp"
              android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp">
+             android:layout_height="240dp"
+        android:layout_marginBottom="30dp">
 
     <com.android.volley.toolbox.NetworkImageView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:id="@+id/iv_pic"/>
     <View android:layout_width="match_parent"
           android:layout_height="match_parent"
-           android:background="@drawable/ban_shadow"/>
+           android:background="@drawable/shape_grey"/>
     <RelativeLayout android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"

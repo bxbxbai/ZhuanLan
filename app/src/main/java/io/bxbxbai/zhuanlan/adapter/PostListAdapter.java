@@ -12,7 +12,11 @@ import com.android.volley.toolbox.NetworkImageView;
 import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
+import io.bxbxbai.zhuanlan.ui.PostListActivity;
+import io.bxbxbai.zhuanlan.ui.StoryActivity;
 import io.bxbxbai.zhuanlan.utils.Utils;
+import io.bxbxbai.zhuanlan.widget.BaseRecyclerAdapter;
+import io.bxbxbai.zhuanlan.widget.BaseViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,113 +25,100 @@ import java.util.List;
  *
  * @author bxbxbai
  */
-public class PostListAdapter extends BaseAdapter {
+public class PostListAdapter extends BaseRecyclerAdapter<Post> {
 
     private static final int VIEW_TYPE_TEXT = 0;
     private static final int VIEW_TYPE_IMAGE = 1;
 
-    private Context mContext;
-    private List<Post> mPosts;
-    private LayoutInflater mInflater;
+    public PostListAdapter(Context context) {
+        super(context);
+    }
 
-    public PostListAdapter(Context context, List<Post> data) {
-        mContext = context;
-        mPosts = new ArrayList<>();
-
-        if (data != null) {
-            mPosts.addAll(data);
+    @Override
+    public BaseViewHolder<Post> onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == VIEW_TYPE_IMAGE) {
+            return new ImagePostViewHolder(parent);
+        } else {
+            return new TextPostViewHolder(parent);
         }
-
-        mInflater = LayoutInflater.from(mContext);
     }
 
     @Override
-    public int getCount() {
-        return mPosts.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return mPosts.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
+    public void onBindViewHolder(BaseViewHolder<Post> holder, int position) {
+        final Post post = getItem(position);
+        holder.bind(post);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StoryActivity.startActivity(getContext(), post);
+            }
+        });
     }
 
     @Override
     public int getItemViewType(int position) {
-        Post post = (Post) getItem(position);
+        Post post = getItem(position);
         return TextUtils.isEmpty(post.getImageUrl()) ? VIEW_TYPE_TEXT : VIEW_TYPE_IMAGE;
     }
 
-    @Override
-    public int getViewTypeCount() {
-        return 2;
-    }
+    private class ImagePostViewHolder extends BaseViewHolder<Post> {
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        Post post = mPosts.get(position);
+        private TextView mTitle;
+        private TextView mAuthor;
+        private TextView mCommentCount;
+        private TextView mDays;
+        private TextView mLike;
 
-        int type = getItemViewType(position);
+        private  NetworkImageView mNetworkImageView;
 
-        if (convertView == null) {
-            if (type == VIEW_TYPE_IMAGE) {
-                convertView = mInflater.inflate(R.layout.layout_post_image, parent, false);
-                convertView.setTag(new ViewHolder(convertView));
-            } else {
-                convertView = mInflater.inflate(R.layout.layout_post_text, parent, false);
-                convertView.setTag(new ViewHolder(convertView));
-            }
+        public ImagePostViewHolder(ViewGroup parent) {
+            super(parent, R.layout.layout_post_image);
+            mTitle = findView(R.id.tv_title);
+            mAuthor = findView(R.id.tv_name);
+            mCommentCount = findView(R.id.tv_comment_count);
+            mDays = findView(R.id.tv_date);
+            mLike = findView(R.id.tv_like_count);
+            mNetworkImageView = findView(R.id.iv_pic);
         }
 
-        ViewHolder holder = (ViewHolder) convertView.getTag();
-
-        holder.mTitle.setText(post.getTitle());
-        holder.mAuthor.setText(post.getAuthorName());
-        holder.mCommentCount.setText(mContext.getString(R.string.comment_count, post.getCommentsCount()));
-        holder.mDays.setText(Utils.convertPublishTime(post.getPublishedTime()));
-        holder.mLike.setText(String.valueOf(post.getLikesCount()));
-
-        if (type == VIEW_TYPE_IMAGE) {
-            holder.mNetworkImageView.setImageUrl(post.getImageUrl(), RequestManager.getImageLoader());
-        } else {
-            holder.mSummary.setText(Utils.removeHtmlCode(post.getSummary()));
-        }
-
-        convertView.setTag(R.id.key_data, post);
-        return convertView;
-    }
-
-    private static class ViewHolder {
-        TextView mTitle;
-        TextView mAuthor;
-        TextView mCommentCount;
-        TextView mDays;
-        TextView mLike;
-
-        NetworkImageView mNetworkImageView;
-        TextView mSummary;
-
-        public ViewHolder(View v) {
-            mTitle = ButterKnife.findById(v, R.id.tv_title);
-            mAuthor = ButterKnife.findById(v, R.id.tv_name);
-            mCommentCount = ButterKnife.findById(v, R.id.tv_comment_count);
-            mDays = ButterKnife.findById(v, R.id.tv_date);
-            mLike = ButterKnife.findById(v, R.id.tv_like_count);
-            mNetworkImageView = ButterKnife.findById(v, R.id.iv_pic);
-            mSummary = ButterKnife.findById(v, R.id.tv_summary);
+        @Override
+        public void bind(Post post) {
+            mTitle.setText(post.getTitle());
+            mAuthor.setText(post.getAuthorName());
+            mCommentCount.setText(getString(R.string.comment_count, post.getCommentsCount()));
+            mDays.setText(Utils.convertPublishTime(post.getPublishedTime()));
+            mLike.setText(String.valueOf(post.getLikesCount()));
+            mNetworkImageView.setImageUrl(post.getImageUrl(), RequestManager.getImageLoader());
         }
     }
 
-    public void addAll(List<Post> posts) {
-        mPosts.addAll(posts);
-    }
+    private class TextPostViewHolder extends BaseViewHolder<Post> {
 
-    public void replaceAll(List<Post> posts) {
-        mPosts.clear();
-        addAll(posts);
+        private TextView mTitle;
+        private TextView mAuthor;
+        private TextView mCommentCount;
+        private TextView mDays;
+        private TextView mLike;
+        private TextView mSummary;
+
+        public TextPostViewHolder(ViewGroup parent) {
+            super(parent, R.layout.layout_post_text);
+            mTitle = findView(R.id.tv_title);
+            mAuthor = findView(R.id.tv_name);
+            mCommentCount = findView(R.id.tv_comment_count);
+            mDays = findView(R.id.tv_date);
+            mLike = findView(R.id.tv_like_count);
+            mSummary = findView(R.id.tv_summary);
+        }
+
+        @Override
+        public void bind(Post post) {
+            mTitle.setText(post.getTitle());
+            mAuthor.setText(post.getAuthorName());
+            mCommentCount.setText(getString(R.string.comment_count, post.getCommentsCount()));
+            mDays.setText(Utils.convertPublishTime(post.getPublishedTime()));
+            mLike.setText(String.valueOf(post.getLikesCount()));
+            mSummary.setText(Utils.removeHtmlCode(post.getSummary()));
+        }
     }
 }

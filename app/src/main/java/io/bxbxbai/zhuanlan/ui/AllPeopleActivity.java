@@ -3,11 +3,10 @@ package io.bxbxbai.zhuanlan.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.zhuanlan.R;
 
 /**
- *  客户端内置的专栏用户列表
+ * 客户端内置的专栏用户列表
  *
  * @author bxbxbai
  */

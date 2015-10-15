@@ -3,17 +3,19 @@ package io.bxbxbai.zhuanlan.ui;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import com.balysv.materialmenu.MaterialMenuDrawable.AnimationState;
 import com.balysv.materialmenu.MaterialMenuDrawable.IconState;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import io.bxbxbai.common.T;
-import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.common.utils.GlobalExecutor;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.common.utils.PrefUtils;
@@ -62,19 +64,18 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
-
 //        NewsDetailActivity.startActivity(this, "http://music.163.com/m/topic/194001?type=android");
     }
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-//        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-//            //貌似mDrawerLayout不能适应沉浸式通知栏的fitSystemWindow属性，必须手动设置它的topMargin值
-//            SystemBarTintManager.SystemBarConfig config = mTintManager.getConfig();
-//            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) mDrawerLayout.getLayoutParams();
-//            params.topMargin = config.getStatusBarHeight();
-//        }
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
+            //貌似mDrawerLayout不能适应沉浸式通知栏的fitSystemWindow属性，必须手动设置它的topMargin值
+            SystemBarTintManager.SystemBarConfig config = mTintManager.getConfig();
+            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) mDrawerLayout.getLayoutParams();
+            params.topMargin = config.getStatusBarHeight();
+        }
     }
 
     private void initToolbarAndDrawer() {

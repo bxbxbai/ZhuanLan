@@ -12,7 +12,6 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import com.android.volley.toolbox.NetworkImageView;
 import io.bxbxbai.common.StopWatch;
-import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.common.utils.GlobalExecutor;
 import io.bxbxbai.common.view.CircleImageView;

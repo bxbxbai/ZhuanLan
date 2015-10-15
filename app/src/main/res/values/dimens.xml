@@ -50,5 +50,7 @@
 
     <dimen name="article_header">100dp</dimen>
     <dimen name="height_article_header">240dp</dimen>
+    <dimen name="image_final_width">60dp</dimen>
+    <dimen name="image_width">60dp</dimen>
 
 </resources>
