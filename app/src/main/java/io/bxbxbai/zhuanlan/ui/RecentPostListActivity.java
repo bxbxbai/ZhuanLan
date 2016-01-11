@@ -4,10 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import io.bxbxbai.common.core.GsonRequest;
 import io.bxbxbai.common.core.RequestManager;
-import io.bxbxbai.common.utils.GlobalExecutor;
+import io.bxbxbai.common.utils.CommonExecutor;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
 import io.bxbxbai.zhuanlan.bean.Post;
@@ -92,7 +91,7 @@ public class RecentPostListActivity extends ListBaseActivity {
     public static boolean start(final Context context) {
         final Intent intent = new Intent();
         intent.setClass(context, RecentPostListActivity.class);
-        GlobalExecutor.MAIN_HANDLER.postDelayed(new Runnable() {
+        CommonExecutor.MAIN_HANDLER.postDelayed(new Runnable() {
             @Override
             public void run() {
                 context.startActivity(intent);

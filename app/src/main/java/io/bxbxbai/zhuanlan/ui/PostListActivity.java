@@ -5,18 +5,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import io.bxbxbai.common.StopWatch;
 import io.bxbxbai.common.T;
-import io.bxbxbai.common.core.GsonRequest;
-import io.bxbxbai.common.core.RequestManager;
-import io.bxbxbai.common.utils.EndlessScrollListener;
-import io.bxbxbai.common.utils.GlobalExecutor;
-import io.bxbxbai.zhuanlan.R;
+import io.bxbxbai.common.utils.CommonExecutor;
 import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
 import io.bxbxbai.zhuanlan.bean.Post;
+import io.bxbxbai.zhuanlan.core.Api;
+import io.bxbxbai.zhuanlan.core.SimpleCallback;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
-import io.bxbxbai.zhuanlan.core.ZhuanLanRetryPolicy;
+import io.bxbxbai.zhuanlan.utils.RecyclerEndlessScrollListener;
 
 import java.util.List;
 
@@ -40,45 +37,33 @@ public class PostListActivity extends ListBaseActivity {
             setTitle(name);
         }
 
-//        recyclerView.addOnScrollListener(new EndlessScrollListener() {
-//            @Override
-//            public void onLoadMore(int page, int totalItemsCount) {
-//                StopWatch.log("page: " + page);
-//                RequestManager.addRequest(buildRequest(page - 1), this);
-//            }
-//        });
-
-        GsonRequest request = buildRequest(0);
-        request.setRetryPolicy(new ZhuanLanRetryPolicy());
-        RequestManager.addRequest(request, this.toString());
+        recyclerView.addOnScrollListener(new RecyclerEndlessScrollListener() {
+            @Override
+            public void onLoadMore(int page, int var2) {
+                requestPostList(page - 1);
+            }
+        });
+        requestPostList(0);
     }
 
-    private void addData(List<Post> response) {
-        if (response.size() == 0) {
+    private void addPosts(List<Post> posts) {
+        if (posts.size() == 0) {
             T.showToast("没有数据了");
         }
         recyclerView.setVisibility(View.VISIBLE);
         mLoadingView.setVisibility(View.GONE);
-        adapter.addItemList(response);
+        adapter.addItemList(posts);
     }
 
-    public GsonRequest buildRequest(int page) {
-        String url = String.format(ZhuanLanApi.API_POST_LIST, id);
-        GsonRequest request = new GsonRequest<List<Post>>(url, ZhuanLanApi.buildDefaultErrorListener()) {
+    public void requestPostList(int page) {
+        int offset = page * ZhuanLanApi.DEFAULT_COUNT;
+        Api api = ZhuanLanApi.getZhuanlanApi();
+        api.getPosts(id, ZhuanLanApi.DEFAULT_COUNT, offset).enqueue(new SimpleCallback<List<Post>>() {
             @Override
-            public void onResponse(List<Post> posts) {
-                addData(posts);
+            public void onResponse(List<Post> posts, int code, String msg) {
+                addPosts(posts);
             }
-        };
-        request.addParam(ZhuanLanApi.KEY_LIMIT, String.valueOf(ZhuanLanApi.DEFAULT_COUNT))
-                .addParam(ZhuanLanApi.KEY_OFFSET, String.valueOf((page) * ZhuanLanApi.DEFAULT_COUNT));
-        return request;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        RequestManager.getRequestQueue().cancelAll(this);
+        });
     }
 
     public static boolean start(final Context context, String slug, String name) {
@@ -86,7 +71,7 @@ public class PostListActivity extends ListBaseActivity {
         intent.setClass(context, PostListActivity.class);
         intent.putExtra(KEY_ID, slug);
         intent.putExtra(KEY_NAME, name);
-        GlobalExecutor.MAIN_HANDLER.postDelayed(new Runnable() {
+        CommonExecutor.MAIN_HANDLER.postDelayed(new Runnable() {
             @Override
             public void run() {
                 context.startActivity(intent);

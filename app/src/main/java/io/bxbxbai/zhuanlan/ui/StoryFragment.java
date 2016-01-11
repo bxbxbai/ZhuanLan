@@ -13,7 +13,7 @@ import butterknife.ButterKnife;
 import com.android.volley.toolbox.NetworkImageView;
 import io.bxbxbai.common.StopWatch;
 import io.bxbxbai.common.core.RequestManager;
-import io.bxbxbai.common.utils.GlobalExecutor;
+import io.bxbxbai.common.utils.CommonExecutor;
 import io.bxbxbai.common.view.CircleImageView;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
@@ -29,7 +29,7 @@ import java.util.Scanner;
 /**
  * Created by xuebin on 15/10/15.
  */
-public class StoryFragment extends Fragment{
+public class StoryFragment extends Fragment {
 
     public static final String KEY_POST = "_post";
 
@@ -85,7 +85,7 @@ public class StoryFragment extends Fragment{
         String picUrl = Utils.getAuthorAvatarUrl(mPost.getAuthor().getAvatar().getTemplate(),
                 id, ZhuanLanApi.PIC_SIZE_XS);
         mAvatarView.setImageUrl(picUrl, RequestManager.getImageLoader());
-        GlobalExecutor.MAIN_HANDLER.postDelayed(new Runnable() {
+        CommonExecutor.MAIN_HANDLER.postDelayed(new Runnable() {
             @Override
             public void run() {
                 injectCSS();
@@ -125,7 +125,7 @@ public class StoryFragment extends Fragment{
         return "";
     }
 
-    public static StoryFragment newInstance(Post post){
+    public static StoryFragment newInstance(Post post) {
         StoryFragment fragment = new StoryFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(KEY_POST, post);

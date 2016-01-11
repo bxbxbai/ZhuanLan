@@ -72,3 +72,5 @@ local.properties
 Icon?
 ehthumbs.db
 Thumbs.db
+
+/app/mybuild.gradle

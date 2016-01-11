@@ -17,9 +17,10 @@ import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
 import io.bxbxbai.zhuanlan.bean.User;
 import io.bxbxbai.zhuanlan.bean.UserEntity;
+import io.bxbxbai.zhuanlan.core.Api;
 import io.bxbxbai.zhuanlan.core.DataCenter;
+import io.bxbxbai.zhuanlan.core.SimpleCallback;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
-import io.bxbxbai.zhuanlan.widget.BaseRecyclerAdapter;
 
 import java.util.List;
 import java.util.Map;
@@ -48,9 +49,12 @@ public class PeopleListFragment extends Fragment {
         mAdapter = new PeopleListAdapter(getActivity());
         recyclerView.setAdapter(mAdapter);
 
+        getUserIdList();
+    }
+
+    private void getUserIdList() {
         String[] ids = getActivity().getResources().getStringArray(R.array.people_ids);
         List<UserEntity> list = DataCenter.instance().queryAll(UserEntity.class);
-
 
         Map<String, UserEntity> map = new ArrayMap<>();
         for (UserEntity entity : list) {
@@ -69,27 +73,20 @@ public class PeopleListFragment extends Fragment {
     }
 
     private void makeRequest(String id) {
-        GsonRequest<User> request = new GsonRequest<User>(String.format(ZhuanLanApi.API_BASE, id),
-                ZhuanLanApi.buildDefaultErrorListener()) {
+        Api api = ZhuanLanApi.getZhuanlanApi();
+        api.getUser(id).enqueue(new SimpleCallback<User>() {
             @Override
-            public void onResponse(User user) {
+            public void onResponse(User user, int code, String msg) {
                 showListView();
                 mAdapter.addItem(user.toUserEntity());
                 DataCenter.instance().save(user.toUserEntity());
             }
-        };
-        RequestManager.addRequest(request, this);
+        });
     }
 
     private void showListView() {
         recyclerView.setVisibility(View.VISIBLE);
         mLoadingView.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        RequestManager.getRequestQueue().cancelAll(this);
     }
 
     public static PeopleListFragment newInstance() {

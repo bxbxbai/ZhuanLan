@@ -8,9 +8,10 @@
         <item name="colorPrimaryDark">@color/primaryDark</item>
     </style>
 
-    <style name="AppTheme.NoActionBar" parent="AppTheme">
+    <style name="AppTheme.FullScreen" parent="AppTheme">
         <item name="android:windowActionBar">false</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
     <style name="AppTheme.Toolbar" parent="Theme.AppCompat.Light.NoActionBar">

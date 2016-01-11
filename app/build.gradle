@@ -8,8 +8,8 @@ android {
         applicationId "io.bxbxbai.zhuanlan"
         minSdkVersion 17
         targetSdkVersion 22
-        versionCode 2
-        versionName "1.1"
+        versionCode 4
+        versionName "1.4"
     }
     buildTypes {
         release {
@@ -28,8 +28,14 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'io.bxbxbai:common:1.2.7'
-    compile 'com.android.support:design:22.2.1'
+    compile 'io.bxbxbai:common:1.5.0'
     compile 'com.facebook.stetho:stetho:1.1.0'
     compile 'com.facebook.stetho:stetho-urlconnection:1.1.0'
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+}
+
+try {
+    apply from: "${project.projectDir}/mybuild.gradle"
+} catch (e) {
+    println e
 }

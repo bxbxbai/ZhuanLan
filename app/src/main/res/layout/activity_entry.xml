@@ -7,7 +7,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:contentDescription="entry"
             android:src="@drawable/splash2"
             android:id="@+id/iv_entry"/>
 
@@ -15,6 +14,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/ban_shadow"/>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:gravity="center"
+            android:textSize="48sp"
+            android:id="@+id/tv_title"
+            android:layout_centerInParent="true"
+            android:text="专栏App"/>
 
     <TextView
             android:layout_width="match_parent"
@@ -34,5 +43,4 @@
             android:gravity="center"
             android:layout_marginBottom="8dp"
             android:text="@string/bxbxbai"/>
-
 </RelativeLayout>

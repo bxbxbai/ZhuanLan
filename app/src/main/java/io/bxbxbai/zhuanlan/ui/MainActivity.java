@@ -11,14 +11,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+
 import butterknife.ButterKnife;
+
 import com.balysv.materialmenu.MaterialMenuDrawable.AnimationState;
 import com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+
 import io.bxbxbai.common.T;
-import io.bxbxbai.common.utils.GlobalExecutor;
-import io.bxbxbai.zhuanlan.R;
+import io.bxbxbai.common.utils.CommonExecutor;
 import io.bxbxbai.common.utils.PrefUtils;
+import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.widget.DrawerMenuContent;
 import io.bxbxbai.zhuanlan.widget.MenuAdapter;
 import io.bxbxbai.zhuanlan.widget.OnMenuListClickListener;
@@ -50,11 +53,11 @@ public class MainActivity extends BaseActivity {
         setOverflowShowAlways();
 
         //第一次启动，会打开抽屉菜单
-        GlobalExecutor.get().postOnWorkThread(new Runnable() {
+        CommonExecutor.get().post(new Runnable() {
             @Override
             public void run() {
                 if ((boolean) PrefUtils.getValue(MainActivity.this, PrefUtils.KEY_FIRST_ENTER, true)) {
-                    GlobalExecutor.MAIN_HANDLER.postDelayed(new Runnable() {
+                    CommonExecutor.MAIN_HANDLER.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             openDrawer();

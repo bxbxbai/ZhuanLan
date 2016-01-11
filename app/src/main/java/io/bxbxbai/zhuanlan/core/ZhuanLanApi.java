@@ -1,18 +1,28 @@
 package io.bxbxbai.zhuanlan.core;
 
+import android.content.Context;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.squareup.okhttp.Cache;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+
 import io.bxbxbai.common.T;
 import io.bxbxbai.common.core.GsonRequest;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.bean.User;
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
- *
  * @author bxbxbai
  */
 public final class ZhuanLanApi {
@@ -41,10 +51,6 @@ public final class ZhuanLanApi {
         public static final String SEARCH = "http://zhihudailypurify.sinaapp.com/search/";
     }
 
-    public static final class Date {
-        public static final SimpleDateFormat FORMAT_yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
-    }
-
     /**
      * 知乎日报启动画面api（手机分辨率的长和宽）
      */
@@ -66,5 +72,32 @@ public final class ZhuanLanApi {
                 T.showToast(R.string.network_error);
             }
         };
+    }
+
+
+    private static ZhuanLanApi instance = new ZhuanLanApi();
+
+    private Retrofit retrofit;
+
+    private ZhuanLanApi() {
+        retrofit = new Retrofit.Builder()
+                .baseUrl(ZHUAN_LAN_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+//                .client(createHttpClient())
+                .build();
+    }
+
+    public static <T> T api(Class<T> clazz) {
+        return instance.retrofit.create(clazz);
+    }
+
+    public static Api getZhuanlanApi() {
+        return api(Api.class);
+    }
+
+    private static OkHttpClient createHttpClient(Context context) {
+        OkHttpClient client = new OkHttpClient();
+        client.setCache(new Cache(context.getCacheDir(), 10 * 1024*1024));
+        return client;
     }
 }

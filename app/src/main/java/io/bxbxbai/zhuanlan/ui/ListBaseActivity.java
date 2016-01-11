@@ -33,9 +33,4 @@ public class ListBaseActivity extends BaseActivity {
         mLoadingView = ButterKnife.findById(this, R.id.v_loading);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        RequestManager.getRequestQueue().cancelAll(this);
-    }
 }
