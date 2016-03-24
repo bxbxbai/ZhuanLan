@@ -1,26 +1,17 @@
 package io.bxbxbai.zhuanlan.core;
 
 import android.content.Context;
+
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.squareup.okhttp.Cache;
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
 
 import io.bxbxbai.common.T;
-import io.bxbxbai.common.core.GsonRequest;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.bean.Post;
-import io.bxbxbai.zhuanlan.bean.User;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.List;
 
 /**
  * @author bxbxbai
@@ -96,8 +87,8 @@ public final class ZhuanLanApi {
     }
 
     private static OkHttpClient createHttpClient(Context context) {
-        OkHttpClient client = new OkHttpClient();
-        client.setCache(new Cache(context.getCacheDir(), 10 * 1024*1024));
-        return client;
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.cache(new Cache(context.getCacheDir(), 10 * 1024*1024));
+        return builder.build();
     }
 }

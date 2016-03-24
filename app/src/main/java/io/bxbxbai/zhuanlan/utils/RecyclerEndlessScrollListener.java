@@ -58,6 +58,4 @@ public abstract class RecyclerEndlessScrollListener extends RecyclerView.OnScrol
 
     }
 
-    public void onScrollStateChanged(AbsListView view, int scrollState) {
-    }
 }

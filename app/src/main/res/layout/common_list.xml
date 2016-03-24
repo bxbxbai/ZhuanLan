@@ -19,6 +19,7 @@
             android:layout_margin="@dimen/margin_16dp"
             android:background="@drawable/shape_floating_action_button"
             android:id="@+id/fab_main"
+            android:visibility="gone"
             app:fabSize="normal"
             app:backgroundTint="@color/primary"
             app:elevation="2dp"

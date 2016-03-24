@@ -4,11 +4,10 @@ import java.util.List;
 
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.bean.User;
-import retrofit.Call;
-import retrofit.http.GET;
-import retrofit.http.Part;
-import retrofit.http.Path;
-import retrofit.http.Query;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by xuebin on 15/12/19.

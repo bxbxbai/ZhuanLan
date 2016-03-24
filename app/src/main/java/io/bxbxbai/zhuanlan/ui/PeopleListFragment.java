@@ -9,9 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.List;
+import java.util.Map;
+
 import butterknife.ButterKnife;
-import io.bxbxbai.common.core.GsonRequest;
-import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.common.view.CircularLoadingView;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.adapter.PeopleListAdapter;
@@ -21,9 +23,6 @@ import io.bxbxbai.zhuanlan.core.Api;
 import io.bxbxbai.zhuanlan.core.DataCenter;
 import io.bxbxbai.zhuanlan.core.SimpleCallback;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author bxbxbai
@@ -57,9 +56,9 @@ public class PeopleListFragment extends Fragment {
         List<UserEntity> list = DataCenter.instance().queryAll(UserEntity.class);
 
         Map<String, UserEntity> map = new ArrayMap<>();
-        for (UserEntity entity : list) {
-            map.put(entity.getSlug(), entity);
-        }
+//        for (UserEntity entity : list) {
+//            map.put(entity.getSlug(), entity);
+//        }
 
         for (String id : ids) {
             UserEntity entity = map.get(id);

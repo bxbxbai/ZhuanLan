@@ -4,20 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import io.bxbxbai.common.core.GsonRequest;
-import io.bxbxbai.common.core.RequestManager;
-import io.bxbxbai.common.utils.CommonExecutor;
-import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
-import io.bxbxbai.zhuanlan.bean.Post;
-import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
-import io.bxbxbai.zhuanlan.core.ZhuanLanRetryPolicy;
-import io.bxbxbai.zhuanlan.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import io.bxbxbai.common.utils.CommonExecutor;
+import io.bxbxbai.zhuanlan.R;
+import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
+import io.bxbxbai.zhuanlan.bean.Post;
+import io.bxbxbai.zhuanlan.core.SimpleCallback;
+import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
+import io.bxbxbai.zhuanlan.utils.Utils;
 
 /**
  * @author bxbxbai
@@ -47,24 +46,19 @@ public class RecentPostListActivity extends ListBaseActivity {
         String[] ids = getResources().getStringArray(R.array.people_ids);
 
         for (int i = 0; ids != null && i < ids.length; i++) {
-            String id = ids[i];
-            GsonRequest request = buildRequest(id, 0);
-            request.setRetryPolicy(new ZhuanLanRetryPolicy());
-            RequestManager.addRequest(request, this);
+            sendRequest(ids[i], 0);
         }
     }
 
-    public GsonRequest buildRequest(String id, int page) {
-        String url = String.format(ZhuanLanApi.API_POST_LIST, id);
-        GsonRequest request = new GsonRequest<List<Post>>(url, ZhuanLanApi.buildDefaultErrorListener()) {
-            @Override
-            public void onResponse(List<Post> posts) {
-                onSuccess(posts);
-            }
-        };
-        request.addParam(ZhuanLanApi.KEY_LIMIT, String.valueOf(ZhuanLanApi.DEFAULT_COUNT))
-                .addParam(ZhuanLanApi.KEY_OFFSET, String.valueOf((page) * ZhuanLanApi.DEFAULT_COUNT));
-        return request;
+    public void sendRequest(String id, int page) {
+        ZhuanLanApi.getZhuanlanApi()
+                .getPosts(id, ZhuanLanApi.DEFAULT_COUNT, page * ZhuanLanApi.DEFAULT_COUNT)
+                .enqueue(new SimpleCallback<List<Post>>() {
+                    @Override
+                    public void onResponse(List<Post> posts, int code, String msg) {
+                        onSuccess(posts);
+                    }
+                });
     }
 
     private void onSuccess(List<Post> posts) {

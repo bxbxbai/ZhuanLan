@@ -1,8 +1,9 @@
 package io.bxbxbai.zhuanlan.core;
 
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by xuebin on 15/12/16.
@@ -10,8 +11,8 @@ import retrofit.Retrofit;
 public abstract class SimpleCallback<T> implements Callback<T> {
 
     @Override
-    public final void onResponse(Response<T> response, Retrofit retrofit) {
-        if (response.isSuccess()) {
+    public void onResponse(Call<T> call, Response<T> response) {
+        if (response.isSuccessful()) {
             onResponse(response.body(), response.code(), response.message());
         } else {
             onResponseFail();
@@ -19,15 +20,16 @@ public abstract class SimpleCallback<T> implements Callback<T> {
     }
 
     @Override
-    public void onFailure(Throwable t) {
+    public void onFailure(Call<T> call, Throwable t) {
 
     }
 
     /**
      * on response return
+     *
      * @param result result
-     * @param code http code
-     * @param msg http msg
+     * @param code   http code
+     * @param msg    http msg
      */
     public abstract void onResponse(final T result, int code, String msg);
 

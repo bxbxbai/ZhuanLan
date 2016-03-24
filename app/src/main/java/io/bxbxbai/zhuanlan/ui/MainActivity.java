@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity {
         setOverflowShowAlways();
 
         //第一次启动，会打开抽屉菜单
-        CommonExecutor.get().post(new Runnable() {
+        CommonExecutor.MAIN_HANDLER.post(new Runnable() {
             @Override
             public void run() {
                 if ((boolean) PrefUtils.getValue(MainActivity.this, PrefUtils.KEY_FIRST_ENTER, true)) {
