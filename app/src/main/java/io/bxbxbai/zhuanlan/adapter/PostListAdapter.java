@@ -2,24 +2,19 @@ package io.bxbxbai.zhuanlan.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
-import butterknife.ButterKnife;
-import com.android.volley.toolbox.NetworkImageView;
-import io.bxbxbai.common.core.RequestManager;
+
+import com.bumptech.glide.Glide;
+
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.bean.Post;
-import io.bxbxbai.zhuanlan.ui.PostListActivity;
 import io.bxbxbai.zhuanlan.ui.StoryActivity;
 import io.bxbxbai.zhuanlan.utils.Utils;
 import io.bxbxbai.zhuanlan.widget.BaseRecyclerAdapter;
 import io.bxbxbai.zhuanlan.widget.BaseViewHolder;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -69,7 +64,7 @@ public class PostListAdapter extends BaseRecyclerAdapter<Post> {
         private TextView mDays;
         private TextView mLike;
 
-        private  NetworkImageView mNetworkImageView;
+        private ImageView imageView;
 
         public ImagePostViewHolder(ViewGroup parent) {
             super(parent, R.layout.layout_post_image);
@@ -78,7 +73,7 @@ public class PostListAdapter extends BaseRecyclerAdapter<Post> {
             mCommentCount = findView(R.id.tv_comment_count);
             mDays = findView(R.id.tv_date);
             mLike = findView(R.id.tv_like_count);
-            mNetworkImageView = findView(R.id.iv_pic);
+            imageView = findView(R.id.iv_pic);
         }
 
         @Override
@@ -88,7 +83,7 @@ public class PostListAdapter extends BaseRecyclerAdapter<Post> {
             mCommentCount.setText(getString(R.string.comment_count, post.getCommentsCount()));
             mDays.setText(Utils.convertPublishTime(post.getPublishedTime()));
             mLike.setText(String.valueOf(post.getLikesCount()));
-            mNetworkImageView.setImageUrl(post.getImageUrl(), RequestManager.getImageLoader());
+            Glide.with(getContext()).load(post.getImageUrl()).crossFade().into(imageView);
         }
     }
 

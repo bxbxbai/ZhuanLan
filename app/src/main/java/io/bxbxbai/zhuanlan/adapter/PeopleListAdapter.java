@@ -1,22 +1,20 @@
 package io.bxbxbai.zhuanlan.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import io.bxbxbai.common.SimpleBaseAdapter;
-import io.bxbxbai.common.core.RequestManager;
+
+import com.bumptech.glide.Glide;
+
 import io.bxbxbai.common.view.CircleImageView;
 import io.bxbxbai.zhuanlan.R;
-import io.bxbxbai.zhuanlan.ui.PostListActivity;
 import io.bxbxbai.zhuanlan.bean.UserEntity;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
+import io.bxbxbai.zhuanlan.ui.PostListActivity;
 import io.bxbxbai.zhuanlan.utils.Utils;
 import io.bxbxbai.zhuanlan.widget.BaseRecyclerAdapter;
 import io.bxbxbai.zhuanlan.widget.BaseViewHolder;
-
-import java.util.List;
 
 /**
  * @author bxbxbai
@@ -51,7 +49,7 @@ public class PeopleListAdapter extends BaseRecyclerAdapter<UserEntity> {
 
             String picUrl = Utils.getAuthorAvatarUrl(user.getAvatarTemplate(),
                     user.getAvatarId(), ZhuanLanApi.PIC_SIZE_XL);
-            imageView.setImageUrl(picUrl, RequestManager.getImageLoader());
+            Glide.with(getContext()).load(picUrl).crossFade().into(imageView);
 
             TextView name = findView(R.id.tv_name);
             name.setText(user.getZhuanlanName());

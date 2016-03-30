@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import butterknife.ButterKnife;
-import io.bxbxbai.common.T;
+import io.bxbxbai.common.Tips;
 import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.zhuanlan.App;
 import io.bxbxbai.zhuanlan.R;
@@ -39,7 +39,6 @@ public class WebActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
-        initToolBar();
         parseIntent(getIntent());
 
         ProgressBar bar = ButterKnife.findById(this, R.id.progress_bar);
@@ -67,7 +66,7 @@ public class WebActivity extends BaseActivity {
         title = intent.getStringExtra(KEY_TITLE);
 
         if (TextUtils.isEmpty(url)) {
-            T.showToast("木有URL...");
+            Tips.showToast("木有URL...");
             finish();
         }
         setTitle(TextUtils.isEmpty(title) ? getString(R.string.app_name) : title);

@@ -2,11 +2,6 @@ package io.bxbxbai.zhuanlan.core;
 
 import android.content.Context;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-
-import io.bxbxbai.common.T;
-import io.bxbxbai.zhuanlan.R;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -55,15 +50,6 @@ public final class ZhuanLanApi {
 
     public static final String TEMPLATE_ID = "{id}";
     public static final String TEMPLATE_SIZE = "{size}";
-
-    public static Response.ErrorListener buildDefaultErrorListener() {
-        return new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                T.showToast(R.string.network_error);
-            }
-        };
-    }
 
 
     private static ZhuanLanApi instance = new ZhuanLanApi();

@@ -30,7 +30,7 @@ public class ObservableScrollView extends NestedScrollView {
     }
 
     @Override
-    protected int computeVerticalScrollRange() {
+    public int computeVerticalScrollRange() {
         return super.computeVerticalScrollRange();
     }
 

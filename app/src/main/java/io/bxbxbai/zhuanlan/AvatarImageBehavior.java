@@ -32,8 +32,7 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
     public AvatarImageBehavior(Context context, AttributeSet attrs) {
         mContext = context;
         mAvatarMaxSize = mContext.getResources().getDimension(R.dimen.image_width);
-        mFinalLeftAvatarPadding = context.getResources().getDimension(
-            R.dimen.abc_action_bar_navigation_padding_start_material);
+        mFinalLeftAvatarPadding = 100;
     }
 
     @Override

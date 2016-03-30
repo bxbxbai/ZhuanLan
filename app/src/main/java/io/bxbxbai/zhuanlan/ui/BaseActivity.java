@@ -10,23 +10,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager.LayoutParams;
-import butterknife.ButterKnife;
-import com.android.volley.Request;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.VolleyError;
-import com.balysv.materialmenu.MaterialMenuDrawable.IconState;
-import com.balysv.materialmenu.MaterialMenuDrawable.Stroke;
-import com.balysv.materialmenu.extras.toolbar.MaterialMenuIconToolbar;
+
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+import butterknife.ButterKnife;
 import io.bxbxbai.common.StopWatch;
-import io.bxbxbai.common.T;
-import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.zhuanlan.R;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected Toolbar toolbar;
-    protected MaterialMenuIconToolbar materialMenu;
     protected SystemBarTintManager mTintManager;
 
     public void setContentView(int layoutResID) {
@@ -38,12 +31,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         this.toolbar = ButterKnife.findById(this, R.id.toolbar);
         if (toolbar != null) {
             this.setSupportActionBar(this.toolbar);
-            this.materialMenu = new MaterialMenuIconToolbar(this, -1, Stroke.REGULAR) {
-                public int getToolbarViewId() {
-                    return R.id.toolbar;
-                }
-            };
-            this.materialMenu.setState(IconState.ARROW);
             this.toolbar.setNavigationOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     BaseActivity.this.finish();
@@ -86,19 +73,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void onDestroy() {
         super.onDestroy();
-        RequestManager.cancelAll(this);
-    }
-
-    protected void sendRequest(Request<?> request) {
-        RequestManager.addRequest(request, this.toString());
-    }
-
-    protected ErrorListener errorListener() {
-        return new ErrorListener() {
-            public void onErrorResponse(VolleyError error) {
-                T.showToast(error.getMessage());
-            }
-        };
     }
 
     public void onTrimMemory(int level) {

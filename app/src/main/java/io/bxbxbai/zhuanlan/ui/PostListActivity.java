@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import io.bxbxbai.common.StopWatch;
-import io.bxbxbai.common.T;
+
+import io.bxbxbai.common.Tips;
 import io.bxbxbai.common.utils.CommonExecutor;
 import io.bxbxbai.zhuanlan.adapter.PostListAdapter;
 import io.bxbxbai.zhuanlan.bean.Post;
@@ -48,7 +48,7 @@ public class PostListActivity extends ListBaseActivity {
 
     private void addPosts(List<Post> posts) {
         if (posts.size() == 0) {
-            T.showToast("没有数据了");
+            Tips.showToast("没有数据了");
         }
         recyclerView.setVisibility(View.VISIBLE);
         mLoadingView.setVisibility(View.GONE);

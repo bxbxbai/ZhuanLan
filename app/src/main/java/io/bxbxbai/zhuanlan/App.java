@@ -2,10 +2,11 @@ package io.bxbxbai.zhuanlan;
 
 import android.app.Application;
 import android.view.Choreographer;
+
 import com.facebook.stetho.Stetho;
+
 import io.bxbxbai.common.StopWatch;
-import io.bxbxbai.common.T;
-import io.bxbxbai.common.core.RequestManager;
+import io.bxbxbai.common.Tips;
 import io.bxbxbai.zhuanlan.core.DataCenter;
 
 /**
@@ -28,8 +29,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         mContext = this;
-        RequestManager.init(this);
-        T.init(this);
+        Tips.init(this);
         DataCenter.init(this, "zhuanlan.db");
 
 //        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()

@@ -8,11 +8,16 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import java.io.IOException;
+import java.util.Scanner;
+
 import butterknife.ButterKnife;
-import com.android.volley.toolbox.NetworkImageView;
 import io.bxbxbai.common.StopWatch;
-import io.bxbxbai.common.core.RequestManager;
 import io.bxbxbai.common.utils.CommonExecutor;
 import io.bxbxbai.common.view.CircleImageView;
 import io.bxbxbai.zhuanlan.R;
@@ -22,9 +27,6 @@ import io.bxbxbai.zhuanlan.core.ZhuanLanWebViewClient;
 import io.bxbxbai.zhuanlan.utils.Utils;
 import io.bxbxbai.zhuanlan.widget.CommonWebView;
 import io.bxbxbai.zhuanlan.widget.ObservableScrollView;
-
-import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Created by xuebin on 15/10/15.
@@ -36,7 +38,7 @@ public class StoryFragment extends Fragment {
     private ObservableScrollView scrollView;
     private CommonWebView mWebView;
     private CircleImageView mAvatarView;
-    private NetworkImageView headerImageView;
+    private ImageView headerImageView;
     private TextView titleView;
     private TextView authorTextView;
 
@@ -77,14 +79,14 @@ public class StoryFragment extends Fragment {
 
     private void setStory() {
         loadHtmlContent(mPost.getContent());
-        headerImageView.setImageUrl(mPost.getImageUrl(), RequestManager.getImageLoader());
+        Glide.with(getActivity()).load(mPost.getImageUrl()).crossFade().into(headerImageView);
         titleView.setText(mPost.getTitle());
         authorTextView.setText(mPost.getAuthorName() + ", " + Utils.convertPublishTime(mPost.getPublishedTime()));
 
         String id = mPost.getAuthor().getAvatar().getId();
         String picUrl = Utils.getAuthorAvatarUrl(mPost.getAuthor().getAvatar().getTemplate(),
                 id, ZhuanLanApi.PIC_SIZE_XS);
-        mAvatarView.setImageUrl(picUrl, RequestManager.getImageLoader());
+        Glide.with(getActivity()).load(picUrl).crossFade().into(mAvatarView);
         CommonExecutor.MAIN_HANDLER.postDelayed(new Runnable() {
             @Override
             public void run() {

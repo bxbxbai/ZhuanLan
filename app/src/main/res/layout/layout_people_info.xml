@@ -1,87 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="user"
+            type="io.bxbxbai.zhuanlan.bean.UserEntity"/>
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <io.bxbxbai.zhuanlan.widget.RippleRelativeLayout
+
+        <io.bxbxbai.zhuanlan.widget.RippleRelativeLayout
+            android:id="@+id/ripple_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ripple_layout"
-            app:rv_color="#ccc"
-            app:rv_type="rectangle"
-            app:rv_rippleDuration="200"
-            android:background="@drawable/bg_parent_rounded_corner"
             android:layout_marginLeft="@dimen/margin_8dp"
             android:layout_marginRight="@dimen/margin_8dp"
-            android:layout_marginTop="@dimen/margin_4dp">
+            android:layout_marginTop="@dimen/margin_4dp"
+            android:background="@drawable/bg_parent_rounded_corner"
+            app:rv_color="#ccc"
+            app:rv_rippleDuration="200"
+            app:rv_type="rectangle">
 
-        <io.bxbxbai.common.view.CircleImageView
+            <io.bxbxbai.common.view.CircleImageView
+                android:id="@+id/avatar"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/margin_8dp"
                 android:layout_marginRight="@dimen/margin_16dp"
-                android:layout_centerVertical="true"
-                android:src="@drawable/bxbxbai"
-                android:id="@+id/avatar"/>
+                android:src="@drawable/bxbxbai" />
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <TextView
                 android:id="@+id/tv_name"
-                android:text="bxbxbai"
-                android:maxLines="2"
-                android:ellipsize="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_8dp"
-                android:textColor="@android:color/black"
                 android:layout_marginTop="10dp"
-                android:textSize="18sp"
-                android:layout_toRightOf="@id/avatar"/>
+                android:layout_toRightOf="@id/avatar"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="bxbxbai"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <TextView
                 android:id="@+id/tv_follower"
-                android:text="123人关注"
-                android:layout_marginTop="4dp"
-                android:textSize="14sp"
-                android:textColor="#9d9e9f"
-                android:layout_below="@id/tv_name"
-                android:layout_toRightOf="@id/avatar"/>
-        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_separator"
-                android:text=" · "
+                android:layout_below="@id/tv_name"
                 android:layout_marginTop="4dp"
+                android:layout_toRightOf="@id/avatar"
+                android:text="123人关注"
+                android:textColor="#9d9e9f"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_name"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
-                android:textSize="14sp"
-                android:layout_below="@id/tv_name"
-                android:textStyle="bold"
-                android:layout_toRightOf="@id/tv_follower"/>
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tv_post_count"
-                android:text="12 专栏"
                 android:layout_marginTop="4dp"
-                android:textColor="#9d9e9f"
+                android:layout_toRightOf="@id/tv_follower"
+                android:text=" · "
                 android:textSize="14sp"
-                android:layout_below="@id/tv_name"
-                android:layout_toRightOf="@id/tv_separator"/>
+                android:textStyle="bold" />
 
-        <TextView
+            <TextView
+                android:id="@+id/tv_post_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_description"
-                android:text="给您不一样的看日本的视角，带您体会不一样的日本文化，让您的日本之旅更有意境。"
+                android:layout_below="@id/tv_name"
                 android:layout_marginTop="4dp"
-                android:textSize="14sp"
-                android:maxLines="2"
-                android:ellipsize="end"
+                android:layout_toRightOf="@id/tv_separator"
+                android:text="12 专栏"
+                android:textColor="#9d9e9f"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_follower"
                 android:layout_marginBottom="10dp"
                 android:layout_marginRight="@dimen/margin_8dp"
-                android:layout_below="@id/tv_follower"
-                android:layout_toRightOf="@id/avatar"/>
-    </io.bxbxbai.zhuanlan.widget.RippleRelativeLayout>
-</FrameLayout>
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@id/avatar"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="给您不一样的看日本的视角，带您体会不一样的日本文化，让您的日本之旅更有意境。"
+                android:textSize="14sp" />
+        </io.bxbxbai.zhuanlan.widget.RippleRelativeLayout>
+    </FrameLayout>
+</layout>

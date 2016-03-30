@@ -8,26 +8,26 @@ import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.ViewConfiguration;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
-import butterknife.ButterKnife;
-
-import com.balysv.materialmenu.MaterialMenuDrawable.AnimationState;
-import com.balysv.materialmenu.MaterialMenuDrawable.IconState;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
-import io.bxbxbai.common.T;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import butterknife.ButterKnife;
+import io.bxbxbai.common.Tips;
 import io.bxbxbai.common.utils.CommonExecutor;
 import io.bxbxbai.common.utils.PrefUtils;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.widget.DrawerMenuContent;
 import io.bxbxbai.zhuanlan.widget.MenuAdapter;
 import io.bxbxbai.zhuanlan.widget.OnMenuListClickListener;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 public class MainActivity extends BaseActivity {
 
@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_settings:
-                        T.showToast("Coming soon...");
+                        Tips.showToast("Coming soon...");
                         break;
 //                        return prepareIntent(PrefsActivity.class);
 //                    case R.id.action_search:
@@ -99,39 +99,18 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (materialMenu.getState().equals(IconState.BURGER)) {
-                    materialMenu.animatePressedState(IconState.ARROW);
-                    openDrawer();
-                } else {
-                    materialMenu.animatePressedState(IconState.BURGER);
-                    closeDrawer();
-                }
-            }
-        });
-
-        mDrawerLayout.setDrawerListener(new DrawerLayout.SimpleDrawerListener() {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                materialMenu.setTransformationOffset(AnimationState.BURGER_ARROW,
-                        isDrawerOpened ? 2 - slideOffset : slideOffset);
-            }
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                isDrawerOpened = true;
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                isDrawerOpened = false;
-            }
-
-        });
-        materialMenu.setState(IconState.BURGER);
-
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (materialMenu.getState().equals(IconState.BURGER)) {
+//                    materialMenu.animatePressedState(IconState.ARROW);
+//                    openDrawer();
+//                } else {
+//                    materialMenu.animatePressedState(IconState.BURGER);
+//                    closeDrawer();
+//                }
+//            }
+//        });
     }
 
     @Override

@@ -5,7 +5,7 @@
              android:layout_height="240dp"
         android:layout_marginBottom="30dp">
 
-    <com.android.volley.toolbox.NetworkImageView
+    <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"

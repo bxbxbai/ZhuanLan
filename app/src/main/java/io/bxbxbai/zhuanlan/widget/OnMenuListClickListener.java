@@ -5,7 +5,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.AdapterView;
-import io.bxbxbai.common.T;
+
+import io.bxbxbai.common.Tips;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.ui.AllPeopleActivity;
 import io.bxbxbai.zhuanlan.ui.RecentPostListActivity;
@@ -35,7 +36,7 @@ public class OnMenuListClickListener implements AdapterView.OnItemClickListener 
 
         switch (item.id) {
             case R.id.menu_search :
-                T.showToast("Coming soon...");
+                Tips.showToast("Coming soon...");
                 break;
 
             case R.id.menu_all_people:
