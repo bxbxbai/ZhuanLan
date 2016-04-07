@@ -20,6 +20,25 @@ public class Avatar implements Parcelable {
     @SerializedName(TEMPLATE)
     private String template;
 
+
+    public static final Parcelable.Creator<Avatar> CREATOR = new Parcelable.Creator<Avatar>() {
+        public Avatar createFromParcel(Parcel source) {
+            return new Avatar(source);
+        }
+
+        public Avatar[] newArray(int size) {
+            return new Avatar[size];
+        }
+    };
+
+    public Avatar() {
+    }
+
+    private Avatar(Parcel in) {
+        this.id = in.readString();
+        this.template = in.readString();
+    }
+
     public String getId() {
         return id;
     }
@@ -47,21 +66,4 @@ public class Avatar implements Parcelable {
         dest.writeString(this.template);
     }
 
-    public Avatar() {
-    }
-
-    private Avatar(Parcel in) {
-        this.id = in.readString();
-        this.template = in.readString();
-    }
-
-    public static final Parcelable.Creator<Avatar> CREATOR = new Parcelable.Creator<Avatar>() {
-        public Avatar createFromParcel(Parcel source) {
-            return new Avatar(source);
-        }
-
-        public Avatar[] newArray(int size) {
-            return new Avatar[size];
-        }
-    };
 }

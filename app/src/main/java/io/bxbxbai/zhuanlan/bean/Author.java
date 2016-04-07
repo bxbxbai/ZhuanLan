@@ -45,6 +45,28 @@ public class Author implements Parcelable {
     @SerializedName(NAME)
     private String name;
 
+    public static final Parcelable.Creator<Author> CREATOR = new Parcelable.Creator<Author>() {
+        public Author createFromParcel(Parcel source) {
+            return new Author(source);
+        }
+
+        public Author[] newArray(int size) {
+            return new Author[size];
+        }
+    };
+
+    public Author() {
+    }
+
+    private Author(Parcel in) {
+        this.bio = in.readString();
+        this.hash = in.readString();
+        this.description = in.readString();
+        this.profileUrl = in.readString();
+        this.avatar = in.readParcelable(Avatar.class.getClassLoader());
+        this.slug = in.readString();
+        this.name = in.readString();
+    }
 
     public String getBio() {
         return bio;
@@ -117,27 +139,4 @@ public class Author implements Parcelable {
         dest.writeString(this.slug);
         dest.writeString(this.name);
     }
-
-    public Author() {
-    }
-
-    private Author(Parcel in) {
-        this.bio = in.readString();
-        this.hash = in.readString();
-        this.description = in.readString();
-        this.profileUrl = in.readString();
-        this.avatar = in.readParcelable(Avatar.class.getClassLoader());
-        this.slug = in.readString();
-        this.name = in.readString();
-    }
-
-    public static final Parcelable.Creator<Author> CREATOR = new Parcelable.Creator<Author>() {
-        public Author createFromParcel(Parcel source) {
-            return new Author(source);
-        }
-
-        public Author[] newArray(int size) {
-            return new Author[size];
-        }
-    };
 }
