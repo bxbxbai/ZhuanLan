@@ -45,7 +45,7 @@ public class FastBlur {
         }
 
         if (radius < 1) {
-            return (null);
+            return null;
         }
 
         int w = bitmap.getWidth();
@@ -59,17 +59,17 @@ public class FastBlur {
         int wh = w * h;
         int div = radius + radius + 1;
 
-        int r[] = new int[wh];
-        int g[] = new int[wh];
-        int b[] = new int[wh];
+        int[] r = new int[wh];
+        int[] g = new int[wh];
+        int[] b = new int[wh];
         int rsum, gsum, bsum, x, y, i, p, yp, yi, yw;
-        int vmin[] = new int[Math.max(w, h)];
+        int[] vmin = new int[Math.max(w, h)];
 
         int divsum = (div + 1) >> 1;
         divsum *= divsum;
-        int dv[] = new int[256 * divsum];
+        int[] dv = new int[256 * divsum];
         for (i = 0; i < 256 * divsum; i++) {
-            dv[i] = (i / divsum);
+            dv[i] = i / divsum;
         }
 
         yw = yi = 0;
@@ -239,6 +239,6 @@ public class FastBlur {
 
         bitmap.setPixels(pix, 0, w, 0, 0, w, h);
 
-        return (bitmap);
+        return bitmap;
     }
 }
