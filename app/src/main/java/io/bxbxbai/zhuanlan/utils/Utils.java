@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class Utils {
 
+    private Utils() {}
+
     private static final int MINUTE = 60;
     private static final int HOUR = MINUTE * 60;
     private static final int DAY = HOUR * 24;
