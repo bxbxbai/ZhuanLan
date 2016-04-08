@@ -59,8 +59,6 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
         child.setY(mStartYPosition - distanceYToSubtract);
         child.setX(mStartXPosition - distanceXToSubtract);
 
-        int proportionalAvatarSize = (int) (mAvatarMaxSize * (expandedPercentageFactor));
-
         CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
         lp.width = (int) (mStartHeight - heightToSubtract);
         lp.height = (int) (mStartHeight - heightToSubtract);

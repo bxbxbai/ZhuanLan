@@ -130,7 +130,6 @@ public class EntryActivity extends Activity {
     }
 
     private void blur2(Bitmap bkg, View view) {
-        long startMs = System.currentTimeMillis();
         float scaleFactor = 1;
         float radius = 20;
 //        if (downScale.isChecked()) {

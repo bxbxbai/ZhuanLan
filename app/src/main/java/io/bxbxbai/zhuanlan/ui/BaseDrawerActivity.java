@@ -11,7 +11,5 @@ public class BaseDrawerActivity extends BaseActivity {
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.flContentRoot);
-
     }
 }

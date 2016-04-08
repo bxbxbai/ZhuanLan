@@ -53,7 +53,6 @@ public class PeopleListFragment extends Fragment {
 
     private void getUserIdList() {
         String[] ids = getActivity().getResources().getStringArray(R.array.people_ids);
-        List<UserEntity> list = DataCenter.instance().queryAll(UserEntity.class);
 
         Map<String, UserEntity> map = new ArrayMap<>();
 //        for (UserEntity entity : list) {
