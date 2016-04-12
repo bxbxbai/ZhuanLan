@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import butterknife.ButterKnife;
-import io.bxbxbai.common.activity.BaseActivity;
 import io.bxbxbai.common.view.CircularLoadingView;
 import io.bxbxbai.zhuanlan.R;
 
@@ -31,5 +30,4 @@ public class ListBaseActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mLoadingView = ButterKnife.findById(this, R.id.v_loading);
     }
-
 }

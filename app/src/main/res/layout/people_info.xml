@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="user"
-            type="io.bxbxbai.zhuanlan.bean.UserEntity"/>
+            type="io.bxbxbai.zhuanlan.bean.UserEntity" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <io.bxbxbai.zhuanlan.widget.RippleRelativeLayout
+        <RelativeLayout
             android:id="@+id/ripple_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_8dp"
             android:layout_marginRight="@dimen/margin_8dp"
             android:layout_marginTop="@dimen/margin_4dp"
-            android:background="@drawable/bg_parent_rounded_corner"
-            app:rv_color="#ccc"
-            app:rv_rippleDuration="200"
-            app:rv_type="rectangle">
+            android:background="@drawable/bg_parent_rounded_corner">
 
             <io.bxbxbai.common.view.CircleImageView
                 android:id="@+id/avatar"
@@ -42,7 +40,7 @@
                 android:layout_toRightOf="@id/avatar"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="bxbxbai"
+                android:text="@{user.zhuanlanName}"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
@@ -53,7 +51,7 @@
                 android:layout_below="@id/tv_name"
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@id/avatar"
-                android:text="123人关注"
+                android:text="@{@string/follower(user.followerCount)}"
                 android:textColor="#9d9e9f"
                 android:textSize="14sp" />
 
@@ -77,7 +75,7 @@
                 android:layout_below="@id/tv_name"
                 android:layout_marginTop="4dp"
                 android:layout_toRightOf="@id/tv_separator"
-                android:text="12 专栏"
+                android:text="@{@string/post_count(user.postCount)}"
                 android:textColor="#9d9e9f"
                 android:textSize="14sp" />
 
@@ -92,8 +90,8 @@
                 android:layout_toRightOf="@id/avatar"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="给您不一样的看日本的视角，带您体会不一样的日本文化，让您的日本之旅更有意境。"
+                android:text="@{user.description}"
                 android:textSize="14sp" />
-        </io.bxbxbai.zhuanlan.widget.RippleRelativeLayout>
+        </RelativeLayout>
     </FrameLayout>
 </layout>

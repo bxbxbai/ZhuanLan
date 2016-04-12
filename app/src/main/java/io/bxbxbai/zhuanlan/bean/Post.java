@@ -94,8 +94,8 @@ public class Post implements Parcelable {
         return commentsCount;
     }
 
-    public int getLikesCount() {
-        return likesCount;
+    public String getLikesCount() {
+        return String.valueOf(likesCount);
     }
 
     public class Comment {

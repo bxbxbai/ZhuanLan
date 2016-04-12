@@ -13,10 +13,8 @@ import io.bxbxbai.zhuanlan.core.DataCenter;
  *
  * @author bxbxbai
  */
-public class App extends Application {
-    private static App mContext;
-
-    public static final String PACKAGE_NAME = "io.bxbxbai.zhuanlan";
+public class ZhuanlanApplication extends Application {
+    private static ZhuanlanApplication mContext;
 
     private static final Choreographer.FrameCallback FRAME_CALLBACK = new Choreographer.FrameCallback() {
         @Override
@@ -59,7 +57,7 @@ public class App extends Application {
                 .build());
     }
 
-    public static App getInstance() {
+    public static ZhuanlanApplication getInstance() {
         return mContext;
     }
 }

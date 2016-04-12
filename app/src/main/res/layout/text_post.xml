@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+                name="post" type="io.bxbxbai.zhuanlan.bean.Post"/>
+        <import type="io.bxbxbai.zhuanlan.utils.Utils"/>
+    </data>
+
+    <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:background="@android:color/white"
+            android:layout_height="wrap_content"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
+            android:layout_marginBottom="30dp">
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:maxLines="2"
+                  android:textColor="#333"
+                  android:textSize="20sp"
+                  android:layout_marginTop="@dimen/margin_16dp"
+                  android:layout_marginBottom="@dimen/margin_8dp"
+                  android:text="@{post.title}"
+                  android:id="@+id/tv_title"/>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:maxLines="9"
+                  android:text="@{post.summary}"
+                  android:textSize="14sp"
+                  android:textColor="#808080"
+                  android:layout_below="@id/tv_title"
+                  android:id="@+id/tv_summary"/>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/margin_8dp"
+                      android:layout_marginBottom="@dimen/margin_8dp"
+                      android:layout_below="@id/tv_summary">
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/tv_name"
+                      android:text="@{post.authorName}"
+                      android:textColor="#333"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="match_parent"
+                      android:layout_marginLeft="@dimen/margin_4dp"
+                      android:layout_marginRight="@dimen/margin_4dp"
+                      android:text=" · "/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/tv_date"
+                      android:text="@{Utils.convertPublishTime(post.publishedTime)}"
+                      android:textColor="#333"/>
+            <View android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="1"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/tv_comment_count"
+                      android:text="@{@string/comment_count(post.commentsCount)}"
+                      android:layout_marginLeft="@dimen/margin_8dp"
+                      android:drawableLeft="@drawable/ic_comment_black_18dp"
+                      android:drawablePadding="5dp"
+                      android:textColor="#333"/>
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:id="@+id/tv_like_count"
+                      android:text="@{post.likesCount}"
+                      android:layout_marginLeft="@dimen/margin_8dp"
+                      android:drawableLeft="@drawable/ic_thumb_up_black_18dp"
+                      android:textColor="#333"
+                      android:drawablePadding="5dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

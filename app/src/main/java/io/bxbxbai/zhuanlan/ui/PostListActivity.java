@@ -52,7 +52,7 @@ public class PostListActivity extends ListBaseActivity {
         }
         recyclerView.setVisibility(View.VISIBLE);
         mLoadingView.setVisibility(View.GONE);
-        adapter.addItemList(posts);
+        adapter.addAllItems(posts);
     }
 
     public void requestPostList(int page) {

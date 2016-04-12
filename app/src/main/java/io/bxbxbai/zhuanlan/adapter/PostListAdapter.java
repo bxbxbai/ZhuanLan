@@ -4,17 +4,10 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-
-import io.bxbxbai.zhuanlan.R;
+import io.bxbxbai.common.view.BaseRecyclerAdapter;
+import io.bxbxbai.common.view.BaseViewHolder;
 import io.bxbxbai.zhuanlan.bean.Post;
 import io.bxbxbai.zhuanlan.ui.StoryActivity;
-import io.bxbxbai.zhuanlan.utils.Utils;
-import io.bxbxbai.zhuanlan.widget.BaseRecyclerAdapter;
-import io.bxbxbai.zhuanlan.widget.BaseViewHolder;
 
 /**
  *
@@ -27,6 +20,12 @@ public class PostListAdapter extends BaseRecyclerAdapter<Post> {
 
     public PostListAdapter(Context context) {
         super(context);
+        setOnItemClickListener(new OnItemClickListener<Post>() {
+            @Override
+            public void onItemClick(View view, int i, Post post) {
+                StoryActivity.startActivity(getContext(), post);
+            }
+        });
     }
 
     @Override
@@ -39,81 +38,7 @@ public class PostListAdapter extends BaseRecyclerAdapter<Post> {
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder<Post> holder, int position) {
-        final Post post = getItem(position);
-        holder.bind(post);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                StoryActivity.startActivity(getContext(), post);
-            }
-        });
-    }
-
-    @Override
     public int getItemViewType(int position) {
-        Post post = getItem(position);
-        return TextUtils.isEmpty(post.getImageUrl()) ? VIEW_TYPE_TEXT : VIEW_TYPE_IMAGE;
-    }
-
-    private class ImagePostViewHolder extends BaseViewHolder<Post> {
-
-        private TextView mTitle;
-        private TextView mAuthor;
-        private TextView mCommentCount;
-        private TextView mDays;
-        private TextView mLike;
-
-        private ImageView imageView;
-
-        public ImagePostViewHolder(ViewGroup parent) {
-            super(parent, R.layout.layout_post_image);
-            mTitle = findView(R.id.tv_title);
-            mAuthor = findView(R.id.tv_name);
-            mCommentCount = findView(R.id.tv_comment_count);
-            mDays = findView(R.id.tv_date);
-            mLike = findView(R.id.tv_like_count);
-            imageView = findView(R.id.iv_pic);
-        }
-
-        @Override
-        public void bind(Post post) {
-            mTitle.setText(post.getTitle());
-            mAuthor.setText(post.getAuthorName());
-            mCommentCount.setText(getString(R.string.comment_count, post.getCommentsCount()));
-            mDays.setText(Utils.convertPublishTime(post.getPublishedTime()));
-            mLike.setText(String.valueOf(post.getLikesCount()));
-            Glide.with(getContext()).load(post.getImageUrl()).crossFade().into(imageView);
-        }
-    }
-
-    private class TextPostViewHolder extends BaseViewHolder<Post> {
-
-        private TextView mTitle;
-        private TextView mAuthor;
-        private TextView mCommentCount;
-        private TextView mDays;
-        private TextView mLike;
-        private TextView mSummary;
-
-        public TextPostViewHolder(ViewGroup parent) {
-            super(parent, R.layout.layout_post_text);
-            mTitle = findView(R.id.tv_title);
-            mAuthor = findView(R.id.tv_name);
-            mCommentCount = findView(R.id.tv_comment_count);
-            mDays = findView(R.id.tv_date);
-            mLike = findView(R.id.tv_like_count);
-            mSummary = findView(R.id.tv_summary);
-        }
-
-        @Override
-        public void bind(Post post) {
-            mTitle.setText(post.getTitle());
-            mAuthor.setText(post.getAuthorName());
-            mCommentCount.setText(getString(R.string.comment_count, post.getCommentsCount()));
-            mDays.setText(Utils.convertPublishTime(post.getPublishedTime()));
-            mLike.setText(String.valueOf(post.getLikesCount()));
-            mSummary.setText(Utils.removeHtmlCode(post.getSummary()));
-        }
+        return TextUtils.isEmpty( getItem(position).getImageUrl()) ? VIEW_TYPE_TEXT : VIEW_TYPE_IMAGE;
     }
 }

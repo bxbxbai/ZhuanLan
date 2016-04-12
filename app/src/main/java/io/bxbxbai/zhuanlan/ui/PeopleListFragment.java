@@ -56,9 +56,9 @@ public class PeopleListFragment extends Fragment {
         List<UserEntity> list = DataCenter.instance().queryAll(UserEntity.class);
 
         Map<String, UserEntity> map = new ArrayMap<>();
-//        for (UserEntity entity : list) {
-//            map.put(entity.getSlug(), entity);
-//        }
+        for (UserEntity entity : list) {
+            map.put(entity.getSlug(), entity);
+        }
 
         for (String id : ids) {
             UserEntity entity = map.get(id);

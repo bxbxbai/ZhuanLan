@@ -12,10 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+
 import butterknife.ButterKnife;
 import io.bxbxbai.common.Tips;
 import io.bxbxbai.common.activity.BaseActivity;
-import io.bxbxbai.zhuanlan.App;
+import io.bxbxbai.zhuanlan.ZhuanlanApplication;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.core.ZhuanLanWebChromeClient;
 import io.bxbxbai.zhuanlan.core.ZhuanLanWebViewClient;
@@ -95,7 +96,7 @@ public class WebActivity extends BaseActivity {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                App.getInstance().startActivity(new Intent("com.bxbxbai.zhuanlan.ui.activity.AboutActivity"));
+                ZhuanlanApplication.getInstance().startActivity(new Intent("com.bxbxbai.zhuanlan.ui.activity.AboutActivity"));
                 Log.i(TAG, "onclick");
             }
         });

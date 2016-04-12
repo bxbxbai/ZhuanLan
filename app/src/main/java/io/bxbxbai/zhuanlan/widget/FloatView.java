@@ -1,4 +1,5 @@
 package io.bxbxbai.zhuanlan.widget;
+
 import android.content.Context;
 import android.os.SystemClock;
 import android.view.*;
@@ -6,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import io.bxbxbai.zhuanlan.R;
 
 public class FloatView extends RelativeLayout {
@@ -15,15 +17,11 @@ public class FloatView extends RelativeLayout {
     private int x;
     private int y;
 
-    private View layout;
     private ImageView imageLogo;
     private TextView textTraffic;
-    private ProgressBar pBar;
-    private WindowManager wm = (WindowManager) getContext()
-            .getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
-    private WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
-
-    private Context context;
+    private ProgressBar progressBar;
+    private WindowManager windowManager;
+    private WindowManager.LayoutParams wmParams;
 
     private Boolean showFlag = false;
     private Boolean updateFlag = false;
@@ -32,26 +30,26 @@ public class FloatView extends RelativeLayout {
 
     public FloatView(Context context) {
         super(context);
-        LayoutInflater inflater = LayoutInflater.from(context);
-        layout = inflater.inflate(R.layout.layout_floatview, null);
-        imageLogo = (ImageView) layout.findViewById(R.id.image_logo);
-        textTraffic = (TextView) layout.findViewById(R.id.text_traffic);
-        pBar = (ProgressBar) layout.findViewById(R.id.bar_progressbar);
-        addView(layout);
-        this.context = context;
+        windowManager = (WindowManager) getContext().getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        wmParams = new WindowManager.LayoutParams();
+
+        LayoutInflater.from(context).inflate(R.layout.layout_floatview, this);
+        imageLogo = (ImageView) findViewById(R.id.image_logo);
+        textTraffic = (TextView) findViewById(R.id.text_traffic);
+        progressBar = (ProgressBar) findViewById(R.id.bar_progressbar);
 
         textTraffic.setText("test");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true){
+                while (true) {
                     SystemClock.sleep(1000);
                     i += 20;
                     FloatView.this.post(new Runnable() {
                         @Override
                         public void run() {
-                            pBar.setProgress(i);
+                            progressBar.setProgress(i);
                         }
                     });
                     if (i > 100) {
@@ -99,16 +97,13 @@ public class FloatView extends RelativeLayout {
 
     public void removeView() {
         if (showFlag) {
-            wm.removeView(this);
+            windowManager.removeView(this);
             showFlag = false;
         }
-
     }
-
 
     public void updateViewPosition() {
-        wm.updateViewLayout(this, wmParams);
+        windowManager.updateViewLayout(this, wmParams);
         showFlag = true;
     }
-
 }

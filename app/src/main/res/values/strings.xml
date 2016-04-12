@@ -22,4 +22,6 @@
     <string name="recent_news">Article of last week</string>
     <string name="type_here">type here</string>
     <string name="clear_input">clear input</string>
+    <string name="post_name_time">%1$s ● %2$s </string>
+    <string name="post_like_comment_count">%1$s赞 ● %2$s条评论</string>
 </resources>
