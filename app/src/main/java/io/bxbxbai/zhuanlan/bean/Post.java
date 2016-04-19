@@ -46,6 +46,32 @@ public class Post implements Parcelable {
     @SerializedName("likesCount")
     private int likesCount;
 
+    public static final Parcelable.Creator<Post> CREATOR = new Parcelable.Creator<Post>() {
+        public Post createFromParcel(Parcel source) {
+            return new Post(source);
+        }
+
+        public Post[] newArray(int size) {
+            return new Post[size];
+        }
+    };
+
+    public Post() {
+    }
+
+    private Post(Parcel in) {
+        this.publishedTime = in.readString();
+        this.author = in.readParcelable(Author.class.getClassLoader());
+        this.title = in.readString();
+        this.imageUrl = in.readString();
+        this.summary = in.readString();
+        this.content = in.readString();
+        this.url = in.readString();
+        this.href = in.readString();
+        this.commentsCount = in.readInt();
+        this.likesCount = in.readInt();
+    }
+
     public String getPublishedTime() {
         return publishedTime;
     }
@@ -130,29 +156,4 @@ public class Post implements Parcelable {
         dest.writeInt(this.likesCount);
     }
 
-    public Post() {
-    }
-
-    private Post(Parcel in) {
-        this.publishedTime = in.readString();
-        this.author = in.readParcelable(Author.class.getClassLoader());
-        this.title = in.readString();
-        this.imageUrl = in.readString();
-        this.summary = in.readString();
-        this.content = in.readString();
-        this.url = in.readString();
-        this.href = in.readString();
-        this.commentsCount = in.readInt();
-        this.likesCount = in.readInt();
-    }
-
-    public static final Parcelable.Creator<Post> CREATOR = new Parcelable.Creator<Post>() {
-        public Post createFromParcel(Parcel source) {
-            return new Post(source);
-        }
-
-        public Post[] newArray(int size) {
-            return new Post[size];
-        }
-    };
 }
