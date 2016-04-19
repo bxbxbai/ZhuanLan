@@ -1,17 +1,20 @@
 # 知乎专栏App
 
-最近一直在利用空余时间开发一个完整的App，名字就叫“专栏”。开发这个App的目的主要是为了练练手，熟悉开发一个完整App的流程。就像造房子，亲手打地基，搬砖头，垒砖头，还自己装修（虽然装修的不好看）
+空余时间开发的一个App，非官方知乎专栏App，里面的内容全部来自知乎，内容版权也是知乎的，我挺喜欢知乎的
+
+起初，开始这个项目主要是为了练手，熟悉开发一个完整App的流程。就像造房子，亲手打地基，搬砖头，垒砖头，还自己装修（设计）
+
+后来，这个项目变成了我熟悉Android新技术的工程，比如最近我集成了Retrofit2以及Databinding进这个项目，未来我应该还会使用rxJava以及React-Native等等
 
 http://bxbxbai.gitcafe.io/2015/03/26/zhuanlan/
 
-下载使用： http://vdisk.weibo.com/s/GGofvoXe__E
+### 下载使用： [http://fir.im/zhuanlan](http://fir.im/zhuanlan)
 
 
 ##1.1版本
 现在App在Android 4.4系统上支持沉浸式状态栏了，个人感觉更加好看了，增加了抽屉菜单功能（部分功能还未完成）。
 
 最新添加了“最近一周文章”功能，这功能会显示所有内置专栏作者最近一周的文章列表，并且所有的文章会按时间排序。还添加了“查看原网页”功能
-
 
 
 ##看截图：
@@ -28,27 +31,21 @@ http://bxbxbai.gitcafe.io/2015/03/26/zhuanlan/
 
 ![文章内容][4]
 
-![网页版][5]
-
-
-
-
-
 ## Dependency - 依赖
   - Java Development Kit (JDK) 7 +
-  - com.android.tools.build:gradle:1.0.0
+  - com.android.tools.build:gradle:2.0.0
   - Android SDK
-    - Android SDK Build-tools 21.1.2
+    - SDK 23
+    - build tool 23.0.3
 
 
 ## Build - 构建
 
     git clone https://github.com/bxbxbai/ZhuanLan.git
 
-用最新的IntelliJ IDE导入工程（Import Project），然后等待IDE下载gradle和依赖包即可
+用最新的Android Studio导入工程（Import Project），然后等待IDE下载gradle和依赖包即可
 
 This project uses the Gradle build system. To build this project, use the "gradlew build" command or use "Import Project" in Android Studio.
-
 
 
 ##将要做的
@@ -60,12 +57,13 @@ This project uses the Gradle build system. To build this project, use the "gradl
 
 ##关于我
 
-[http://bxbxbai.gitcafe.io/about/][6]
+[http://bxbxbai.gitcafe.io/about/][5]
 
 
-  [1]: http://i2.tietuku.com/0753db9e1804f6b3.png
-  [2]: http://i2.tietuku.com/2970239f71296398.png
-  [3]: http://i2.tietuku.com/6fa9fc0c9c2de428.png
-  [4]: http://i2.tietuku.com/ace4ca3200ad7a09.png
-  [5]: http://i2.tietuku.com/da044bdfabfe3e4f.png
-  [6]: http://bxbxbai.gitcafe.io/about/
+  [1]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/home.png
+  [2]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/list.png
+  [3]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/story.png
+  [4]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/story2.png
+  [5]: http://bxbxbai.gitcafe.io/about/
+  
+  
