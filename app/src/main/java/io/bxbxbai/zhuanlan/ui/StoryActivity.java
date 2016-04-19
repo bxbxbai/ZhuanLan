@@ -17,29 +17,35 @@ import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
  */
 public class StoryActivity extends BaseActivity {
 
+    private Post post;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.coordinator_template);
 
-        final Post post = getIntent().getParcelableExtra(StoryFragment.KEY_POST);
+        post = getIntent().getParcelableExtra(StoryFragment.KEY_POST);
         if (post == null) {
             finish();
             return;
         }
-//
-//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem menuItem) {
-//                return menuItem.getItemId() == R.id.action_origin_web_page &&
-//                        WebActivity.start(StoryActivity.this, ZhuanLanApi.ZHUAN_LAN_URL + post.getUrl());
-//            }
-//        });
 
-        setTitle(post.getTitle());
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, StoryFragment.newInstance(post)).commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, StoryFragment.newInstance(post)).commit();
     }
 
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        setTitle(post.getTitle());
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                return menuItem.getItemId() == R.id.action_origin_web_page &&
+                        WebActivity.start(StoryActivity.this, ZhuanLanApi.ZHUAN_LAN_URL + post.getUrl());
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
