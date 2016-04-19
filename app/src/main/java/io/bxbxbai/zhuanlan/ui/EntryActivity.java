@@ -16,6 +16,7 @@ import android.os.SystemClock;
 import android.renderscript.Allocation;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
@@ -75,8 +76,8 @@ public class EntryActivity extends Activity {
     }
 
     private void animateImage() {
-        ObjectAnimator animatorX = ObjectAnimator.ofFloat(mSplashImage, "scaleX", 1f, SCALE_END);
-        ObjectAnimator animatorY = ObjectAnimator.ofFloat(mSplashImage, "scaleY", 1f, SCALE_END);
+        ObjectAnimator animatorX = ObjectAnimator.ofFloat(mSplashImage, View.SCALE_X, 1f, SCALE_END);
+        ObjectAnimator animatorY = ObjectAnimator.ofFloat(mSplashImage, View.SCALE_Y, 1f, SCALE_END);
 
         AnimatorSet set = new AnimatorSet();
         set.setDuration(ANIMATION_DURATION).play(animatorX).with(animatorY);

@@ -27,14 +27,14 @@ public class StoryActivity extends BaseActivity {
             finish();
             return;
         }
-
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                return menuItem.getItemId() == R.id.action_origin_web_page &&
-                        WebActivity.start(StoryActivity.this, ZhuanLanApi.ZHUAN_LAN_URL + post.getUrl());
-            }
-        });
+//
+//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem menuItem) {
+//                return menuItem.getItemId() == R.id.action_origin_web_page &&
+//                        WebActivity.start(StoryActivity.this, ZhuanLanApi.ZHUAN_LAN_URL + post.getUrl());
+//            }
+//        });
 
         setTitle(post.getTitle());
         getSupportFragmentManager().beginTransaction().replace(R.id.container, StoryFragment.newInstance(post)).commit();

@@ -16,7 +16,6 @@ public class AllPeopleActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_people);
-        initToolBar();
         setTitle(R.string.all_people);
 
         getSupportFragmentManager().beginTransaction().add(R.id.container,

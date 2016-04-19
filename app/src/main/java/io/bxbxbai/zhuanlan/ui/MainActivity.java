@@ -3,31 +3,21 @@ package io.bxbxbai.zhuanlan.ui;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.ViewConfiguration;
 import android.view.Window;
-import android.widget.FrameLayout;
 import android.widget.ListView;
-
-import com.readystatesoftware.systembartint.SystemBarTintManager;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import butterknife.ButterKnife;
-import io.bxbxbai.common.Tips;
 import io.bxbxbai.common.utils.CommonExecutor;
 import io.bxbxbai.common.utils.PrefUtils;
 import io.bxbxbai.zhuanlan.R;
 import io.bxbxbai.zhuanlan.widget.DrawerMenuContent;
 import io.bxbxbai.zhuanlan.widget.MenuAdapter;
 import io.bxbxbai.zhuanlan.widget.OnMenuListClickListener;
+
+import java.lang.reflect.Method;
 
 public class MainActivity extends BaseActivity {
 
@@ -40,7 +30,6 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 //        ChoreographerHelper.getInstance(this).start();
         mDrawerLayout = ButterKnife.findById(this, R.id.drawerLayout);
-        initToolBar();
         initToolbarAndDrawer();
 
         DrawerMenuContent content = new DrawerMenuContent(this);
@@ -50,7 +39,6 @@ public class MainActivity extends BaseActivity {
 
         getSupportFragmentManager().beginTransaction().add(R.id.container,
                 PeopleListFragment.newInstance()).commit();
-        setOverflowShowAlways();
 
         //第一次启动，会打开抽屉菜单
         CommonExecutor.MAIN_HANDLER.post(new Runnable() {
@@ -70,34 +58,23 @@ public class MainActivity extends BaseActivity {
 //        NewsDetailActivity.startActivity(this, "http://music.163.com/m/topic/194001?type=android");
     }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT) {
-            //貌似mDrawerLayout不能适应沉浸式通知栏的fitSystemWindow属性，必须手动设置它的topMargin值
-            SystemBarTintManager.SystemBarConfig config = mTintManager.getConfig();
-            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) mDrawerLayout.getLayoutParams();
-            params.topMargin = config.getStatusBarHeight();
-        }
-    }
-
     private void initToolbarAndDrawer() {
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.action_settings:
-                        Tips.showToast("Coming soon...");
-                        break;
-//                        return prepareIntent(PrefsActivity.class);
-//                    case R.id.action_search:
-//                        return PostListActivity.start(MainActivity.this, "limiao");
-                    case R.id.action_about:
-                        return WebActivity.start(MainActivity.this, WebActivity.URL_BXBXBAI, "About Me");
-                }
-                return false;
-            }
-        });
+//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.action_settings:
+//                        Tips.showToast("Coming soon...");
+//                        break;
+////                        return prepareIntent(PrefsActivity.class);
+////                    case R.id.action_search:
+////                        return PostListActivity.start(MainActivity.this, "limiao");
+//                    case R.id.action_about:
+//                        return WebActivity.start(MainActivity.this, WebActivity.URL_BXBXBAI, "About Me");
+//                }
+//                return false;
+//            }
+//        });
 
 //        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -168,22 +145,6 @@ public class MainActivity extends BaseActivity {
             }
         }
         return super.onMenuOpened(featureId, menu);
-    }
-
-    private void setOverflowShowAlways() {
-        ViewConfiguration conf = ViewConfiguration.get(this);
-        try {
-            Field menuKeyField = conf.getClass().getDeclaredField("sHasPermanentMenuKey");
-            menuKeyField.setAccessible(true);
-            menuKeyField.setBoolean(conf, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
     public static void start(Activity activity) {

@@ -2,15 +2,17 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowActionBar">true</item>
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">false</item>
     </style>
 
-    <style name="AppTheme.FullScreen" parent="AppTheme">
+    <style name="AppTheme.FullScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>
-        <item name="colorAccent">@color/accent</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 
@@ -23,12 +25,6 @@
 
     <style name="AppTheme.Toolbar.WhiteBackground" parent="AppTheme.Toolbar">
         <item name="android:windowBackground">@android:color/white</item>
-    </style>
-
-    <style name="Toolbar" parent="Theme.AppCompat">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primaryDark</item>
-        <item name="colorAccent">@color/accent</item>
     </style>
 
     <style name="FloatProgressBar" parent="@android:style/Widget.ProgressBar.Horizontal">
