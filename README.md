@@ -19,13 +19,20 @@ http://bxbxbai.gitcafe.io/2015/03/26/zhuanlan/
 
 ##看截图：
 
-<img src="https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/home.png" alt="闪屏" style="max-width:50%;">
 
-<img src="https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/list.png" alt="2" style="max-width:50%;">
+=======
 
-<img src="https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/story.png" alt="3" style="max-width:50%;">
 
-<img src="https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/story2.png" alt="4" style="max-width:50%;">
+![闪屏][1]
+
+
+![专栏列表][2]
+
+
+![文章列表][3]
+
+
+![文章内容][4]
 
 
 ## Dependency - 依赖
@@ -54,9 +61,13 @@ This project uses the Gradle build system. To build this project, use the "gradl
 
 ##关于我
 
-[http://bxbxbai.gitcafe.io/about/](http://bxbxbai.gitcafe.io/about/)
+[http://bxbxbai.github.io/about/][5]
 
 
+  [1]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/home.png
+  [2]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/list.png
+  [3]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/story.png
+  [4]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/story2.png
+  [5]: http://bxbxbai.github.io/about/
 
-  
   
