@@ -18,6 +18,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         this.toolbar = ButterKnife.findById(this, R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             this.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     BaseActivity.this.finish();

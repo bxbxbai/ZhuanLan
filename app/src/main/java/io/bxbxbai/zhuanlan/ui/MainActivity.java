@@ -6,10 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.Window;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.bxbxbai.common.Tips;
 import io.bxbxbai.common.utils.CommonExecutor;
 import io.bxbxbai.common.utils.PrefUtils;
 import io.bxbxbai.zhuanlan.R;
@@ -17,25 +22,28 @@ import io.bxbxbai.zhuanlan.widget.DrawerMenuContent;
 import io.bxbxbai.zhuanlan.widget.MenuAdapter;
 import io.bxbxbai.zhuanlan.widget.OnMenuListClickListener;
 
-import java.lang.reflect.Method;
-
 public class MainActivity extends BaseActivity {
 
-    private DrawerLayout mDrawerLayout;
-    private boolean isDrawerOpened;
+    @Bind(R.id.drawer_list)
+    protected ListView listView;
+    @Bind(R.id.toolbar)
+    protected Toolbar toolbar;
+    @Bind(R.id.drawerLayout)
+    protected DrawerLayout drawerLayout;
+
+    private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 //        ChoreographerHelper.getInstance(this).start();
-        mDrawerLayout = ButterKnife.findById(this, R.id.drawerLayout);
         initToolbarAndDrawer();
 
         DrawerMenuContent content = new DrawerMenuContent(this);
-        ListView listView = ButterKnife.findById(this, R.id.drawer_list);
         listView.setAdapter(new MenuAdapter(this, content.getItems()));
-        listView.setOnItemClickListener(new OnMenuListClickListener(this, mDrawerLayout));
+        listView.setOnItemClickListener(new OnMenuListClickListener(this, drawerLayout));
 
         getSupportFragmentManager().beginTransaction().add(R.id.container,
                 PeopleListFragment.newInstance()).commit();
@@ -59,40 +67,38 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initToolbarAndDrawer() {
-//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.action_settings:
-//                        Tips.showToast("Coming soon...");
-//                        break;
-////                        return prepareIntent(PrefsActivity.class);
-////                    case R.id.action_search:
-////                        return PostListActivity.start(MainActivity.this, "limiao");
-//                    case R.id.action_about:
-//                        return WebActivity.start(MainActivity.this, WebActivity.URL_BXBXBAI, "About Me");
-//                }
-//                return false;
-//            }
-//        });
-
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (materialMenu.getState().equals(IconState.BURGER)) {
-//                    materialMenu.animatePressedState(IconState.ARROW);
-//                    openDrawer();
-//                } else {
-//                    materialMenu.animatePressedState(IconState.BURGER);
-//                    closeDrawer();
-//                }
-//            }
-//        });
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.app_name, R.string.app_name);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_settings:
+                        Tips.showToast("Coming soon...");
+                        break;
+                    case R.id.action_about:
+                        return WebActivity.start(MainActivity.this, WebActivity.URL_BXBXBAI, "About Me");
+                }
+                return false;
+            }
+        });
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    closeDrawer();
+                } else {
+                    openDrawer();
+                }
+            }
+        });
     }
 
     @Override
@@ -110,16 +116,16 @@ public class MainActivity extends BaseActivity {
 
     public boolean closeDrawer() {
         // If the drawer is open, back will close it
-        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-            mDrawerLayout.closeDrawers();
+        if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawers();
             return true;
         }
         return false;
     }
 
     private boolean openDrawer() {
-        if (mDrawerLayout != null) {
-            mDrawerLayout.openDrawer(GravityCompat.START);
+        if (drawerLayout != null) {
+            drawerLayout.openDrawer(GravityCompat.START);
             return true;
         }
         return false;
@@ -129,22 +135,6 @@ public class MainActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
-
-    @Override
-    public boolean onMenuOpened(int featureId, Menu menu) {
-        if (featureId == Window.FEATURE_ACTION_BAR && menu != null) {
-            if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
-                try {
-                    Method m = menu.getClass().getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
-                    m.setAccessible(true);
-                    m.invoke(menu, true);
-                } catch (Exception e) {
-
-                }
-            }
-        }
-        return super.onMenuOpened(featureId, menu);
     }
 
     public static void start(Activity activity) {
