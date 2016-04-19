@@ -53,7 +53,7 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
         float distanceXToSubtract = ((mStartXPosition - mFinalXPosition)
             * (1f - expandedPercentageFactor)) + (child.getWidth()/2);
 
-        float heightToSubtract = ((mStartHeight - finalHeight) * (1f - expandedPercentageFactor));
+        float heightToSubtract = (mStartHeight - finalHeight) * (1f - expandedPercentageFactor);
 
         child.setY(mStartYPosition - distanceYToSubtract);
         child.setX(mStartXPosition - distanceXToSubtract);
@@ -72,7 +72,7 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<CircleImageV
             mStartYPosition = (int) (child.getY() + (child.getHeight() / 2));
 
         if (mFinalYPosition == 0)
-            mFinalYPosition = (dependency.getHeight() /2);
+            mFinalYPosition = dependency.getHeight() /2;
 
         if (mStartHeight == 0)
             mStartHeight = child.getHeight();
