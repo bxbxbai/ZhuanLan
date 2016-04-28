@@ -62,7 +62,7 @@ This project uses the Gradle build system. To build this project, use the "gradl
 
   [1]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/home.png
   [2]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/list.png
-  [3]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/story.png
+  [3]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/story3.png
   [4]: https://raw.githubusercontent.com/bxbxbai/ZhuanLan/master/images/story2.png
   [5]: http://bxbxbai.github.io/about/
 
