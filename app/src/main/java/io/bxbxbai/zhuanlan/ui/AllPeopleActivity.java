@@ -10,7 +10,7 @@ import io.bxbxbai.zhuanlan.R;
  *
  * @author bxbxbai
  */
-public class AllPeopleActivity extends BaseActivity {
+public class AllPeopleActivity extends ToolBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

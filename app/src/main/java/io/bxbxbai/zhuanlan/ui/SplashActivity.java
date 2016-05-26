@@ -1,5 +1,6 @@
 package io.bxbxbai.zhuanlan.ui;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -16,7 +17,7 @@ import android.os.SystemClock;
 import android.renderscript.Allocation;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
@@ -29,11 +30,11 @@ import io.bxbxbai.zhuanlan.utils.FastBlur;
 import java.util.Random;
 
 /**
- * Entry Activity
+ * 闪屏Activity
  *
  * @author bxbxbai
  */
-public class EntryActivity extends Activity {
+public class SplashActivity extends Activity {
 
     private static final int ANIMATION_DURATION = 2000;
     private static final float SCALE_END = 1.13F;
@@ -73,6 +74,7 @@ public class EntryActivity extends Activity {
 //        mSplashImage.setImageResource(SPLASH_ARRAY[15]);
         animateImage();
 //        applyBlur();
+        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
     }
 
     private void animateImage() {
@@ -86,8 +88,8 @@ public class EntryActivity extends Activity {
         set.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                MainActivity.start(EntryActivity.this);
-                EntryActivity.this.finish();
+                MainActivity.start(SplashActivity.this);
+                SplashActivity.this.finish();
             }
         });
     }

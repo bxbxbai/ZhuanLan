@@ -20,6 +20,7 @@
             android:textColor="@android:color/white"
             android:gravity="center"
             android:textSize="48sp"
+            android:visibility="gone"
             android:id="@+id/tv_title"
             android:layout_centerInParent="true"
             android:text="专栏App"/>

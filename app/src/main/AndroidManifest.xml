@@ -13,7 +13,7 @@
             android:allowBackup="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".ui.EntryActivity"
+                android:name=".ui.SplashActivity"
                 android:alwaysRetainTaskState="true"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.FullScreen"
