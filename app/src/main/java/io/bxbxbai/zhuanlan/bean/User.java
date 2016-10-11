@@ -1,9 +1,6 @@
 package io.bxbxbai.zhuanlan.bean;
 
-import android.database.Cursor;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 /**
  *
@@ -52,11 +49,13 @@ public class User {
     }
 
     public String getAvatarId() {
-        return author.getAvatar().getId();
+        Avatar avatar = author.getAvatar();
+        return avatar == null ? this.avatar.getId() : avatar.getId();
     }
 
     public String getAvatarTemplate() {
-        return author.getAvatar().getTemplate();
+        Avatar avatar = author.getAvatar();
+        return avatar == null ? this.avatar.getTemplate() : avatar.getTemplate();
     }
 
     public String getHref() {

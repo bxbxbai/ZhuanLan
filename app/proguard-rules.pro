@@ -22,6 +22,7 @@
 -dontpreverify #不预校验
 -dontwarn #不警告
 -verbose
+-obfuscationdictionary dictionary-elder.txt
 -dontshrink #不压缩 roboguice 需要设置成不压缩
 #-dontoptimize #不优化
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/* #优化配置

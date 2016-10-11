@@ -25,7 +25,7 @@ public class ListBaseActivity extends ToolBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_list);
+        setContentView(R.layout.list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }

@@ -18,7 +18,7 @@ public class PeopleListAdapter extends BaseRecyclerAdapter<UserEntity> {
         setOnItemClickListener(new OnItemClickListener<UserEntity>() {
             @Override
             public void onItemClick(View view, int i, UserEntity userEntity) {
-                PostListActivity.start(getContext(), userEntity.getSlug(), userEntity.getZhuanlanName());
+                PostListActivity.start(getContext(), userEntity);
             }
         });
     }

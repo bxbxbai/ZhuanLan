@@ -1,14 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:background="@android:color/white"
         android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/app_bar">
+        <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:collapsedTitleTextAppearance="@style/AppTheme.Toolbar"
+                app:layout_collapseMode="pin"
+                app:layout_collapseParallaxMultiplier="0.1"
+                app:contentScrim="@color/primary"
+                app:expandedTitleMarginEnd="48dp"
+                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleTextAppearance="@style/transparentText"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            <LinearLayout
+                    android:id="@+id/head_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="0.7">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginBottom="12dp">
+                    <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_name"
+                                android:textColor="#ffffff"
+                                android:textSize="16sp"
+                                android:textStyle="bold"/>
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:id="@+id/tv_bio"
+                                android:textColor="#ffffff"
+                                android:textSize="13sp"
+                                android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <io.bxbxbai.common.view.CircleImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bxbxbai"
+                            android:id="@+id/iv_avatar"/>
+                </RelativeLayout>
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:id="@+id/tv_description"
+                        android:maxLines="5"
+                        android:layout_marginBottom="32dp"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp"/>
+            </LinearLayout>
+
+            <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:id="@+id/toolbar"
+                    android:background="?android:colorPrimary"
+                    app:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:layout_collapseMode="pin"/>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
     <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
             android:divider="@drawable/post_list_divider"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:id="@+id/recycler_view"/>
-    <include layout="@layout/layout_loading"/>
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

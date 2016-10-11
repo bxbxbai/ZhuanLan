@@ -20,7 +20,7 @@ public final class ZhuanLanApi {
     public static final String KEY_OFFSET = "offset";
     public static final String KEY_RATING = "rating";
 
-    public static final String ZHUAN_LAN_URL = "http://zhuanlan.zhihu.com";
+    public static final String ZHUAN_LAN_URL = "https://zhuanlan.zhihu.com";
     public static final String API_BASE = ZHUAN_LAN_URL + "/api/columns/%s";
 
     /**

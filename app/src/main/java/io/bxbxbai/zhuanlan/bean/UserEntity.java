@@ -1,5 +1,7 @@
 package io.bxbxbai.zhuanlan.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import orm.db.annotation.Column;
 import orm.db.annotation.PrimaryKey;
 import orm.db.annotation.Table;
@@ -10,7 +12,7 @@ import orm.db.enums.AssignType;
  * Created by xuebin on 15/9/21.
  */
 @Table("_user")
-public class UserEntity {
+public class UserEntity implements Parcelable {
 
     @PrimaryKey(AssignType.AUTO_INCREMENT)
     @Column("_id")
@@ -130,4 +132,53 @@ public class UserEntity {
     public void setPostCount(int postCount) {
         this.postCount = postCount;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
+        dest.writeInt(this.followerCount);
+        dest.writeString(this.description);
+        dest.writeString(this.avatarId);
+        dest.writeString(this.avatarTemplate);
+        dest.writeString(this.authorName);
+        dest.writeString(this.href);
+        dest.writeString(this.slug);
+        dest.writeString(this.name);
+        dest.writeString(this.url);
+        dest.writeInt(this.postCount);
+    }
+
+    public UserEntity() {
+    }
+
+    protected UserEntity(Parcel in) {
+        this.id = in.readInt();
+        this.followerCount = in.readInt();
+        this.description = in.readString();
+        this.avatarId = in.readString();
+        this.avatarTemplate = in.readString();
+        this.authorName = in.readString();
+        this.href = in.readString();
+        this.slug = in.readString();
+        this.name = in.readString();
+        this.url = in.readString();
+        this.postCount = in.readInt();
+    }
+
+    public static final Parcelable.Creator<UserEntity> CREATOR = new Parcelable.Creator<UserEntity>() {
+        @Override
+        public UserEntity createFromParcel(Parcel source) {
+            return new UserEntity(source);
+        }
+
+        @Override
+        public UserEntity[] newArray(int size) {
+            return new UserEntity[size];
+        }
+    };
 }
