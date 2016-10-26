@@ -20,6 +20,7 @@ import io.bxbxbai.zhuanlan.core.DataCenter;
 import io.bxbxbai.zhuanlan.core.SimpleCallback;
 import io.bxbxbai.zhuanlan.core.ZhuanLanApi;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -53,10 +54,10 @@ public class PeopleListFragment extends Fragment {
         String[] ids = getActivity().getResources().getStringArray(R.array.people_ids);
         Map<String, UserEntity> map = new ArrayMap<>();
 
-//        List<UserEntity> list = DataCenter.instance().queryAll(UserEntity.class);
-//        for (UserEntity entity : list) {
-//            map.put(entity.getSlug(), entity);
-//        }
+        List<UserEntity> list = DataCenter.instance().queryAll(UserEntity.class);
+        for (UserEntity entity : list) {
+            map.put(entity.getSlug(), entity);
+        }
 
         for (String id : ids) {
             UserEntity entity = map.get(id);
