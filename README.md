@@ -11,13 +11,13 @@ http://bxbxbai.gitcafe.io/2015/03/26/zhuanlan/
 ### 下载使用： [http://fir.im/zhuanlan](http://fir.im/zhuanlan)
 
 
-##1.1版本
+## 1.1版本
 现在App在Android 4.4系统上支持沉浸式状态栏了，个人感觉更加好看了，增加了抽屉菜单功能（部分功能还未完成）。
 
 最新添加了“最近一周文章”功能，这功能会显示所有内置专栏作者最近一周的文章列表，并且所有的文章会按时间排序。还添加了“查看原网页”功能
 
 
-##看截图：
+## 看截图：
 
 ![闪屏][1]
 
@@ -48,14 +48,14 @@ http://bxbxbai.gitcafe.io/2015/03/26/zhuanlan/
 This project uses the Gradle build system. To build this project, use the "gradlew build" command or use "Import Project" in Android Studio.
 
 
-##将要做的
+## 将要做的
 
 - 添加搜索专栏id 的功能
 - 添加关注某一专栏的功能
 - 。。。
 
 
-##关于我
+## 关于我
 
 [http://bxbxbai.github.io/about/][5]
 
